@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2023/11/21 13:17:25 by kaan             ###   ########.fr       */
+/*   Updated: 2023/11/23 16:30:43 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_toupper(int c);
-int		ft_toupper(int c);
+int		ft_tolower(int c);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_putnbr_fd(int n, int fd);
 
 #endif

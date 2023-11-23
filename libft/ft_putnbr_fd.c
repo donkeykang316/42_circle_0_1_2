@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:26:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/21 12:28:24 by kaan             ###   ########.fr       */
+/*   Updated: 2023/11/23 16:39:16 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else if (n < 0)
 	{
-		n = -n;
 		write(fd, "-", 1);
+		n = -n;
+		ft_putnbr_fd(n, fd);
 	}
-	if (n > 9)
+	else if (n > 9)
 	{
 		ft_putnbr_fd(n / 10, fd);
 		ft_putnbr_fd(n % 10, fd);
