@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
+#    By: someng <someng@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2023/11/21 14:45:27 by kaan             ###   ########.fr        #
+#    Updated: 2023/11/24 20:58:01 by someng           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ SRC = ft_atoi.c\
 		ft_toupper.c
 
 OBJ = $(SRC:.c=.o)
-B_OBJ = $(B_SRC:.c=_bonus.o)
 
 all: $(NAME)
 
@@ -63,15 +62,8 @@ $(NAME): $(OBJ)
 %.o: %.c
 	cc $(FLAGS) -I . -c $< -o $@
 
-bonus: $(B_OBJ)
-	ar rc $(NAME) $(B_OBJ)
-	ranlib $(NAME)
-
-%_bonus.o: %.c
-	gcc $(FLAGS) -I . -c $< -o $@
-
 clean:
-	rm -f $(OBJ) $(B_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
