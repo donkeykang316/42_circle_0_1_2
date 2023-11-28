@@ -6,7 +6,7 @@
 /*   By: someng <someng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/28 18:15:20 by someng           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:27:07 by someng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	specifier(char ch, va_list args)
 	}
 	else if (ch == 'd' || ch == 'i')
 		ft_putnbr(handle_d_i(ch, args));
-	/*else if (ch == 'u')
+	else if (ch == 'u')
 		ft_putstr(handle_u(ch, args));
-	else if (ch == 'x')
+	/*else if (ch == 'x')
 		ft_putstr(handle_lx(ch, args));
 	else if (ch == 'X')
 		ft_putstr(handle_ux(ch, args));*/
