@@ -3,37 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
+#    By: someng <someng@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2023/11/25 12:04:52 by kaan             ###   ########.fr        #
+#    Updated: 2023/11/28 17:53:42 by someng           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
-HEADER = libft.h
-
-FLAGS = -Wall -Wextra -Werror -I./libft
-
-SRC = ft_printf.c
-
-OBJ = $(SRC:.c=.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-
-%.o: %.c
-	cc $(FLAGS) -I . -c $< -o $@
-
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+make:
+	cc ft_printf.c ft_putchar.c ft_strlen.c ft_putstr.c ft_putnbr.c spec_handle_1.c spec_handle_2.c ft_puthex.c && ./a.out

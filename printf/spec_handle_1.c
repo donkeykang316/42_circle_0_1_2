@@ -1,22 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   spec_handle_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: someng <someng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 12:49:52 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/22 10:10:48 by someng           ###   ########.fr       */
+/*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
+/*   Updated: 2023/11/28 18:07:05 by someng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-int	ft_toupper(int c)
+char	handle_c(char c, va_list args)
 {
-	if (c >= 'a' && c <= 'z')
-	{
-		return (c - 32);
-	}
-	return (c);
+	char	var;
+
+	var = va_arg(args, int);
+	return (var);
+}
+
+char	*handle_s(char c, va_list args)
+{
+	char	*var;
+
+	var = va_arg(args, char *);
+	return (var);
+}
+
+long	handle_p(char c, va_list args)
+{
+	long	var;
+
+	var = va_arg(args, long);
+	return (var);
+}
+
+int	handle_d_i(char c, va_list args)
+{
+	char	var;
+
+	var = va_arg(args, int);
+	return (var);
 }

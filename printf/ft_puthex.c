@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: someng <someng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 12:24:11 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/21 12:26:07 by kaan             ###   ########.fr       */
+/*   Created: 2023/11/28 15:49:27 by someng            #+#    #+#             */
+/*   Updated: 2023/11/28 17:59:29 by someng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	ft_puthex(long n)
 {
-	size_t	i;
-	char	*p;
-
-	i = 0;
-	p = s;
-	while (i < n)
+	if (n > 16)
 	{
-		p[i] = c;
-		i++;
+		ft_puthex(n / 16);
+		ft_puthex(n % 16);
 	}
-	return (s);
+	else
+	{
+		if (n < 10)
+		{
+			n = n + 48;
+			ft_putchar(n);
+		}
+		else
+		{
+			n = n + 87;
+			ft_putchar(n);
+		}
+	}
 }

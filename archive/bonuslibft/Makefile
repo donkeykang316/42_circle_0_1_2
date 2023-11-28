@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
+#    By: someng <someng@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2023/11/21 14:45:27 by kaan             ###   ########.fr        #
+#    Updated: 2023/11/27 11:56:43 by someng           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = libft.a
 
 HEADER = libft.h
 
-FLAGS = -Wall -Wextra -Werror
+CC = cc
+
+FLAGS = -Wall -Wextra -Werror -I
 
 SRC = ft_atoi.c\
 		ft_bzero.c\
@@ -49,33 +51,32 @@ SRC = ft_atoi.c\
 		ft_strtrim.c\
 		ft_substr.c\
 		ft_tolower.c\
-		ft_toupper.c
+		ft_toupper.c\
+		main.c
 
 OBJ = $(SRC:.c=.o)
-B_OBJ = $(B_SRC:.c=_bonus.o)
 
-all: $(NAME)
+EXECUT = main
 
+all: $(NAME) $(EXECUT)
+	
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+
+main.o: main.c
+	$(CC) $(FLAGS) -c main.c
+
+$(EXECUT): $(NAME) main.o
+	ar rc $(CC) $(FLAGS) -o $(EXECUT) main.o $(NAME)
 
 %.o: %.c
-	cc $(FLAGS) -I . -c $< -o $@
-
-bonus: $(B_OBJ)
-	ar rc $(NAME) $(B_OBJ)
-	ranlib $(NAME)
-
-%_bonus.o: %.c
-	gcc $(FLAGS) -I . -c $< -o $@
-
+		cc $(FLAGS) . -c $< -o $@
 clean:
-	rm -f $(OBJ) $(B_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
