@@ -6,13 +6,13 @@
 #    By: someng <someng@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2023/11/29 11:39:21 by someng           ###   ########.fr        #
+#    Updated: 2023/11/29 11:51:35 by someng           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-HEADER = libftprintf.h
+HEADER = ft_printf.h
 
 FLAGS = -Wall -Wextra -Werror
 
