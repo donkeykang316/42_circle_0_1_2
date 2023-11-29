@@ -6,11 +6,11 @@
 /*   By: someng <someng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:26:19 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/28 13:16:17 by someng           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:45:37 by someng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putstr(char *s)
 {

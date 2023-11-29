@@ -6,11 +6,11 @@
 /*   By: someng <someng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:26:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/28 18:23:03 by someng           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:45:30 by someng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putnbr(int n)
 {

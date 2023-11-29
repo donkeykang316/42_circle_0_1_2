@@ -6,11 +6,11 @@
 /*   By: someng <someng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/28 18:27:07 by someng           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:45:09 by someng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	specifier(char ch, va_list args)
 {
@@ -26,11 +26,11 @@ void	specifier(char ch, va_list args)
 	else if (ch == 'd' || ch == 'i')
 		ft_putnbr(handle_d_i(ch, args));
 	else if (ch == 'u')
-		ft_putstr(handle_u(ch, args));
-	/*else if (ch == 'x')
-		ft_putstr(handle_lx(ch, args));
+		ft_putnbr(handle_u(ch, args));
+	else if (ch == 'x')
+		ft_puthex(handle_lx(ch, args));
 	else if (ch == 'X')
-		ft_putstr(handle_ux(ch, args));*/
+		ft_puthex_up(handle_ux(ch, args));
 	else
 	{
 		ft_putchar('%');
@@ -58,14 +58,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (0);
-}
-int	main()
-{
-	char	c = 'c';
-	char	b[] = "hello there";
-	char	*d = b;
-	int		i = 1111;
-	int		nb = -2222;
-
-	ft_printf("character:%c\nstring:%s\naddress:%p\nnumber1:%i\nnumber2:%d\n", c, b, d, i, nb);
 }
