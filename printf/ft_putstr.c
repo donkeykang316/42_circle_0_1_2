@@ -6,15 +6,15 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:26:19 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/29 16:38:48 by kaan             ###   ########.fr       */
+/*   Updated: 2023/11/29 19:52:53 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -22,4 +22,5 @@ void	ft_putstr(char *s)
 		write(1, &s[i], 1);
 		i++;
 	}
+	return (i);
 }
