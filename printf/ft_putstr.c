@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:26:19 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/29 19:52:53 by kaan             ###   ########.fr       */
+/*   Updated: 2023/11/30 18:03:00 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,18 @@ int	ft_putstr(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (s == NULL)
 	{
-		write(1, &s[i], 1);
-		i++;
+		write(1, "(null)", 6);
+		return (6);
+	}
+	else
+	{
+		while (s[i])
+		{
+			write(1, &s[i], 1);
+			i++;
+		}
 	}
 	return (i);
 }

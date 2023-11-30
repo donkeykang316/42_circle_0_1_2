@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/29 19:45:06 by kaan             ###   ########.fr       */
+/*   Updated: 2023/11/30 19:26:35 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	specifier(char ch, va_list args)
 		count += handle_ux(ch, args);
 	else
 	{
-		ft_putchar('%');
-		ft_putchar(ch);
+		count += ft_putchar(ch);
 	}
 	return (count);
 }
@@ -42,7 +41,7 @@ int	specifier(char ch, va_list args)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	size_t	i;
+	int		i;
 	int		j;
 
 	i = 0;
@@ -56,9 +55,9 @@ int	ft_printf(const char *format, ...)
 			j += specifier(format[i], args);
 		}
 		else
-			ft_putchar(format[i]);
+			j += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
-	return (j + i);
+	return (j);
 }

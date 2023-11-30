@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/29 17:22:59 by kaan             ###   ########.fr       */
+/*   Updated: 2023/11/30 19:02:24 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,50 +15,65 @@
 int	handle_c(char c, va_list args)
 {
 	char	var;
+	int		count;
 
+	count = 0;
 	(void)c;
 	var = va_arg(args, int);
-	ft_putchar(var);
-	return (sizeof(char));
+	count = ft_putchar(var);
+	return (count);
 }
 
 int	handle_s(char c, va_list args)
 {
 	char	*var;
+	int		count;
 
+	count = 0;
 	(void)c;
 	var = va_arg(args, char *);
-	ft_putstr(var);
-	return (ft_strlen(var));
+	count = ft_putstr(var);
+	return (count);
 }
 
 int	handle_p(char c, va_list args)
 {
-	long	var;
+	void	*var;
+	int		count;
 
+	count = 0;
 	(void)c;
-	var = va_arg(args, long);
+	var = va_arg(args, void *);
+	if (!var)
+	{
+		ft_putstr("(nil)");
+		return (5);
+	}
 	ft_putstr("0x");
-	ft_puthex(var);
-	return (address_hex_len(var));
+	ft_putaddress((unsigned long long int)var, &count);
+	return (count + 2);
 }
 
 int	handle_d_i(char c, va_list args)
 {
 	int	var;
+	int	count;
 
+	count = 0;
 	(void)c;
 	var = va_arg(args, int);
-	ft_putnbr(var);
-	return (nbr_len(var));
+	ft_putnbr(var, &count);
+	return (count);
 }
 
 int	handle_u(char c, va_list args)
 {
 	unsigned int	var;
+	int				count;
 
+	count = 0;
 	(void)c;
 	var = va_arg(args, unsigned int);
-	ft_putnbr(var);
-	return (nbr_len(var));
+	ft_putnbr(var, &count);
+	return (count);
 }
