@@ -1,0 +1,11 @@
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis nibh blandit, rutrum enim quis, pulvinar urna. Nulla facilisi. Cras porttitor accumsan ante, eu lacinia velit tempor posuere. Cras eu iaculis dolor, dignissim scelerisque elit. Sed enim nibh, aliquam non ante vel, eleifend facilisis turpis. Nullam fringilla felis non velit eleifend sodales. In et aliquet dui. Sed purus felis, rhoncus id luctus at, gravida in velit. Fusce rutrum tellus faucibus imperdiet placerat. Cras vel pretium purus.
+
+Nunc ex tortor, tristique ac cursus in, lacinia ac sem. Aliquam arcu ante, hendrerit a sodales ullamcorper, ultrices at augue. Donec eu tristique nulla, ullamcorper vulputate lacus. Proin accumsan purus quis nisi pretium, a tincidunt enim consequat. Donec vel nulla eu nisi pellentesque fermentum eu non nibh. Maecenas ligula neque, malesuada sit amet quam ut, laoreet venenatis orci. Fusce at suscipit justo. Nulla ut fringilla libero.
+
+Suspendisse potenti. Curabitur in nunc eu purus condimentum aliquam. In hac habitasse platea dictumst. Nunc iaculis risus eget leo viverra, gravida commodo nisi placerat. Pellentesque interdum pharetra nulla, id euismod lacus malesuada eget. Donec ut metus nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vel sem eros. Vivamus vitae blandit lacus. Fusce nec eros ut lectus suscipit malesuada. Quisque sit amet nibh arcu. Etiam pulvinar gravida volutpat. Maecenas et elit molestie odio efficitur varius. Pellentesque ac nisi at tortor rutrum pulvinar. Vestibulum dignissim dolor erat, et ultrices nulla tincidunt ut. Suspendisse sed congue dolor, vel imperdiet turpis.
+
+FT_STRCHR
+FT_STRDUP
+FT_STRLEN
+FT_SUBSTR
+FT_STRJOIN
