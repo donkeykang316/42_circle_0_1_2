@@ -7,5 +7,5 @@ Suspendisse potenti. Curabitur in nunc eu purus condimentum aliquam. In hac habi
 FT_STRCHR   returns a pointer to the first occurrence of the character c in the string s.(look for \n)
 FT_STRDUP   function returns a pointer to a new string which is a duplicate of the string s.  Memory for the new string is obtained with malloc
 FT_STRLEN   length of the string
-FT_SUBSTR   returns a substring of the string s passed as parameter.(look for the start character(\n\0?) and end character(\n\0?))
+FT_SUBSTR   returns a substring of the string s passed as parameter.(look for the start index and end index)
 FT_STRJOIN  combine two strings into a new string and store in the new pointer
