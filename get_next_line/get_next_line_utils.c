@@ -6,29 +6,106 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:29:02 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/01 17:30:26 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/02 14:55:09 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_putstr(char *s)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	cc;
 
 	i = 0;
-	if (s == NULL)
+	cc = c;
+	while (s[i] != cc && s[i] != '\0')
 	{
-		write(1, "(null)", 6);
-		return (6);
+		i++;
 	}
-	else
+	if (s[i] == cc)
 	{
-		while (s[i])
-		{
-			write(1, &s[i], 1);
-			i++;
-		}
+		return ((char *)&s[i]);
+	}
+	return (NULL);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*p;
+	int		i;
+
+	i = 0;
+	p = malloc(ft_strlen(s) + 1);
+	if (!p)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		p[i] = s[i];
+		i++;
+	}
+	p[i] = '\0';
+	return (p);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
 	}
 	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*str;
+
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	str = malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
+	str[i] = 0;
+	return (str);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*new;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	new = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!new)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		new[i] = s2[j];
+		i++;
+		j++;
+	}
+	new[i] = '\0';
+	return (new);
 }

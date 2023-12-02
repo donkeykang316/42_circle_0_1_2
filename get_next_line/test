@@ -4,8 +4,8 @@ Nunc ex tortor, tristique ac cursus in, lacinia ac sem. Aliquam arcu ante, hendr
 
 Suspendisse potenti. Curabitur in nunc eu purus condimentum aliquam. In hac habitasse platea dictumst. Nunc iaculis risus eget leo viverra, gravida commodo nisi placerat. Pellentesque interdum pharetra nulla, id euismod lacus malesuada eget. Donec ut metus nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vel sem eros. Vivamus vitae blandit lacus. Fusce nec eros ut lectus suscipit malesuada. Quisque sit amet nibh arcu. Etiam pulvinar gravida volutpat. Maecenas et elit molestie odio efficitur varius. Pellentesque ac nisi at tortor rutrum pulvinar. Vestibulum dignissim dolor erat, et ultrices nulla tincidunt ut. Suspendisse sed congue dolor, vel imperdiet turpis.
 
-FT_STRCHR
-FT_STRDUP
-FT_STRLEN
-FT_SUBSTR
-FT_STRJOIN
+FT_STRCHR   returns a pointer to the first occurrence of the character c in the string s.(look for \n)
+FT_STRDUP   function returns a pointer to a new string which is a duplicate of the string s.  Memory for the new string is obtained with malloc
+FT_STRLEN   length of the string
+FT_SUBSTR   returns a substring of the string s passed as parameter.(look for the start character(\n\0?) and end character(\n\0?))
+FT_STRJOIN  combine two strings into a new string and store in the new pointer

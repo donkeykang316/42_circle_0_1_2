@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:47:24 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/01 17:38:05 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/02 12:47:56 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ char	*get_next_line(int fd)
 	}
 	else
 	{
-		while (buffer[i] != '\n')
-		{
-			write(1, &buffer[i], 1);
-			i++;
-		}
+		//look for the first new line
+		ft_strchr(buffer, '\n');
+
 	}
 	buffer[byteread] = '\0';
 	return (buffer);
@@ -55,7 +53,8 @@ int main()
 
     fd = open(filename, O_RDONLY);
     buffer = get_next_line(fd);
-	//buffer = get_next_line(fd);
+	printf("\n\n\n");
+	buffer = get_next_line(fd);
 
 	//printf("fd:%d\n", fd);
 	//printf("%s\n", buffer);
