@@ -6,45 +6,49 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:47:24 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/02 18:39:17 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/04 17:50:38 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+ssize_t	stack_line(char *buffer, int fd)
+{
+	ssize_t			byteread;	
+
+	byteread = 0;
+	while (*buffer)
+	{
+		if (*buffer != '\n')
+			byteread += read(fd, buffer, BUFFER_SIZE);
+		printf("%zu\n", byteread);
+		buffer++;
+	}
+	return (byteread);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*remainder;
-	char		buffer[BUFFER_SIZE + 1];
-	char		*newline;
-	ssize_t		byteread;
-	char		*temp;
+	char			*buffer;
+	static char		*temp;
+	char			*line;
+	ssize_t			byteread;
 
-	remainder = NULL;
-	if (BUFFER_SIZE <= 0)
-	{
-		return (NULL);
-	}
-	byteread = read(fd, buffer, BUFFER_SIZE);
-	if (byteread < 0)
-	{
-		return (NULL);
-	}
-	else
-	{
-			newline = ft_strdup(ft_strchr(buffer, '\n'));
-	}
-	return (newline);
+	temp = NULL;
+	buffer = malloc(byteread + 1);
+	byteread = stack_line(buffer, fd);
+	line = malloc(byteread + 1);
+	temp = ft_strdup(buffer);
+	return (temp);
 }
 
 int main()
 {
 	const char  *filename = "test";
 	int         fd;
+	int			i = 3;
 
-    fd = open(filename, O_RDONLY);
-	printf("%s\n", get_next_line(fd));
-	//printf("\n\n");
-	//buffer = get_next_line(fd);
+	fd = open(filename, O_RDONLY);
+	printf("%s", get_next_line(fd));
 	close(fd);
 }

@@ -6,14 +6,16 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:48:00 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/02 16:45:07 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/04 17:01:04 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 100000
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 # include <unistd.h>
 # include <fcntl.h>
