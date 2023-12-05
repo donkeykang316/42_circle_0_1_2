@@ -6,13 +6,13 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:29:02 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/04 17:13:29 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/05 17:06:54 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int		i;
 	char	cc;
@@ -84,7 +84,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*new;
 	int		i;
@@ -92,6 +92,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
+	if (!s1)
+	{
+		s1 = malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
 	new = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!new)
 		return (NULL);
@@ -101,18 +106,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	while (s2[j] != '\0')
-	{
-		new[i] = s2[j];
-		i++;
-		j++;
-	}
+		new[i++] = s2[j++];
 	new[i] = '\0';
+	free(s1);
 	return (new);
 }
 
 /*int	main()
 {
-	char *c = "Hello its me";
-	printf("%s", ft_strchr(c, 't'));
+	char *a = "Hello";
+	char *b = " World";
+
+	a = ft_strjoin(a, b);
+	printf("%s", a);
 }
 */
