@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:29:02 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/05 17:06:54 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/06 17:12:46 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	return (new);
 }
-
-/*int	main()
-{
-	char *a = "Hello";
-	char *b = " World";
-
-	a = ft_strjoin(a, b);
-	printf("%s", a);
-}
-*/

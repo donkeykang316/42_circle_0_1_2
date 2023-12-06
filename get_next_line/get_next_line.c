@@ -6,16 +6,15 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:47:24 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/05 17:23:43 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/06 17:18:28 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_stack(char *temp, int fd)
+static char	*ft_stack(char *buffer, char *temp, int fd)
 {
-	char			*buffer;
-	ssize_t			byteread;
+	ssize_t		byteread;
 
 	byteread = 0;
 	if (BUFFER_SIZE <= 0 || fd < 0)
@@ -26,33 +25,47 @@ char	*ft_stack(char *temp, int fd)
 	while (!ft_strchr(buffer, '\n'))
 	{
 		byteread = read(fd, buffer, BUFFER_SIZE);
-		//printf("error check: %s\n", buffer);
 		buffer[byteread] = '\0';
-		//printf("error check: %s\n", buffer);
 		temp = ft_strjoin(temp, buffer);
 	}
-	free (buffer);
+	//free (buffer);
 	return (temp);
 }
 
-char	*free_temp(char *temp)
+static char	*set_line(char *temp)
 {
+	int		i;
 	char	*str;
+	char	*ptr;
 
-	temp[0] = '\0';
-	temp = NULL;
-	return (temp);
+	i = 0;
+	while (temp[i] != '\n')
+	{
+		str[i] = temp[i];
+		i++;
+	}
+	str[i] = temp[i];
+	str[i + 1] = '\0';
+	temp = ft_substr(temp, i + 1, ft_strlen(temp) - i);
+	return (str);
 }
 
 char	*get_next_line(int fd)
 {
 	static char		*temp;
+	char			*new_temp;
 	char			*line;
+	char			*buffer;
 
-	//printf("error check: %s\n", temp);
-	temp = ft_stack(temp, fd);
-	line = ft_strdup(temp);
-	temp = free_temp(temp);
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (NULL);
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	temp = ft_stack(buffer, temp, fd);
+	//line = ft_strdup(temp);
+	//printf("buffer check: %s\n", buffer);
+    line = set_line(temp);
 	//printf("error check: %s\n", temp);
 	return (line);
 }
@@ -61,14 +74,14 @@ int main()
 {
 	const char  *filename = "test";
 	int         fd;
-	int			i = 2;
-	char	*c;
+	int			i = 6;
+	char		*c;
 
 	fd = open(filename, O_RDONLY);
 	while (i > 0)
 	{
 		c = get_next_line(fd);
-		//printf("%s", c);
+		printf("%s", c);
 		free (c);
 		i--;
 	}

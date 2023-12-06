@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:48:00 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/05 16:24:21 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/06 17:18:51 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 50
 # endif
 
 # include <unistd.h>
