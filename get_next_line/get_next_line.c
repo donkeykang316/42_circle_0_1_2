@@ -3,70 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 10:47:24 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/06 17:18:28 by kaan             ###   ########.fr       */
+/*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
+/*   Updated: 2023/12/07 08:55:12 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_stack(char *buffer, char *temp, int fd)
-{
-	ssize_t		byteread;
-
-	byteread = 0;
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	while (!ft_strchr(buffer, '\n'))
-	{
-		byteread = read(fd, buffer, BUFFER_SIZE);
-		buffer[byteread] = '\0';
-		temp = ft_strjoin(temp, buffer);
-	}
-	//free (buffer);
-	return (temp);
-}
-
-static char	*set_line(char *temp)
-{
-	int		i;
-	char	*str;
-	char	*ptr;
-
-	i = 0;
-	while (temp[i] != '\n')
-	{
-		str[i] = temp[i];
-		i++;
-	}
-	str[i] = temp[i];
-	str[i + 1] = '\0';
-	temp = ft_substr(temp, i + 1, ft_strlen(temp) - i);
-	return (str);
-}
-
 char	*get_next_line(int fd)
 {
-	static char		*temp;
-	char			*new_temp;
-	char			*line;
-	char			*buffer;
+	static char	*temp;
+	char		*buffer;
+	char		*line;
+	ssize_t		b_read;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	char		*str;
+	char		*remain;
+	int			i;
+
+	b_read = 0;
+	i = 0;
+	if (fd < 0)
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	temp = ft_stack(buffer, temp, fd);
-	//line = ft_strdup(temp);
-	//printf("buffer check: %s\n", buffer);
-    line = set_line(temp);
-	//printf("error check: %s\n", temp);
+	while ((b_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	{
+		buffer[b_read] = '\0';
+		temp = ft_strjoin(temp, buffer);
+		if (ft_strchr(temp, '\n'))
+			break;
+	}
+	free(buffer);
+	while (temp[i] != '\n' && temp[i] != '\0')
+	{
+		i++;
+	}
+	if (temp[i] == '\n')
+	{
+		str = ft_substr(temp, 0, i + 1);
+		remain = ft_substr(temp, i + 1, ft_strlen(temp) + 1);
+		remain[ft_strlen(temp) + 1] = '\0';
+		temp = ft_strdup(remain);
+		line = ft_strdup(str);
+	}
+	else
+		line = ft_strdup(temp);
 	return (line);
 }
 
@@ -82,8 +67,8 @@ int main()
 	{
 		c = get_next_line(fd);
 		printf("%s", c);
-		free (c);
 		i--;
 	}
+	free (c);
 	close(fd);
 }
