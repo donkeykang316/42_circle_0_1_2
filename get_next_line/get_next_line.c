@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/08 09:58:00 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/08 11:11:42 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	*get_next_line(int fd)
 	{
 		line = handle_nline(temp, i);
 		remain = ft_substr(temp, i + 1, ft_strlen(temp) + i);
-		remain[ft_strlen(temp) + 1] = '\0';
 		temp = ft_strdup(remain);
 		free (remain);
 	}
@@ -77,7 +76,7 @@ char	*get_next_line(int fd)
 
 int main()
 {
-	const char  *filename = "test";
+	const char	*filename = "test";
 	int         fd;
 	int			i = 10;
 	char		*c;
