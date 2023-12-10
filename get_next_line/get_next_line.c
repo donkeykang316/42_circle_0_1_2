@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/08 11:11:42 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/10 16:34:31 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*stack_line(char *temp, int fd)
+static char	*stack_line(char *temp, char *buffer, int fd)
 {
-	char		*buffer;
+	char		*str;
 	ssize_t		b_read;
 
 	b_read = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
 	while (b_read > 0)
 	{
 		b_read = read(fd, buffer, BUFFER_SIZE);
+		if (b_read == 0)
+			break ;
 		buffer[b_read] = '\0';
-		temp = ft_strjoin(temp, buffer);
+		str = temp;
+		temp = ft_strjoin(str, buffer);
 		if (ft_strchr(temp, '\n'))
 			break ;
 	}
@@ -35,50 +33,49 @@ char	*stack_line(char *temp, int fd)
 	return (temp);
 }
 
-static char	*handle_nline(char *temp, int i)
+static char	*handle_nline(char *line)
 {
-	char		*str;
+	char		*remain;
+	ssize_t		i;
 
-	str = ft_substr(temp, 0, i + 1);
-	    if (!str)
-            return (NULL);
-	return (str);
+	i = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	if (line[i] == '\0')
+		return (NULL);
+	remain = ft_substr(line, i + 1, ft_strlen(line) + i);
+	if (remain == NULL)
+		free (remain);
+	line[i + 1] = '\0';
+	return (remain);
 }
 
 char	*get_next_line(int fd)
 {
+	char		*buffer;
 	static char	*temp;
 	char		*line;
-	char		*remain;
-	int			i;
 
-	temp = stack_line(temp, fd);
-	if (!temp)
-		return(NULL);
-	i = 0;
-	while (temp[i] != '\n' && temp[i] != '\0')
-		i++;
-	if (temp[i] == '\n')
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		line = handle_nline(temp, i);
-		remain = ft_substr(temp, i + 1, ft_strlen(temp) + i);
-		temp = ft_strdup(remain);
-		free (remain);
+		free(temp);
+		free(buffer);
+		return (NULL);
 	}
-	else
-	{
-		line = ft_strdup(temp);
-		line[ft_strlen(temp)] = '\0';
-		temp = NULL;
-	}
+	line = stack_line(temp, buffer, fd);
+	if (!line)
+		return (NULL);
+	temp = handle_nline(line);
 	return (line);
 }
-
-int main()
+/*int main()
 {
 	const char	*filename = "test";
 	int         fd;
-	int			i = 10;
+	int			i = 5;
 	char		*c;
 
 	fd = open(filename, O_RDONLY);
@@ -86,8 +83,8 @@ int main()
 	{
 		c = get_next_line(fd);
 		printf("%s", c);
+		free(c);
 		i--;
 	}
-	free (c);
 	close(fd);
-}
+}*/

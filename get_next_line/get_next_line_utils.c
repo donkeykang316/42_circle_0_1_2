@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:41 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/08 09:53:14 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/10 12:07:01 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = malloc(1 * sizeof(char));
-		if (!s1)
-			return (NULL);
 		s1[0] = '\0';
 	}
 	new = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
