@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/10 16:34:31 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/11 18:32:13 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 static char	*stack_line(char *temp, char *buffer, int fd)
 {
-	char		*str;
 	ssize_t		b_read;
 
 	b_read = 1;
 	while (b_read > 0)
 	{
 		b_read = read(fd, buffer, BUFFER_SIZE);
-		if (b_read == 0)
+		if (b_read == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		else if (b_read == 0)
 			break ;
 		buffer[b_read] = '\0';
-		str = temp;
-		temp = ft_strjoin(str, buffer);
+		if (!temp)
+			temp = ft_strdup("");
+		temp = ft_strjoin(temp, buffer);
 		if (ft_strchr(temp, '\n'))
 			break ;
 	}
@@ -39,13 +44,11 @@ static char	*handle_nline(char *line)
 	ssize_t		i;
 
 	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
+	while (line[i] != '\n' && line[i] != 0)
 		i++;
-	if (line[i] == '\0')
+	if (line[i] == 0)
 		return (NULL);
-	remain = ft_substr(line, i + 1, ft_strlen(line) + i);
-	if (remain == NULL)
-		free (remain);
+	remain = ft_substr(line, i + 1, ft_strlen(line) - i);
 	line[i + 1] = '\0';
 	return (remain);
 }
@@ -56,24 +59,32 @@ char	*get_next_line(int fd)
 	static char	*temp;
 	char		*line;
 
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		free(temp);
 		free(buffer);
-		return (NULL);
+		free(temp);
+		buffer = NULL;
+		temp = NULL;
+		return (0);
 	}
 	line = stack_line(temp, buffer, fd);
 	if (!line)
+	{
+		free (line);
+		return (NULL);
+	}
+	else if (line[0] == 0)
 		return (NULL);
 	temp = handle_nline(line);
 	return (line);
 }
+
 /*int main()
 {
-	const char	*filename = "test";
+	const char	*filename = "read_error.txt";
 	int         fd;
 	int			i = 5;
 	char		*c;
