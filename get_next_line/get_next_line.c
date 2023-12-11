@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/11 18:32:13 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/11 18:50:07 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static char	*stack_line(char *temp, char *buffer, int fd)
 		else if (b_read == 0)
 			break ;
 		buffer[b_read] = '\0';
-		if (!temp)
-			temp = ft_strdup("");
 		temp = ft_strjoin(temp, buffer);
 		if (ft_strchr(temp, '\n'))
 			break ;
@@ -65,9 +63,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free(buffer);
-		free(temp);
-		buffer = NULL;
-		temp = NULL;
 		return (0);
 	}
 	line = stack_line(temp, buffer, fd);
