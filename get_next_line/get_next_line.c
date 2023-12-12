@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/12 12:50:30 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/12 15:32:47 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,21 @@ char	*get_next_line(int fd)
 	temp = handle_nline(line, temp);
 	return (line);
 }
+/*int main()
+{
+	const char	*filename = "get_next_line.c";
+	int         fd;
+	int			i = 30;
+	char		*c;
+	fd = open(filename, O_RDONLY);
+	
+	while (i > 0)
+	{
+		c = get_next_line(fd);
+		printf("%s", c);
+		free(c);
+		i--;
+	}
+	close(fd);
+}
+*/

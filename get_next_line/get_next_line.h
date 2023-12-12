@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:57:04 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/12 12:49:31 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/12 15:23:38 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 10000
 # endif
 
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 char	*ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
