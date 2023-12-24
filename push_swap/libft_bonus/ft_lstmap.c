@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/24 15:51:45 by kaan             ###   ########.fr       */
+/*   Created: 2023/12/24 17:46:57 by kaan              #+#    #+#             */
+/*   Updated: 2023/12/24 17:50:30 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int			i;
-	t_stack		*a;
-	t_stack		*b;
+	t_list	*new_list;
+	t_list *new_obj;
 
-	i = 1;
-	a = NULL;
-	(void)b;
-	if (ac >= 2)
+	if (!lst || !f || !del)
+		return (NULL);
+	new_list = NULL;
+	while (lst)
 	{
-		while (av[i])
+		new_obj = ft_lstnew(f(lst->content));
+		if (!new_obj)
 		{
-			a = malloc(sizeof(t_stack));
-			if (!a)
-				return (0);
-			a->n = ft_atoi(av[i]);
-			ft_printf("%d\n", a->n);
-			free(a);
-			i++;
+			ft_lstclear(&new_list, del);
+			return (NULL);
 		}
+		ft_lstadd_back(&new_list, new_obj);
+		lst = lst->next;
 	}
+	return (new_list);
 }

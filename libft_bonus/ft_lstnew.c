@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/24 15:51:45 by kaan             ###   ########.fr       */
+/*   Created: 2023/12/24 16:07:40 by kaan              #+#    #+#             */
+/*   Updated: 2023/12/24 16:16:37 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstnew(void *content)
 {
-	int			i;
-	t_stack		*a;
-	t_stack		*b;
+	t_list	*new;
 
-	i = 1;
-	a = NULL;
-	(void)b;
-	if (ac >= 2)
-	{
-		while (av[i])
-		{
-			a = malloc(sizeof(t_stack));
-			if (!a)
-				return (0);
-			a->n = ft_atoi(av[i]);
-			ft_printf("%d\n", a->n);
-			free(a);
-			i++;
-		}
-	}
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
