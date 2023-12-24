@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
+/*   Updated: 2023/12/24 14:13:17 by kaan             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <stdlib.h>
-typedef struct s_number
+typedef struct s_stack
 {
-    char *n;
-    struct  s_number *next;
-}   t_number;
+    int n;
+    struct  s_stack *next;
+}   t_stack;
 
 int main(int ac, char **av)
 {
     int i;
-    t_number *current;
+    t_stack *current;
     
     i = 1;
     current = NULL;
@@ -17,11 +29,11 @@ int main(int ac, char **av)
     {
         while(av[i])
         {
-            current = malloc(sizeof(t_number));
+            current = malloc(sizeof(t_stack));
             if (!current)
                 return (0);
-            current->n = av[i];
-            ft_printf("%s\n", current->n);
+            current->n = atoi(av[i]);
+            ft_printf("%d\n", current->n);
             free(current);
             i++;
         }

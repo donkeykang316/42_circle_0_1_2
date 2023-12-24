@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:26:19 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/30 18:03:00 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/24 14:14:10 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *s)
+int	ft_putchar_printf(char c)
 {
-	int	i;
-
-	i = 0;
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	else
-	{
-		while (s[i])
-		{
-			write(1, &s[i], 1);
-			i++;
-		}
-	}
-	return (i);
+	return (write(1, &c, 1));
 }

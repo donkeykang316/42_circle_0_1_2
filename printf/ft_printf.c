@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
-/*   Updated: 2023/11/30 19:26:35 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/24 14:19:07 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	specifier(char ch, va_list args)
 		count += handle_ux(ch, args);
 	else
 	{
-		count += ft_putchar(ch);
+		count += ft_putchar_printf(ch);
 	}
 	return (count);
 }
@@ -47,7 +47,7 @@ int	ft_printf(const char *format, ...)
 	i = 0;
 	j = 0;
 	va_start(args, format);
-	while (i < ft_strlen(format))
+	while (i < ft_strlen_printf(format))
 	{
 		if (format[i] == '%')
 		{
@@ -55,7 +55,7 @@ int	ft_printf(const char *format, ...)
 			j += specifier(format[i], args);
 		}
 		else
-			j += ft_putchar(format[i]);
+			j += ft_putchar_printf(format[i]);
 		i++;
 	}
 	va_end(args);

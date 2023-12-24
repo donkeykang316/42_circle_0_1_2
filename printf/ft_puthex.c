@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:49:27 by someng            #+#    #+#             */
-/*   Updated: 2023/12/22 13:38:34 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/24 14:16:57 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	ft_puthex(long n, int *count)
 	{
 		if (n < 10)
 		{
-			ft_putchar(n + 48);
+			ft_putchar_printf(n + 48);
 			(*count)++;
 		}
 		else
 		{
-			ft_putchar(n + 97 - 10);
+			ft_putchar_printf(n + 97 - 10);
 			(*count)++;
 		}
 	}
@@ -58,12 +58,12 @@ int	ft_puthex_up(long n, int *count)
 	{
 		if (n < 10)
 		{
-			ft_putchar(n + 48);
+			ft_putchar_printf(n + 48);
 			(*count)++;
 		}
 		else
 		{
-			ft_putchar(n + 87 - 32);
+			ft_putchar_printf(n + 87 - 32);
 			(*count)++;
 		}
 	}
@@ -81,12 +81,12 @@ int	ft_putaddress(unsigned long long int n, int *count)
 	{
 		if (n < 10)
 		{
-			ft_putchar(n + 48);
+			ft_putchar_printf(n + 48);
 			(*count)++;
 		}
 		else
 		{
-			ft_putchar(n + 97 - 10);
+			ft_putchar_printf(n + 97 - 10);
 			(*count)++;
 		}
 	}
