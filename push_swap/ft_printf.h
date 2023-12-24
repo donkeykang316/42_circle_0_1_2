@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:15:59 by someng            #+#    #+#             */
-/*   Updated: 2023/11/30 19:26:29 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/24 14:20:03 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(long n, int *count);
+int	ft_putchar_printf(char c);
+int	ft_putstr_printf(char *s);
+int	ft_putnbr_printf(long n, int *count);
 int	ft_puthex(long n, int *count);
 int	ft_puthex_up(long n, int *count);
 int	ft_putaddress(unsigned long long int n, int *count);
-int	ft_strlen(const char *s);
+int	ft_strlen_printf(const char *s);
 int	handle_c(char c, va_list args);
 int	handle_s(char c, va_list args);
 int	handle_p(char c, va_list args);

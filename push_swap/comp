@@ -1,0 +1,1 @@
+cc -Wall -Wextra -Werror *.c *.a && ./a.out -12 45 2 89 1892

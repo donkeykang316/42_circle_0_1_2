@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/24 14:54:50 by kaan             ###   ########.fr       */
+/*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
+/*   Updated: 2023/12/24 14:48:38 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int	main(int ac, char **av)
+# include "ft_printf.h"
+# include "libft.h"
+
+typedef struct s_stack
 {
-	int			i;
-	t_stack		*a;
-	t_stack		*b;
+	int				n;
+	struct s_stack	*next;
+}	t_stack;
 
-	i = 1;
-	a = NULL;
-	(void)b;
-	if (ac >= 2)
-	{
-		while (av[i])
-		{
-			a = malloc(sizeof(t_stack));
-			if (!a)
-				return (0);
-			a->n = ft_atoi(av[i]);
-			ft_printf("%d\n", a->n);
-			free(a);
-			i++;
-		}
-	}
-}
+int	main(int ac, char **av);
+
+#endif
