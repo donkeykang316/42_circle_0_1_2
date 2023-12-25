@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/24 15:51:45 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/25 12:58:21 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,21 @@
 int	main(int ac, char **av)
 {
 	int			i;
-	t_stack		*a;
-	t_stack		*b;
+	t_list		**a;
 
 	i = 1;
-	a = NULL;
-	(void)b;
+	a[0] = *a;	
+	*a = NULL;
 	if (ac >= 2)
 	{
 		while (av[i])
 		{
-			a = malloc(sizeof(t_stack));
-			if (!a)
-				return (0);
-			a->n = ft_atoi(av[i]);
-			ft_printf("%d\n", a->n);
-			free(a);
+			*a = ft_lstnew(av[i]);
+			ft_printf("%d\n", ft_atoi(*a->content));
+			free(*a);
 			i++;
+			*a = *a->next;
 		}
+		//ft_printf("size:%d\n", ft_lstsize(*a));
 	}
 }
