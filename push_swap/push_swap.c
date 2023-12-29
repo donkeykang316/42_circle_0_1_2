@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/29 12:36:20 by kaan             ###   ########.fr       */
+/*   Updated: 2023/12/29 12:38:36 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 			ft_lstadd_back(stack_a, new);
 			i++;
 		}
+	ft_printf("%d\n", ft_atoi((*stack_a)->content));
 	}
 	free(new);
 	free(stack_a);
