@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/02 17:24:34 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/02 22:34:22 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,28 @@ int	ft_bool(t_list **stack_a)
 int	get_min(t_list **stack_a)
 {
 	int		min;
-	t_list	*temp;
+	t_list	*temp1;
+	t_list	*temp2;
 
-	temp = *stack_a;
+	temp1 = *stack_a;
+	temp2 = *stack_a;
 	if (ft_bool(stack_a) == 0)
 	{
-		min = temp->content;
-		while (temp)
+		min = temp1->content;
+		while (temp1)
 		{
-			if (min >= temp->content)
-				min = temp->content;
-			temp = temp->next;
+			if (min >= temp1->content)
+				min = temp1->content;
+			temp1 = temp1->next;
 		}
 	}
-	while (*stack_a)
+	while (temp2)
 	{
-		if (min == (*stack_a)->content)
+		if (min == temp2->content)
 			break ;
-		*stack_a = (*stack_a)->next;
+		temp2 = temp2->next;
 	}
-	return ((*stack_a)->index);
+	return (temp2->index);
 }
 
 void	ft_rot(t_list **stack_a, int position)
@@ -57,19 +59,22 @@ void	ft_rot(t_list **stack_a, int position)
 	t_list	*temp;
 
 	temp = *stack_a;
-	ft_printf("%d\n", (*stack_a)->content);
+	ft_printf("%d\n", temp->content);
 	while (*stack_a)
 	{
 		if ((*stack_a)->index != position)
 			*stack_a = (*stack_a)->next;
 		else
+		{
 			*stack_a = temp;
+			break ;
+		}
 	}
 /* 	while (*stack_a)
 	{
 		ft_printf("%d\n", (*stack_a)->content);
 		*stack_a = (*stack_a)->next;
-	} */
+	}*/
 }
 
 void	stacking(t_list **stack_a, int ac, char **av, int i)
