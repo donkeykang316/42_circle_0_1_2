@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/02 13:07:44 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/02 17:24:34 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_bool(t_list **stack_a)
 	temp = *stack_a;
 	while (temp && (temp)->next != NULL)
 	{
-		if (ft_atoi((temp)->content) <= ft_atoi((temp)->next->content))
+		if (temp->content <= temp->next->content)
 			temp = (temp)->next;
 		else
 			return (0);
@@ -30,38 +30,46 @@ int	ft_bool(t_list **stack_a)
 int	get_min(t_list **stack_a)
 {
 	int		min;
-	int		position;
-	t_list	*temp1;
-	t_list	*temp2;
+	t_list	*temp;
 
-	temp1 = *stack_a;
-	temp2 = *stack_a;
-	position = 0;
+	temp = *stack_a;
 	if (ft_bool(stack_a) == 0)
 	{
-		min = ft_atoi(temp1->content);
-		while (temp1)
+		min = temp->content;
+		while (temp)
 		{
-			if (min >= ft_atoi(temp1->content))
-				min = ft_atoi(temp1->content);
-			temp1 = temp1->next;
+			if (min >= temp->content)
+				min = temp->content;
+			temp = temp->next;
 		}
 	}
-	while (ft_atoi(temp2->content) != min)
+	while (*stack_a)
 	{
-		temp2 = temp2->next;
-		position++;
+		if (min == (*stack_a)->content)
+			break ;
+		*stack_a = (*stack_a)->next;
 	}
-	return (position);
+	return ((*stack_a)->index);
 }
 
-void	ft_ra(t_list **stack_a, int position)
+void	ft_rot(t_list **stack_a, int position)
 {
-	// look for the list index and ra
-	while (position >= 0)
+	t_list	*temp;
+
+	temp = *stack_a;
+	ft_printf("%d\n", (*stack_a)->content);
+	while (*stack_a)
 	{
-		position--;
+		if ((*stack_a)->index != position)
+			*stack_a = (*stack_a)->next;
+		else
+			*stack_a = temp;
 	}
+/* 	while (*stack_a)
+	{
+		ft_printf("%d\n", (*stack_a)->content);
+		*stack_a = (*stack_a)->next;
+	} */
 }
 
 void	stacking(t_list **stack_a, int ac, char **av, int i)
@@ -73,11 +81,13 @@ void	stacking(t_list **stack_a, int ac, char **av, int i)
 	{
 		while (av[i])
 		{
-			new = ft_lstnew(av[i]);
+			new = ft_lstnew(ft_atoi(av[i]));
 			ft_lstadd_back(stack_a, new);
+			new->index = i;
 			i++;
 		}
 		position = get_min(stack_a);
+		ft_rot(stack_a, position);
 	}
 	free(new);
 }
