@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/02 17:05:19 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/04 12:48:09 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_list
 	int				content;
 	int				index;
 	struct s_list	*next;
+	struct s_list	*prev;
 }	t_list;
 
 int		ft_atoi(const char *nptr);
