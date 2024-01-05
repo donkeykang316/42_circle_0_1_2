@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
+/*   Updated: 2024/01/05 13:42:27 by kaan             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	order_check(t_list **stack)
+{
+	while ((*stack)->next)
+	{
+		if (((*stack)->content <= (*stack)->next->content))
+			*stack = (*stack)->next;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+void	stacking(t_list **stack_a, int ac, char **av)
+{
+	t_list	*new;
+	int		i;
+
+	i = 1;
+	if (ac >= 2)
+	{
+		new = NULL;
+		while (av[i])
+		{
+			new = ft_lstnew(ft_atoi(av[i]));
+			ft_lstadd_back(stack_a, new);
+			i++;
+		}
+	}
+}
+
+void	push(t_list **stack, t_list **node)
+{
+	t_list	*new;
+
+	new = ft_lstnew((*node)->content);
+	ft_lstadd_back(stack, new);
+	if (*node && (*node)->next)
+		*node = (*node)->next;
+}
