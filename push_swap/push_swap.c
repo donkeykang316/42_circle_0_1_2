@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/04 18:08:42 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/05 12:42:55 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ void	stacking(t_list **stack_a, int ac, char **av)
 	}
 }
 
-void	push_b(t_list *stack_a, t_list **stack_b)
+void	push(t_list **stack, t_list **node)
 {
-	ft_lstadd_back(stack_b, stack_a);
-	free(stack_a);
-	stack_a = stack_a->next;
+	t_list	*new;
+
+	new = ft_lstnew((*node)->content);
+	ft_lstadd_back(stack, new);
+	if (*node && (*node)->next)
+	{
+		*node = (*node)->next;
+	}
 }
 
 int	main(int ac, char **av)
@@ -47,9 +52,11 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_b = NULL;
 	stacking(&stack_a, ac, av);
-	push_b(stack_a, &stack_b);
+	push(&stack_b, &stack_a);
+	push(&stack_b, &stack_a);
 
-	ft_printf("%d\n", stack_b->content);
+	ft_printf("%d\n", ft_lstsize(stack_a));
 	ft_printf("%d\n", stack_a->content);
-	stack_b = stack_b->next;
+	ft_printf("%d\n", stack_b->content);
+	ft_printf("%d\n", ft_lstsize(stack_b));
 }
