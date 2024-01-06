@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/05 17:28:57 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:48:37 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	order_check(t_list **stack)
 {
-	while ((*stack)->next)
+	t_list	*count;
+
+	count = *stack;
+	while ((count)->next)
 	{
-		if (((*stack)->content <= (*stack)->next->content))
-			*stack = (*stack)->next;
+		if (count->content <= count->next->content)
+			count = count->next;
 		else
 			return (0);
 	}
