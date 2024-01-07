@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/07 15:05:13 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/07 15:43:10 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ void	*ft_calloc(size_t nmemb, size_t size);
 size_t	ft_strlen(const char *s);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 int		order_check(t_list **stack);
+t_list	*get_max(t_list **stack);
+t_list	*get_min(t_list **stack);
 void	stacking(t_list **stack_a, int ac, char **av);
 void	push(t_list **stack, t_list **node);
 void	swap(t_list **stack);
 void	rotat(t_list **stack);
+void	rev_rotat(t_list **stack);
 void	sort_thr(t_list **stack_a, t_list **stack_b);
 void	sa(t_list **stack_a);
 void	sb(t_list **stack_b);
@@ -46,5 +50,7 @@ void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_b, t_list **stack_a);
 void	ra(t_list **stack_a);
 void	rb(t_list **stack_b);
+void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b);
 
 #endif
