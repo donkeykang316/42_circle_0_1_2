@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:30:21 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/07 15:46:41 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/07 16:20:44 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,10 @@ t_list	*get_min(t_list **stack)
 	return (0);
 }
 
-void	sort_thr(t_list **stack_a, t_list **stack_b)
+void	sort_thr(t_list **stack_a)
 {
 	t_list	*max_node;
 
-	(void)stack_b;
 	max_node = get_max(stack_a);
 	if (*stack_a == max_node)
 		ra(stack_a);

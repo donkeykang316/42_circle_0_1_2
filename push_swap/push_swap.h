@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/07 15:43:10 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/07 16:19:02 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	push(t_list **stack, t_list **node);
 void	swap(t_list **stack);
 void	rotat(t_list **stack);
 void	rev_rotat(t_list **stack);
-void	sort_thr(t_list **stack_a, t_list **stack_b);
+void	sort_thr(t_list **stack_a);
 void	sa(t_list **stack_a);
 void	sb(t_list **stack_b);
 void	pa(t_list **stack_a, t_list **stack_b);
