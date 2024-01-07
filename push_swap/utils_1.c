@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/06 15:48:37 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/07 14:58:19 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,31 @@ void	swap(t_list **stack)
 
 	first = *stack;
 	second = first->next;
-	first->next = second->next;
-	first->prev = second;
-	second->prev = NULL;
-	second->next = first;
-	*stack = second;
+	if (second && second->next)
+	{
+		first->next = second->next;
+		first->prev = second;
+		second->prev = NULL;
+		second->next = first;
+		*stack = second;
+	}
+}
+
+void	rotat(t_list **stack)
+{
+	t_list	*first;
+	t_list	*second;
+	t_list	*last;
+
+	first = *stack;
+	second = (*stack)->next;
+	last = ft_lstlast(*stack);
+	ft_lstadd_back(&second, first);
+	if (second && second->next)
+	{
+		second->prev = NULL;
+		first->prev = last;
+		first->next = NULL;
+		*stack = second;
+	}
 }

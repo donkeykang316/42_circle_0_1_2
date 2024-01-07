@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/06 15:49:29 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/07 15:07:11 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,24 @@ int	main(int ac, char **av)
 			sort_thr(&stack_a, &stack_b);
 			ft_printf("size_a:%d\n", ft_lstsize(stack_a));
 			ft_printf("size_b:%d\n", ft_lstsize(stack_b));
-			ft_printf("a1:%d\n", stack_a->content);
-			ft_printf("a2:%d\n", stack_a->next->content);
-			ft_printf("b1:%d\n", stack_b->content);
+			while (stack_a)
+			{
+				ft_printf("a1:%d\n", stack_a->content);
+				stack_a = stack_a->next;
+			}
+			//ft_printf("b1:%d\n", stack_b->content);
 		}
 		else if (ft_lstsize(stack_a) > 3)
 		{
-			target_node(&stack_a, &stack_b);
+			rotat(&stack_a);
+			ft_printf("first:%d\n", stack_a->content);
+			//ft_printf("size:%d\n", ft_lstsize(stack_a));
+			while (stack_a)
+			{
+			ft_printf("stack_a:%d\n", stack_a->content);
+			stack_a = stack_a->next;
+			}
+			//target_node(&stack_a, &stack_b);
 		}
 	}
 	else
