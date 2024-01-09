@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/07 16:58:05 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/08 13:35:07 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	push(t_list **stack, t_list **node)
 	t_list	*new;
 
 	new = ft_lstnew((*node)->content);
-	ft_lstadd_back(stack, new);
+	ft_lstadd_front(stack, new);
 	if (*node && (*node)->next)
 		*node = (*node)->next;
 }
