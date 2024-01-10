@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/09 16:44:23 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/10 15:54:51 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int	get_content_index_b(t_list *stack_b, int content)
 	i = 1;
 	if (content > stack_b->content && content < ft_lstlast(stack_b)->content)
 		i = 0;
-	else if (content > get_max(&stack_b) || content < get_min(&stack_b))
-		i = get_index(stack_b, get_max(&stack_b));
+	else if (content > get_max(&stack_b)->content
+		|| content < get_min(&stack_b)->content)
+		i = get_index(stack_b, get_max(&stack_b)->content);
 	else
 	{
 		temp = stack_b->next;
@@ -49,7 +50,7 @@ int	get_content_index_b(t_list *stack_b, int content)
 	return (i);
 }
 
-int	case_rrarrab(t_list *stack_a, t_list *stack_b, int content)
+int	case_rrarrb(t_list *stack_a, t_list *stack_b, int content)
 {
 	int	i;
 
@@ -101,21 +102,81 @@ int	rot_ab(t_list *stack_a, t_list *stack_b)
 	t_list	*temp;
 
 	temp = stack_a;
-	i = case_rrarrab(stack_a, stack_b, stack_a->content);
+	i = case_rrarrb(stack_a, stack_b, stack_a->content);
 	while (temp)
 	{
-		if (i > cas_rarb(stack_a, stack_b, temp->content))
-			i = cas_rarb(stack_a, stack_b, temp->content);
-		if (i > cas_rrarrb(stack_a, stack_b, temp->content))
-			i = cas_rrarrb(stack_a, stack_b, temp->content);
-		if (i > cas_rarrb(stack_a, stack_b, temp->content))
-			i = cas_rarrb(stack_a, stack_b, temp->content);
-		if (i > cas_rrarb(stack_a, stack_b, temp->content))
-			i = cas_rrarb(stack_a, stack_b, temp->content);
+		if (i > case_rarb(stack_a, stack_b, temp->content))
+			i = case_rarb(stack_a, stack_b, temp->content);
+		if (i > case_rrarrb(stack_a, stack_b, temp->content))
+			i = case_rrarrb(stack_a, stack_b, temp->content);
+		if (i > case_rarrb(stack_a, stack_b, temp->content))
+			i = case_rarrb(stack_a, stack_b, temp->content);
+		if (i > case_rrarb(stack_a, stack_b, temp->content))
+			i = case_rrarb(stack_a, stack_b, temp->content);
 
 		temp = temp ->next;
 	}
 	return (i);
+}
+
+int	ft_rarb(t_list **stack_a, t_list **stack_b, int content, char a)
+{
+	if (a == 'a')
+	{
+		while ((*stack_a)->content != content
+			&& get_content_index_b(*stack_b, content) > 0)
+			rr(stack_a, stack_b);
+		while ((*stack_a)->content != content)
+			ra(stack_a);
+		while (get_content_index_b(*stack_b, content) > 0)
+			rb(stack_b);
+		pb(stack_b, stack_a);
+	}
+	return (-1);
+}
+
+int	ft_rrarrb(t_list **stack_a, t_list **stack_b, int content, char a)
+{
+	if (a == 'a')
+	{
+		while ((*stack_a)->content != content
+			&& get_content_index_b(*stack_b, content))
+			rrr(stack_a, stack_b);
+		while ((*stack_a)->content != content)
+			rra(stack_a);
+		while (get_content_index_b(*stack_b, content) > 0)
+			rrb(stack_b);
+		pb(stack_b, stack_a);
+	}
+	return (-1);
+}
+
+int	ft_rrarb(t_list **stack_a, t_list **stack_b, int content, char a)
+{
+	if (a == 'a')
+	{
+		while ((*stack_a)->content != content
+			&& get_content_index_b(*stack_b, content))
+			rra(stack_a);
+		while (get_content_index_b(*stack_b, content) > 0)
+			rb(stack_b);
+		pb(stack_b, stack_a);
+	}
+	return (-1);
+}
+
+int	ft_rarrb(t_list **stack_a, t_list **stack_b, int content, char a)
+{
+	if (a == 'a')
+	{
+		while ((*stack_a)->content != content
+			&& get_content_index_b(*stack_b, content))
+			ra(stack_a);
+		while (get_content_index_b(*stack_b, content) > 0)
+			rrb(stack_b);
+		pb(stack_b, stack_a);
+	}
+	return (-1);
 }
 
 void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
@@ -123,11 +184,21 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 	int		i;
 	t_list	*temp;
 
-	while (ft_lstsize(*stack_b) > 3)
+	while (ft_lstsize(*stack_a) > 3)
 	{
 		temp = *stack_a;
 		i = rot_ab(*stack_a, *stack_b);
-		//continue here
+		while (i >= 0)
+		{
+			if (i == case_rarb(*stack_a, *stack_b, temp->content))
+				i = ft_rarb(stack_a, stack_b, temp->content, 'a');
+			else if (i == case_rrarrb(*stack_a, *stack_b, temp->content))
+				i = ft_rrarrb(stack_a, stack_b, temp->content, 'a');
+			else if (i == case_rarrb(*stack_a, *stack_b, temp->content))
+				i = ft_rarrb(stack_a, stack_b, temp->content, 'a');
+			else if (i == case_rrarb(*stack_a, *stack_b, temp->content))
+				i = ft_rrarb(stack_a, stack_b, temp->content, 'a');
+		}
 	}
 }
 

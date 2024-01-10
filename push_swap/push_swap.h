@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/09 14:34:53 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/10 12:31:58 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@ void	ra(t_list **stack_a);
 void	rb(t_list **stack_b);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
 
 #endif
