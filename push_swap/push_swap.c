@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/10 15:54:51 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/10 16:39:42 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	rot_ab(t_list *stack_a, t_list *stack_b)
 	t_list	*temp;
 
 	temp = stack_a;
-	i = case_rrarrb(stack_a, stack_b, stack_a->content);
+	i = 1;
 	while (temp)
 	{
 		if (i > case_rarb(stack_a, stack_b, temp->content))
@@ -113,69 +113,56 @@ int	rot_ab(t_list *stack_a, t_list *stack_b)
 			i = case_rarrb(stack_a, stack_b, temp->content);
 		if (i > case_rrarb(stack_a, stack_b, temp->content))
 			i = case_rrarb(stack_a, stack_b, temp->content);
-
 		temp = temp ->next;
 	}
 	return (i);
 }
 
-int	ft_rarb(t_list **stack_a, t_list **stack_b, int content, char a)
+int	ft_rarb(t_list **stack_a, t_list **stack_b, int content)
 {
-	if (a == 'a')
-	{
-		while ((*stack_a)->content != content
-			&& get_content_index_b(*stack_b, content) > 0)
-			rr(stack_a, stack_b);
-		while ((*stack_a)->content != content)
-			ra(stack_a);
-		while (get_content_index_b(*stack_b, content) > 0)
-			rb(stack_b);
-		pb(stack_b, stack_a);
-	}
+	while ((*stack_a)->content != content
+		&& get_content_index_b(*stack_b, content) > 0)
+		rr(stack_a, stack_b);
+	while ((*stack_a)->content != content)
+		ra(stack_a);
+	while (get_content_index_b(*stack_b, content) > 0)
+		rb(stack_b);
+	pb(stack_b, stack_a);
 	return (-1);
 }
 
-int	ft_rrarrb(t_list **stack_a, t_list **stack_b, int content, char a)
+int	ft_rrarrb(t_list **stack_a, t_list **stack_b, int content)
 {
-	if (a == 'a')
-	{
-		while ((*stack_a)->content != content
-			&& get_content_index_b(*stack_b, content))
-			rrr(stack_a, stack_b);
-		while ((*stack_a)->content != content)
-			rra(stack_a);
-		while (get_content_index_b(*stack_b, content) > 0)
-			rrb(stack_b);
-		pb(stack_b, stack_a);
-	}
+	while ((*stack_a)->content != content
+		&& get_content_index_b(*stack_b, content))
+		rrr(stack_a, stack_b);
+	while ((*stack_a)->content != content)
+		rra(stack_a);
+	while (get_content_index_b(*stack_b, content) > 0)
+		rrb(stack_b);
+	pb(stack_b, stack_a);
 	return (-1);
 }
 
-int	ft_rrarb(t_list **stack_a, t_list **stack_b, int content, char a)
+int	ft_rrarb(t_list **stack_a, t_list **stack_b, int content)
 {
-	if (a == 'a')
-	{
-		while ((*stack_a)->content != content
-			&& get_content_index_b(*stack_b, content))
-			rra(stack_a);
-		while (get_content_index_b(*stack_b, content) > 0)
-			rb(stack_b);
-		pb(stack_b, stack_a);
-	}
+	while ((*stack_a)->content != content
+		&& get_content_index_b(*stack_b, content))
+		rra(stack_a);
+	while (get_content_index_b(*stack_b, content) > 0)
+		rb(stack_b);
+	pb(stack_b, stack_a);
 	return (-1);
 }
 
-int	ft_rarrb(t_list **stack_a, t_list **stack_b, int content, char a)
+int	ft_rarrb(t_list **stack_a, t_list **stack_b, int content)
 {
-	if (a == 'a')
-	{
-		while ((*stack_a)->content != content
-			&& get_content_index_b(*stack_b, content))
-			ra(stack_a);
-		while (get_content_index_b(*stack_b, content) > 0)
-			rrb(stack_b);
-		pb(stack_b, stack_a);
-	}
+	while ((*stack_a)->content != content
+		&& get_content_index_b(*stack_b, content))
+		ra(stack_a);
+	while (get_content_index_b(*stack_b, content) > 0)
+		rrb(stack_b);
+	pb(stack_b, stack_a);
 	return (-1);
 }
 
@@ -191,13 +178,13 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 		while (i >= 0)
 		{
 			if (i == case_rarb(*stack_a, *stack_b, temp->content))
-				i = ft_rarb(stack_a, stack_b, temp->content, 'a');
+				i = ft_rarb(stack_a, stack_b, temp->content);
 			else if (i == case_rrarrb(*stack_a, *stack_b, temp->content))
-				i = ft_rrarrb(stack_a, stack_b, temp->content, 'a');
+				i = ft_rrarrb(stack_a, stack_b, temp->content);
 			else if (i == case_rarrb(*stack_a, *stack_b, temp->content))
-				i = ft_rarrb(stack_a, stack_b, temp->content, 'a');
+				i = ft_rarrb(stack_a, stack_b, temp->content);
 			else if (i == case_rrarb(*stack_a, *stack_b, temp->content))
-				i = ft_rrarb(stack_a, stack_b, temp->content, 'a');
+				i = ft_rrarb(stack_a, stack_b, temp->content);
 		}
 	}
 }
