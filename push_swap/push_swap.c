@@ -3,56 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/11 17:07:41 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/12 18:58:53 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* void	rot_check(t_list **stack_a, t_list **stack_b)
+void	rot_check(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*a;
-	t_list	*b;
-
-	a = *stack_a;
-	b = *stack_b;
-	if (a->content < ft_lstlast(a)->content
-		&& b->content <= ft_lstlast(b)->content)
-		ra(&a);
-	else if (a->content > ft_lstlast(a)->content
-		&& b->content >= ft_lstlast(b)->content)
-		rb(&b);
-	else if (a->content < ft_lstlast(a)->content
-		&& b->content >= ft_lstlast(b)->content)
-		rr(&a, &b);
-} */
+	if ((*stack_a) && (*stack_b))
+	{
+		if ((*stack_a)->content > ft_lstlast(*stack_a)->content
+			&& (*stack_b)->content < ft_lstlast(*stack_b)->content)
+			rr(stack_a, stack_b);
+		else if ((*stack_a)->content > ft_lstlast(*stack_a)->content
+			&& (*stack_b)->content >= ft_lstlast(*stack_b)->content)
+			ra(stack_a);
+		else if ((*stack_a)->content <= ft_lstlast(*stack_a)->content
+			&& (*stack_b)->content > ft_lstlast(*stack_b)->content)
+			rb((stack_b));
+	}
+}
 
 void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 {
-	while (ft_lstsize(*stack_a) > 3)
+	while (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 	{
-		//rot_check(stack_a, stack_b);
+		rot_check(stack_a, stack_b);
 		pb(stack_b, stack_a);
-		*stack_a = (*stack_a)->next;
 	}
 }
 
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
-		pb(stack_b, stack_a);
-	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
-		pb(stack_b, stack_a);
-	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 		push_b_thr_a(stack_a, stack_b);
 	if (ft_lstsize(*stack_a) == 3)
 		sort_thr(stack_a);
+	/*while (ft_lstsize(*stack_b) != 1)
+	{
+		pa(stack_a, stack_b);
+	}
+	pa(stack_a, stack_b);
+	*stack_b = NULL;*/
 }
-
-
 
 int	main(int ac, char **av)
 {

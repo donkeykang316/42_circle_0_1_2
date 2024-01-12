@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:30:21 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/07 16:20:44 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/12 17:48:05 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 void	rev_rotat(t_list **stack)
 {
-	t_list	*first;
 	t_list	*last;
-	t_list	*second_last;
 
-	first = *stack;
-	last = ft_lstlast(*stack);
-	second_last = last->prev;
-	ft_lstadd_back(&first, last);
-	if (first && first->next)
+	if (*stack && (*stack)->next)
 	{
+		last = ft_lstlast(*stack);
+		last->prev->next = NULL;
+		last->next = *stack;
 		last->prev = NULL;
-		last->next = first;
-		second_last->next = NULL;
 		*stack = last;
+		last->next->prev = last;
 	}
 }
 
