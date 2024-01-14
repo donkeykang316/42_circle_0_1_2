@@ -6,39 +6,49 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/13 18:04:47 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/14 14:48:44 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	index_start_to_node(t_list *stack, int content)
+{
+	int		i;
+
+	i = 0;
+	while (stack->content != content)
+	{
+		stack = stack->next;
+		i++;
+	}
+	stack->index = 0;
+	return (i);
+}
+
+int	index_node_to_last(t_list *stack, int content)
+{
+	int		i;
+
+	i = index_start_to_node(stack, content);
+	i = ft_lstsize(stack) - i;
+	return (i);
+}
+
 int	case_ra(t_list **stack_a)
 {
 	int		i;
-	t_list	*temp;
 
 	i = 1;
-	temp = *stack_a;
-	while (temp->content != get_min(&temp)->content)
-	{
-		ra(stack_a);
-		i++;
-	}
+	i = index_start_to_node(*stack_a, get_min(stack_a)->content);
 	return (i);
 }
 
 int	case_rra(t_list **stack_a)
 {
-	int		i;
-	t_list	*temp;
+	int	i;
 
-	i = 1;
-	temp = *stack_a;
-	while (temp->content != get_min(&temp)->content)
-	{
-		rra(stack_a);
-		i++;
-	}
+	i = index_node_to_last(*stack_a, get_min(stack_a)->content);
 	return (i);
 }
 
@@ -62,15 +72,9 @@ void	stack_check(t_list **stack_a)
 	ra_i = case_ra(stack_a);
 	rra_i = case_rra(stack_a);
 	if (ra_i < rra_i)
-	{
-		ft_printf("ra:%d\n", ra_i);
 		apply_ra(stack_a);
-	}
 	else if (ra_i >= rra_i)
-	{
-		ft_printf("rra:%d\n", rra_i);
 		apply_rra(stack_a);
-	}
 }
 
 void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
@@ -79,7 +83,6 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 	{
 		stack_check(stack_a);
 		pb(stack_b, stack_a);
-
 	}
 	if (order_check(stack_a) == 0)
 		sort_thr(stack_a);
@@ -97,20 +100,10 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	/*if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
-		pb(stack_b, stack_a);
-	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
-		pb(stack_b, stack_a);*/
 	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 		push_b_thr_a(stack_a, stack_b);
 	if (ft_lstsize(*stack_a) == 3)
 		sort_thr(stack_a);
-	/*while (ft_lstsize(*stack_b) != 1)
-	{
-		pa(stack_a, stack_b);
-	}
-	pa(stack_a, stack_b);
-	*stack_b = NULL;*/
 }
 
 int	main(int ac, char **av)
@@ -151,8 +144,7 @@ int	main(int ac, char **av)
 		ft_printf("b:\t");
 		while (stack_b)
 		{
-			ft_printf("%d ", stack_b->content);
-			ft_printf("%d\t", stack_b->index);
+			ft_printf("%d\t", stack_b->content);
 			stack_b = stack_b->next;
 		}
 		ft_printf("\n");
