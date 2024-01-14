@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/14 14:48:44 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/14 15:03:08 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,10 @@ int	main(int ac, char **av)
 	stack_b = malloc(sizeof (t_list));
 	stack_a = NULL;
 	stack_b = NULL;
-	stacking(&stack_a, ac, av);
+	if (ac == 2)
+		av = ft_split(av[1], ' ');
+	else
+		stacking(&stack_a, ac, av);
 	if (order_check(&stack_a) == 0)
 	{
 		if (ft_lstsize(stack_a) == 2)
