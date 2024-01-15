@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:30:21 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/12 17:48:05 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/15 21:39:02 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	rev_rotat(t_list **stack)
 	}
 }
 
-t_list	*get_max(t_list **stack)
+t_list	*get_max(t_list *stack)
 {
 	t_list	*max;
 	t_list	*max_node;
 	int		max_nbr;
 
-	max = *stack;
-	max_node = *stack;
+	max = stack;
+	max_node = stack;
 	max_nbr = max->content;
 	while (max)
 	{
@@ -52,14 +52,14 @@ t_list	*get_max(t_list **stack)
 	return (0);
 }
 
-t_list	*get_min(t_list **stack)
+t_list	*get_min(t_list *stack)
 {
 	t_list	*min;
 	t_list	*min_node;
 	int		min_nbr;
 
-	min = *stack;
-	min_node = *stack;
+	min = stack;
+	min_node = stack;
 	min_nbr = min->content;
 	while (min)
 	{
@@ -81,7 +81,7 @@ void	sort_thr(t_list **stack_a)
 {
 	t_list	*max_node;
 
-	max_node = get_max(stack_a);
+	max_node = get_max(*stack_a);
 	if (*stack_a == max_node)
 		ra(stack_a);
 	else if ((*stack_a)->next == max_node)

@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/15 17:27:05 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/15 21:39:56 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_stack(t_list *stack_a, t_list *stack_b)
+{
+	ft_printf("a_%d:\t", ft_lstsize(stack_a));
+	while (stack_a)
+	{
+		ft_printf("%d\t", stack_a->content);
+		stack_a = stack_a->next;
+	}
+	ft_printf("\n");
+	if (ft_lstsize(stack_b) != 0)
+	{
+		ft_printf("b_%d:\t", ft_lstsize(stack_b));
+		while (stack_b)
+		{
+			ft_printf("%d\t", stack_b->content);
+			stack_b = stack_b->next;
+		}
+		ft_printf("\n");
+	}
+}
 
 int	index_start_to_node(t_list *stack, int content)
 {
@@ -35,31 +56,31 @@ int	index_node_to_last(t_list *stack, int content)
 	return (i);
 }
 
-int	case_ra(t_list **stack_a)
+int	case_ra(t_list *stack_a)
 {
 	int		i;
 
-	i = index_start_to_node(*stack_a, get_min(stack_a)->content);
+	i = index_start_to_node(stack_a, get_min(stack_a)->content);
 	return (i);
 }
 
-int	case_rra(t_list **stack_a)
+int	case_rra(t_list *stack_a)
 {
 	int	i;
 
-	i = index_node_to_last(*stack_a, get_min(stack_a)->content);
+	i = index_node_to_last(stack_a, get_min(stack_a)->content);
 	return (i);
 }
 
 void	apply_ra(t_list **stack_a)
 {
-	while ((*stack_a)->content != get_min(stack_a)->content)
+	while ((*stack_a)->content != get_min(*stack_a)->content)
 		ra(stack_a);
 }
 
 void	apply_rra(t_list **stack_a)
 {
-	while ((*stack_a)->content != get_min(stack_a)->content)
+	while ((*stack_a)->content != get_min(*stack_a)->content)
 		rra(stack_a);
 }
 
@@ -68,8 +89,8 @@ void	stack_check(t_list **stack_a)
 	int	ra_i;
 	int	rra_i;
 
-	ra_i = case_ra(stack_a);
-	rra_i = case_rra(stack_a);
+	ra_i = case_ra(*stack_a);
+	rra_i = case_rra(*stack_a);
 	if (ra_i < rra_i)
 		apply_ra(stack_a);
 	else if (ra_i >= rra_i)
@@ -81,6 +102,7 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 	while (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 	{
 		stack_check(stack_a);
+		print_stack(*stack_a, *stack_b);
 		pb(stack_b, stack_a);
 	}
 	if (order_check(stack_a) == 0)
