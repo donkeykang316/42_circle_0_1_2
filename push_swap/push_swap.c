@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/15 14:31:22 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/15 17:27:05 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,6 @@ int	index_node_to_last(t_list *stack, int content)
 	return (i);
 }
 
-int	index_in_b_start(t_list *stack_b, int push_content)
-{
-	int		i;
-
-	i = index_start_to_node(stack_b, get_max(&stack_b)->content) + 1;
-	return (i);
-}
-
-int	index_in_b_to_last(t_list *stack_b, int push_content)
-{
-	int		i;
-
-	i = index_start_to_node(stack_b, get_max(&stack_b)->content) + 1;
-	i = ft_lstsize(stack_b) - i;
-	return (i);
-}
-
 int	case_ra(t_list **stack_a)
 {
 	int		i;
@@ -68,121 +51,41 @@ int	case_rra(t_list **stack_a)
 	return (i);
 }
 
-int	case_rb(t_list **stack_b)
+void	apply_ra(t_list **stack_a)
 {
-	int		i;
-
-	i = index_start_to_node(*stack_b, get_max(stack_b)->content);
-	return (i);
-}
-
-int	case_rrb(t_list **stack_b)
-{
-	int	i;
-
-	i = index_node_to_last(*stack_b, get_max(stack_b)->content);
-	return (i);
-}
-
-void	apply_ra(t_list **stack_a, int ra_i)
-{
-	while (ra_i != 0)
-	{
+	while ((*stack_a)->content != get_min(stack_a)->content)
 		ra(stack_a);
-		ra_i--;
-	}
 }
 
-void	apply_rb(t_list **stack_b, t_list **stack_a, int rb_i)
+void	apply_rra(t_list **stack_a)
 {
-	pb(stack_b, stack_a);
-	while (rb_i != 0)
-	{
-		rb(stack_b);
-		rb_i--;
-	}
-}
-
-void	apply_rra(t_list **stack_a, int rra_i)
-{
-	while (rra_i != 0)
-	{
+	while ((*stack_a)->content != get_min(stack_a)->content)
 		rra(stack_a);
-		rra_i--;
-	}
 }
 
-void	apply_rrb(t_list **stack_b, t_list **stack_a, int rrb_i)
-{
-	while (rrb_i != 0)
-	{
-		rrb(stack_b);
-		rrb_i--;
-	}
-}
-
-void	apply_rb_i(t_list **stack_b, int rb_i)
-{
-	while (rb_i != 0)
-	{
-		rb(stack_b);
-		rb_i--;
-	}
-}
-
-void	apply_rrb_i(t_list **stack_b, int rrb_i)
-{
-	while (rrb_i != 0)
-	{
-		rrb(stack_b);
-		rrb_i--;
-	}
-}
-
-void	stack_check_a(t_list **stack_a, t_list **stack_b)
+void	stack_check(t_list **stack_a)
 {
 	int	ra_i;
 	int	rra_i;
-	int	rb_i;
-	int	rrb_i;
 
 	ra_i = case_ra(stack_a);
 	rra_i = case_rra(stack_a);
-	rb_i = index_in_b_start(*stack_b, (*stack_a)->content);
-	rrb_i = index_in_b_to_last(*stack_b, (*stack_a)->content);
-	if (ra_i < rra_i && ra_i < rb_i && ra_i < rrb_i)
-		apply_ra(stack_a, ra_i);
-	else if (rra_i < ra_i && rra_i < rb_i && rra_i < rrb_i)
-		apply_rra(stack_a, rra_i);
-	else if (rb_i < ra_i && rb_i < rra_i && rb_i < rrb_i)
-		apply_rb(stack_b, stack_a, rb_i);
-	else if (rrb_i < ra_i && rrb_i < rb_i && rrb_i < rra_i)
-		apply_rrb(stack_b, stack_a, rrb_i);
-}
-
-void	stack_check_b(t_list **stack_a, t_list **stack_b)
-{
-	int	rb_i;
-	int	rrb_i;
-
-	rb_i = case_rb(stack_b);
-	rrb_i = case_rrb(stack_b);
-	if (rb_i < rrb_i)
-		apply_rb_i(stack_b, rb_i);
-	else if (rb_i > rrb_i)
-		apply_rrb_i(stack_b, rrb_i);
+	if (ra_i < rra_i)
+		apply_ra(stack_a);
+	else if (ra_i >= rra_i)
+		apply_rra(stack_a);
 }
 
 void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 {
 	while (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 	{
-		stack_check_a(stack_a, stack_b);
+		stack_check(stack_a);
 		pb(stack_b, stack_a);
 	}
 	if (order_check(stack_a) == 0)
 		sort_thr(stack_a);
-	while (ft_lstsize(*stack_b) > 3)
+	while (*stack_b)
 	{
 		if (ft_lstsize(*stack_b) == 1)
 		{
@@ -190,17 +93,12 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 			*stack_b = NULL;
 			break ;
 		}
-		stack_check_b(stack_a, stack_b);
 		pa(stack_a, stack_b);
 	}
 }
 
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
-		pb(stack_b, stack_a);
-	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
-		pb(stack_b, stack_a);
 	if (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 		push_b_thr_a(stack_a, stack_b);
 	if (ft_lstsize(*stack_a) == 3)
