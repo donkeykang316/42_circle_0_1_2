@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:30:21 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/15 23:20:25 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/16 16:02:03 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 
 void	rev_rotat(t_list **stack)
 {
-	t_list	*last;
+	t_list	*tmp;
+	int		i;
 
-	if (*stack && (*stack)->next)
+	if (!*stack || !(*stack)->next)
+		return ;
+	i = 0;
+	tmp = *stack;
+	while ((*stack)->next)
 	{
-		last = ft_lstlast(*stack);
-		last->prev->next = NULL;
-		last->next = *stack;
-		last->prev = NULL;
-		*stack = last;
-		last->next->prev = last;
+		i++;
+		*stack = (*stack)->next;
 	}
+	(*stack)->next = tmp;
+	while (i > 1)
+	{
+		tmp = tmp->next;
+		i--;
+	}
+	tmp->next = NULL;
 }
 
-t_list	*get_max(t_list *stack, int size)
+t_list	*get_max(t_list *stack)
 {
 	t_list	*max;
 	t_list	*max_node;
@@ -36,12 +44,11 @@ t_list	*get_max(t_list *stack, int size)
 	max = stack;
 	max_node = stack;
 	max_nbr = max->content;
-	while (max && size != 0)
+	while (max)
 	{
 		if (max_nbr < max->content)
 			max_nbr = max->content;
 		max = max->next;
-		size--;
 	}
 	while (max_node)
 	{
@@ -53,7 +60,7 @@ t_list	*get_max(t_list *stack, int size)
 	return (0);
 }
 
-t_list	*get_min(t_list *stack, int size)
+t_list	*get_min(t_list *stack)
 {
 	t_list	*min;
 	t_list	*min_node;
@@ -62,12 +69,11 @@ t_list	*get_min(t_list *stack, int size)
 	min = stack;
 	min_node = stack;
 	min_nbr = min->content;
-	while (min && size != 0)
+	while (min)
 	{
 		if (min_nbr > min->content)
 			min_nbr = min->content;
 		min = min->next;
-		size--;
 	}
 	while (min_node)
 	{
@@ -79,11 +85,11 @@ t_list	*get_min(t_list *stack, int size)
 	return (0);
 }
 
-void	sort_thr(t_list **stack_a, int size)
+void	sort_thr(t_list **stack_a)
 {
 	t_list	*max_node;
 
-	max_node = get_max(*stack_a, size);
+	max_node = get_max(*stack_a);
 	if (*stack_a == max_node)
 		ra(stack_a);
 	else if ((*stack_a)->next == max_node)
