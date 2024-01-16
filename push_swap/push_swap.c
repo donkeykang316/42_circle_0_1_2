@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/16 16:56:46 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/16 17:59:25 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,29 +94,16 @@ void	apply_rrb(t_list **stack_b, int rrb_i)
 	}
 }
 
-void	stack_check(t_list **stack_a, t_list **stack_b)
+void	stack_check(t_list **stack_a)
 {
-	t_list	*b;
-	int		rb_i;
-	int		rrb_i;
+	int value;
 
-	b = *stack_b;
-	if (b->content <= (*stack_a)->content)
-		pa(stack_a, stack_b);
-	else if (b->content > (*stack_a)->content)
+	value = (*stack_a)->content;
+	if (value > (*stack_a)->next->content)
 	{
-		while (b && b->content > (*stack_a)->content)
-		{
-			ft_printf("b:%d a:%d\n", b->content, (*stack_a)->content);
-			b = b->next;
-		}
-		rb_i = case_rb(*stack_b, b->content);
-		rrb_i = case_rrb(*stack_b, b->content);
-		if (rb_i < rrb_i)
-			apply_rb(stack_b, rb_i);
-		else if (rb_i >= rrb_i)
-			apply_rrb(stack_b, rrb_i);
-		pa(stack_a, stack_b);
+		//error line, need fix
+		while ((get_max(*stack_a)->content != ft_lstlast(*stack_a)->content))
+			ra(stack_a);
 	}
 }
 
@@ -139,7 +126,8 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 			*stack_b = NULL;
 			break ;
 		}
-		stack_check(stack_a, stack_b);
+		stack_check(stack_a);
+		pa(stack_a, stack_b);
 		print_stack(*stack_a, *stack_b);
 	}
 }
