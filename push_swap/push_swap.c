@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/16 17:59:25 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/18 13:42:39 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ int	index_node_to_last(t_list *stack, int content)
 	return (i);
 }
 
+int	case_ra(t_list *stack_a, int content)
+{
+	t_list	*temp;
+	int		i;
+
+	temp = stack_a;
+	i = index_start_to_node(temp, content);
+	return (i);
+}
+
 int	case_rb(t_list *stack_b, int content)
 {
 	t_list	*temp;
@@ -63,6 +73,16 @@ int	case_rb(t_list *stack_b, int content)
 
 	temp = stack_b;
 	i = index_start_to_node(temp, content);
+	return (i);
+}
+
+int	case_rra(t_list *stack_a, int content)
+{
+	t_list	*temp;
+	int		i;
+
+	temp = stack_a;
+	i = index_node_to_last(temp, content);
 	return (i);
 }
 
@@ -76,12 +96,30 @@ int	case_rrb(t_list *stack_b, int content)
 	return (i);
 }
 
+void	apply_ra(t_list **stack_a, int ra_i)
+{
+	while (ra_i != 0)
+	{
+		ra(stack_a);
+		ra_i--;
+	}
+}
+
 void	apply_rb(t_list **stack_b, int rb_i)
 {
 	while (rb_i != 0)
 	{
 		rb(stack_b);
 		rb_i--;
+	}
+}
+
+void	apply_rra(t_list **stack_a, int rra_i)
+{
+	while (rra_i != 0)
+	{
+		rra(stack_a);
+		rra_i--;
 	}
 }
 
@@ -94,17 +132,59 @@ void	apply_rrb(t_list **stack_b, int rrb_i)
 	}
 }
 
-void	stack_check(t_list **stack_a)
+void	apply_rr(t_list **stack_a, t_list **stack_b, int ra_i)
 {
-	int value;
-
-	value = (*stack_a)->content;
-	if (value > (*stack_a)->next->content)
+	while (ra_i != 0)
 	{
-		//error line, need fix
-		while ((get_max(*stack_a)->content != ft_lstlast(*stack_a)->content))
-			ra(stack_a);
+		rr(stack_a, stack_b);
+		ra_i--;
 	}
+}
+
+void	apply_rrr(t_list **stack_a, t_list **stack_b, int rra_i)
+{
+	while (rra_i != 0)
+	{
+		rrr(stack_a, stack_b);
+		rra_i--;
+	}
+}
+
+void	stack_check(t_list **stack_a, t_list **stack_b)
+{
+	int	ra_i;
+	int	rra_i;
+	int	rb_i;
+	int	rrb_i;
+	int	ra_i_2;
+	int	rra_i_2;
+	int	rb_i_2;
+	int	rrb_i_2;
+
+	ra_i = case_ra(*stack_a, get_min(*stack_a)->content);
+	rra_i = case_rra(*stack_a, get_min(*stack_a)->content);
+	rb_i = case_rb(*stack_b, get_max(*stack_b)->content);
+	rrb_i = case_rrb(*stack_b, get_max(*stack_b)->content);
+	ra_i_2 = case_ra(*stack_a, get_max(*stack_a)->content);
+	rra_i_2 = case_rra(*stack_a, get_max(*stack_a)->content);
+	rb_i_2 = case_rb(*stack_b, get_min(*stack_b)->content);
+	rrb_i_2 = case_rrb(*stack_b, get_min(*stack_b)->content);
+	if (ra_i < rra_i && ra_i < ra_i_2 && ra_i == rb_i)
+		apply_rr(stack_a, stack_b, ra_i);
+	else if (rra_i < ra_i && rra_i < rra_i_2 && rra_i == rrb_i)
+		apply_rrr(stack_a, stack_b, rra_i);
+	else if (ra_i_2 < rra_i_2 && ra_i_2 < rra_i_2 && ra_i_2 == rb_i_2)
+		apply_rr(stack_a, stack_b, ra_i_2);
+	else if (rra_i_2 < ra_i_2 && rra_i_2 < rra_i && rra_i_2 == rrb_i_2)
+		apply_rrr(stack_a, stack_b, rra_i_2);
+	else if (ra_i < rra_i && ra_i < ra_i_2)
+		apply_ra(stack_a, ra_i);
+	else if (rra_i < ra_i && rra_i < rra_i_2)
+		apply_rra(stack_a, rra_i);
+	else if (ra_i_2 < rra_i_2)
+		apply_ra(stack_a, ra_i_2);
+	else if (rra_i_2 <= rra_i)
+		apply_rra(stack_a, rra_i_2);
 }
 
 void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
@@ -113,6 +193,7 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 		rb(stack_b);
 	while (ft_lstsize(*stack_a) > 3 && order_check(stack_a) == 0)
 	{
+		stack_check(stack_a, stack_b);
 		pb(stack_b, stack_a);
 		print_stack(*stack_a, *stack_b);
 	}
@@ -126,7 +207,7 @@ void	push_b_thr_a(t_list **stack_a, t_list **stack_b)
 			*stack_b = NULL;
 			break ;
 		}
-		stack_check(stack_a);
+		stack_check(stack_a, stack_b);
 		pa(stack_a, stack_b);
 		print_stack(*stack_a, *stack_b);
 	}
