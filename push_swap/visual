@@ -1,1 +1,1 @@
-cc *.c *.a -o push_swap
+cc -Wall -Wextra -Werror *.c *.a -o push_swap
