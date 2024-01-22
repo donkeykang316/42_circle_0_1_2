@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/20 14:47:35 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/22 17:46:44 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,20 @@ void	rrb(t_list **stack_b);
 void	ss(t_list **stack_a, t_list **stack_b);
 void	rr(t_list **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
+void	index_init(t_list *stack);
+t_list	*target_node(t_list *stack_a, t_list *stack_b);
+void	push_cost(t_list *stack_a, t_list *stack_b);
+t_list	*get_min_cost(t_list *stack);
+void	stack_init(t_list *stack_a, t_list *stack_b);
+int		case_rb(t_list *stack_b);
+int		case_rrb(t_list *stack_b);
+int		case_ra(t_list *stack_a, t_list *stack_b);
+int		case_rra(t_list *stack_a, t_list *stack_b);
+void	apply_ra(t_list **stack_a, int i);
+void	apply_rb(t_list **stack_b, int i);
+void	apply_rra(t_list **stack_a, int i);
+void	apply_rrb(t_list **stack_b, int i);
+void	apply_rr(t_list **stack_a, t_list **stack_b, int i);
+void	apply_rrr(t_list **stack_a, t_list **stack_b, int i);
 
 #endif
