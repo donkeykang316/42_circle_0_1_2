@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/21 20:56:02 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/22 14:01:54 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ void	index_init(t_list *stack)
 	int	temp;
 
 	i = 0;
-	if (ft_lstsize(stack) > 4)
+	if (ft_lstsize(stack) > 3)
 	{
 		median = ft_lstsize(stack) / 2;
-		temp = median;
+		if (ft_lstsize(stack) % 2 != 0)
+			temp = median + 1;
+		else
+			temp = median;
 		while (median--)
 		{
 			stack->index = i;
@@ -204,9 +207,11 @@ void	stack_check(t_list **stack_a, t_list **stack_b)
 	if (target_node(*stack_a, get_min_cost(*stack_b))->m_po == 1)
 	{
 		if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
-			&& (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content
-			|| get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content))
-				ra_i = 0;
+			&& get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+			ra_i = 0;
+		else if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
+			&& get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
+			ra_i = 1;
 		else
 			ra_i = case_ra(*stack_a, *stack_b);
 	}
@@ -215,17 +220,13 @@ void	stack_check(t_list **stack_a, t_list **stack_b)
 		if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
 			&& get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
 			ra_i = 0;
-		else if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
-			&& get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
-			ra_i = 1;
 		else
 			ra_i = case_rra(*stack_a, *stack_b);
 	}
 	else
 	{
 		if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
-			&& (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content
-			|| get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content))
+			&& (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content))
 			ra_i = 0;
 		else
 			ra_i = case_rra(*stack_a, *stack_b);
@@ -233,19 +234,31 @@ void	stack_check(t_list **stack_a, t_list **stack_b)
 	//apply rotation
 	if (get_min_cost(*stack_b)->m_po == 1 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 1)
 	{
-		if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		/*ft_printf("b_node:%d\n", get_min_cost(*stack_b)->content);
+		ft_printf("target:%d\n", target_node(*stack_a, get_min_cost(*stack_b))->content);
+		ft_printf("target_i:%d\n", target_node(*stack_a, get_min_cost(*stack_b))->index);
+		ft_printf("target_po:%d\n", target_node(*stack_a, get_min_cost(*stack_b))->m_po);
+		ft_printf("ra_i:%d\n", ra_i);*/
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
 		{
 			apply_ra(stack_a, ra_i);
 			apply_rb(stack_b, rb_i);
 			pa(stack_a, stack_b);
 			apply_ra(stack_a, ra_i + 1);
 		}
-		else if (get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
+		else if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
+			&& get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
 		{
 			apply_rra(stack_a, ra_i);
 			apply_rb(stack_b, rb_i);
 			pa(stack_a, stack_b);
-			apply_ra(stack_a, ra_i);
+			apply_ra(stack_a, ra_i + 1);
 		}
 		else
 		{
@@ -254,59 +267,109 @@ void	stack_check(t_list **stack_a, t_list **stack_b)
 			pa(stack_a, stack_b);
 			apply_rra(stack_a, ra_i);
 		}
+		ft_printf("1error\n");
 		print_stack(*stack_a, *stack_b);
 	}
 	else if (get_min_cost(*stack_b)->m_po == 2 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 2)
 	{
-		apply_rra(stack_a, ra_i);
-		apply_rrb(stack_b, rb_i);
-		pa(stack_a, stack_b);
-		apply_ra(stack_a, ra_i);
-		print_stack(*stack_a, *stack_b);
-	}
-	else if (get_min_cost(*stack_b)->m_po == 1 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 2)
-	{
-		if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
 		{
-			apply_rra(stack_a, ra_i);
-			apply_rb(stack_b, rb_i);
+			apply_rrb(stack_b, rb_i);
 			pa(stack_a, stack_b);
-			apply_ra(stack_a, ra_i + 1);
 		}
-		else if (get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
-		{
-			apply_rra(stack_a, ra_i);
-			apply_rb(stack_b, rb_i);
-			pa(stack_a, stack_b);
-			apply_ra(stack_a, ra_i + 1);
-		}
-		else
-		{
-			apply_rra(stack_a, ra_i);
-			apply_rb(stack_b, rb_i);
-			pa(stack_a, stack_b);
-			apply_ra(stack_a, ra_i);
-		}
-		print_stack(*stack_a, *stack_b);
-	}
-	else if (get_min_cost(*stack_b)->m_po == 2 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 1)
-	{
-		apply_ra(stack_a, ra_i);
-		apply_rrb(stack_b, rb_i);
-		pa(stack_a, stack_b);
-		apply_rra(stack_a, ra_i);
-		print_stack(*stack_a, *stack_b);
-	}
-	else if (get_min_cost(*stack_b)->m_po == 1 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 0)
-	{
-		if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
 		{
 			apply_ra(stack_a, ra_i);
 			apply_rrb(stack_b, rb_i);
 			pa(stack_a, stack_b);
 			apply_ra(stack_a, ra_i + 1);
 		}
-		else if (get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
+		else
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		ft_printf("2error\n");
+		print_stack(*stack_a, *stack_b);
+	}
+	else if (get_min_cost(*stack_b)->m_po == 1 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 2)
+	{
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		else if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
+			&& get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		else
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		ft_printf("3error\n");
+		print_stack(*stack_a, *stack_b);
+	}
+	else if (get_min_cost(*stack_b)->m_po == 2 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 1)
+	{
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		{
+			apply_ra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_rra(stack_a, ra_i + 1);
+		}
+		else
+		{
+			apply_ra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_rra(stack_a, ra_i + 1);
+		}
+		ft_printf("4error\n");
+		print_stack(*stack_a, *stack_b);
+	}
+	else if (get_min_cost(*stack_b)->m_po == 1 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 0)
+	{
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		else if (target_node(*stack_a, get_min_cost(*stack_b))->content == ft_lstlast(*stack_a)->content
+			&& get_min_cost(*stack_b)->content < ft_lstlast(*stack_a)->content)
 		{
 			apply_rra(stack_a, ra_i + 1);
 			apply_rrb(stack_b, rb_i);
@@ -320,33 +383,82 @@ void	stack_check(t_list **stack_a, t_list **stack_b)
 			pa(stack_a, stack_b);
 			apply_rra(stack_a, ra_i);
 		}
+		ft_printf("5error\n");
 		print_stack(*stack_a, *stack_b);
 	}
 	else if (get_min_cost(*stack_b)->m_po == 2 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 0)
 	{
-		apply_ra(stack_a, ra_i);
-		apply_rrb(stack_b, rb_i);
-		pa(stack_a, stack_b);
-		apply_rra(stack_a, ra_i);
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		{
+			apply_ra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_rra(stack_a, ra_i + 1);
+		}
+		else
+		{
+			apply_ra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_rra(stack_a, ra_i + 1);
+		}
+		ft_printf("6error\n");
 		print_stack(*stack_a, *stack_b);
 	}
 	else if (get_min_cost(*stack_b)->m_po == 0 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 1)
 	{
-		//find issue later
-		ft_printf("Oerror:%d\n", target_node(*stack_a, get_min_cost(*stack_b))->content);
-		ft_printf("Oerror:%d\n", ra_i);
-		apply_ra(stack_a, ra_i);
-		apply_rrb(stack_b, rb_i);
-		pa(stack_a, stack_b);
-		apply_rra(stack_a, ra_i);
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		else
+		{
+			apply_rra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_ra(stack_a, ra_i + 1);
+		}
+		ft_printf("7error\n");
 		print_stack(*stack_a, *stack_b);
 	}
 	else if (get_min_cost(*stack_b)->m_po == 0 && target_node(*stack_a, get_min_cost(*stack_b))->m_po == 2)
 	{
-		apply_ra(stack_a, ra_i);
-		apply_rrb(stack_b, rb_i);
-		pa(stack_a, stack_b);
-		apply_rra(stack_a, ra_i);
+		if (target_node(*stack_a, get_min_cost(*stack_b))->content == (*stack_a)->content
+			&& get_min_cost(*stack_b)->content < (*stack_a)->content)
+		{
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+		}
+		else if (get_min_cost(*stack_b)->content > ft_lstlast(*stack_a)->content)
+		{
+			apply_ra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_rra(stack_a, ra_i + 1);
+		}
+		else
+		{
+			apply_ra(stack_a, ra_i);
+			apply_rrb(stack_b, rb_i);
+			pa(stack_a, stack_b);
+			apply_rra(stack_a, ra_i + 1);
+		}
+		ft_printf("8error\n");
 		print_stack(*stack_a, *stack_b);
 	}
 }
