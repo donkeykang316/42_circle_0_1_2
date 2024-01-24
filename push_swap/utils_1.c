@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/15 23:18:27 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/24 22:23:05 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,28 @@ void	stacking(t_list **stack_a, int ac, char **av)
 
 void	push(t_list **stack, t_list **node)
 {
-	t_list	*new;
+	t_list	*push_node;
 
-	new = ft_lstnew((*node)->content);
-	ft_lstadd_front(stack, new);
-	if (*node && (*node)->next)
+	push_node = ft_lstnew((*node)->content);
+	ft_lstadd_front(stack, push_node);
+	if (ft_lstsize(*node) == 1)
+		*node = NULL;
+	else
+	{
 		*node = (*node)->next;
+		(*node)->prev = NULL;
+	}
 }
 
 void	swap(t_list **stack)
 {
-	t_list	*first;
-	t_list	*second;
-
-	first = *stack;
-	second = first->next;
-	first->next = second->next;
-	first->prev = second;
-	second->prev = NULL;
-	second->next = first;
-	*stack = second;
+	*stack = (*stack)->next;
+	(*stack)->prev->prev = *stack;
+	(*stack)->prev->next = (*stack)->next;
+	if ((*stack)->next)
+		(*stack)->next->prev = (*stack)->prev;
+	(*stack)->next = (*stack)->prev;
+	(*stack)->prev = NULL;
 }
 
 void	rotat(t_list **stack)

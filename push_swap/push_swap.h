@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/22 17:46:44 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/24 20:33:07 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_list
 	struct s_list	*prev;
 }	t_list;
 
+void	rev_print_one_stack(t_list *stack);
+void	print_one_stack(t_list *stack);
+void	print_stack(t_list *stack_a, t_list *stack_b);
 int		main(int ac, char **av);
 int		ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
@@ -62,10 +65,8 @@ t_list	*target_node(t_list *stack_a, t_list *stack_b);
 void	push_cost(t_list *stack_a, t_list *stack_b);
 t_list	*get_min_cost(t_list *stack);
 void	stack_init(t_list *stack_a, t_list *stack_b);
-int		case_rb(t_list *stack_b);
-int		case_rrb(t_list *stack_b);
-int		case_ra(t_list *stack_a, t_list *stack_b);
-int		case_rra(t_list *stack_a, t_list *stack_b);
+int		case_br(t_list *stack_b);
+int		case_ar(t_list *stack_a, t_list *stack_b);
 void	apply_ra(t_list **stack_a, int i);
 void	apply_rb(t_list **stack_b, int i);
 void	apply_rra(t_list **stack_a, int i);

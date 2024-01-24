@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 17:42:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/22 17:43:18 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/24 22:58:54 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,78 @@ void	index_init(t_list *stack)
 
 t_list	*target_node(t_list *stack_a, t_list *stack_b)
 {
-	t_list	*temp_a;
-	t_list	*temp_b;
+	t_list	*first;
+	t_list	*last;
+	t_list	*max;
+	t_list	*min;
 
-	temp_a = stack_a;
-	temp_b = stack_b;
-	while ((temp_b->content > temp_a->content) && temp_a)
+	first = stack_a;
+	last = ft_lstlast(stack_a);
+	max = get_max(stack_a);
+	min = get_min(stack_a);
+	if (stack_b->content > max->content)
+		return (min);
+	else if (stack_b->content < min->content)
+		return (min);
+	else
 	{
-		if (temp_a == ft_lstlast(temp_a))
-			return (temp_a);
-		temp_a = temp_a->next;
+		if (min == first)
+		{
+			ft_printf("1_error\n");
+			while (min)
+			{
+				if (stack_b->content < min->content)
+					return (min);
+				min = min->next;
+			}
+			return (min);
+		}
+		else if (max == first)
+		{
+			ft_printf("2_error\n");
+			while (min)
+			{
+				if (stack_b->content < min->content)
+					return (min);
+				min = min->prev;
+			}
+			return (min);
+		}
+		else if (min == last)
+		{
+			ft_printf("3_error\n");
+			while (first)
+			{
+				if (stack_b->content < first->content)
+					return (first);
+				first = first->next;
+			}
+			return (first);
+		}
+		else if (min != last && max != first)
+		{
+			ft_printf("4_error\n");
+			while (min && min != last)
+			{
+				if (stack_b->content < min->content)
+					break ;
+				min = min->next;
+			}
+			while (max && max != first)
+			{
+				if (max->content < stack_b->content)
+					break ;
+				max = max->prev;
+			}
+			ft_printf("b_s:%d\n", stack_b->content);
+			ft_printf("min:%d\n", min->content);
+			ft_printf("max:%d\n", max->content);
+			if (min_diff(min, stack_b) < max_diff(max, stack_b))
+				return (min);
+			else
+				return (max);
+		}
 	}
-	return (temp_a);
 }
 
 void	push_cost(t_list *stack_a, t_list *stack_b)
@@ -111,7 +171,7 @@ void	stack_init(t_list *stack_a, t_list *stack_b)
 	push_cost(stack_a, stack_b);
 }
 
-int	case_rb(t_list *stack_b)
+int	case_br(t_list *stack_b)
 {
 	int	i;
 
@@ -119,23 +179,7 @@ int	case_rb(t_list *stack_b)
 	return (i);
 }
 
-int	case_rrb(t_list *stack_b)
-{
-	int	i;
-
-	i = get_min_cost(stack_b)->index;
-	return (i);
-}
-
-int	case_ra(t_list *stack_a, t_list *stack_b)
-{
-	int	i;
-
-	i = target_node(stack_a, get_min_cost(stack_b))->index;
-	return (i);
-}
-
-int	case_rra(t_list *stack_a, t_list *stack_b)
+int	case_ar(t_list *stack_a, t_list *stack_b)
 {
 	int	i;
 

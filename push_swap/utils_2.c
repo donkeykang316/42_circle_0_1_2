@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:30:21 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/16 16:02:03 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/24 21:45:07 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,16 @@
 
 void	rev_rotat(t_list **stack)
 {
-	t_list	*tmp;
-	int		i;
+	t_list	*last;
+	t_list	*first;
+	t_list	*second_last;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	i = 0;
-	tmp = *stack;
-	while ((*stack)->next)
-	{
-		i++;
-		*stack = (*stack)->next;
-	}
-	(*stack)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
+	first = *stack;
+	last = ft_lstlast(*stack);
+	second_last = last->prev;
+	ft_lstadd_front(stack, last);
+	(*stack)->next = first;
+	second_last->next = NULL;
 }
 
 t_list	*get_max(t_list *stack)
