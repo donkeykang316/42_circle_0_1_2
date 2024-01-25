@@ -1,1 +1,1 @@
-cc *.c *.a -o push_swap && ./push_swap 3 5 4 1 10 8 2 9 6 7
+cc *.c *.a -o push_swap && ./push_swap 2 3 5 7 9 1 8 4 10 6

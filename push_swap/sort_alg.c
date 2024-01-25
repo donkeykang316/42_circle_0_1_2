@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 17:42:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/24 22:58:54 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/25 22:06:35 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,80 +54,63 @@ void	index_init(t_list *stack)
 	}
 }
 
+static t_list	*node_diff(t_list *min, t_list *max, t_list *stack_b)
+{
+	int	mi_i;
+	int	ma_i;
+
+	mi_i = min->content - stack_b->content;
+	ma_i = max->content - stack_b->content;
+
+	ft_printf("mi_i: %d\t", mi_i);
+	ft_printf("ma_i: %d\n", ma_i);
+	if (mi_i == (ma_i * -1))
+	{
+		if (mi_i > 0)
+			return (min);
+		else
+			return (max);
+	}
+	else
+	{
+		if (mi_i < ma_i)
+			return (min);
+		else
+			return (max);	
+	}
+	return (NULL);
+}
+
 t_list	*target_node(t_list *stack_a, t_list *stack_b)
 {
 	t_list	*first;
 	t_list	*last;
 	t_list	*max;
 	t_list	*min;
+	t_list	*temp;
 
 	first = stack_a;
 	last = ft_lstlast(stack_a);
 	max = get_max(stack_a);
 	min = get_min(stack_a);
-	if (stack_b->content > max->content)
-		return (min);
-	else if (stack_b->content < min->content)
+	if (stack_b->content < first->content
+		&& stack_b->content > last->content)
+		return (first);
+	else if (stack_b->content > max->content
+		|| stack_b->content < min->content)
 		return (min);
 	else
 	{
-		if (min == first)
+		temp = stack_a->next;
+		while (first->content > stack_b->content
+			|| temp->content < stack_b->content)
 		{
-			ft_printf("1_error\n");
-			while (min)
-			{
-				if (stack_b->content < min->content)
-					return (min);
-				min = min->next;
-			}
-			return (min);
+			first = first->next;
+			temp = first->next;
 		}
-		else if (max == first)
-		{
-			ft_printf("2_error\n");
-			while (min)
-			{
-				if (stack_b->content < min->content)
-					return (min);
-				min = min->prev;
-			}
-			return (min);
-		}
-		else if (min == last)
-		{
-			ft_printf("3_error\n");
-			while (first)
-			{
-				if (stack_b->content < first->content)
-					return (first);
-				first = first->next;
-			}
-			return (first);
-		}
-		else if (min != last && max != first)
-		{
-			ft_printf("4_error\n");
-			while (min && min != last)
-			{
-				if (stack_b->content < min->content)
-					break ;
-				min = min->next;
-			}
-			while (max && max != first)
-			{
-				if (max->content < stack_b->content)
-					break ;
-				max = max->prev;
-			}
-			ft_printf("b_s:%d\n", stack_b->content);
-			ft_printf("min:%d\n", min->content);
-			ft_printf("max:%d\n", max->content);
-			if (min_diff(min, stack_b) < max_diff(max, stack_b))
-				return (min);
-			else
-				return (max);
-		}
+		return (temp);
 	}
+	return (NULL);
 }
 
 void	push_cost(t_list *stack_a, t_list *stack_b)
