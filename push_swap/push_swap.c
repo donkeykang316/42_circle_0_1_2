@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:13:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/26 15:14:06 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/26 17:05:25 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,37 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 		sort_thr(stack_a);
 }
 
+t_list	*string_process(char **av, t_list *stack_a)
+{
+	t_list	*new;
+	char	**temp;
+	int		i;
+
+	i = 0;
+	temp = av;
+	temp = ft_split(av[1], ' ');
+	while (temp[i])
+	{
+		new = ft_lstnew(ft_atoi(temp[i]));
+		ft_lstadd_back(&stack_a, new);
+		i++;
+	}
+	return (stack_a);
+}
+
 int	main(int ac, char **av)
 {
 	t_list		*stack_a;
-	t_list		*stack_b;
+	t_list		*stack_b;	
 
 	stack_a = malloc(sizeof (t_list));
 	stack_b = malloc(sizeof (t_list));
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac == 2)
-		av = ft_split(av[1], ' ');
+		stack_a = string_process(av, stack_a);
 	else
-		stacking(&stack_a, ac, av);
+		stack_a = stacking(stack_a, ac, av);
 	if (order_check(&stack_a) == 0)
 	{
 		if (ft_lstsize(stack_a) == 2)
@@ -107,7 +125,7 @@ int	main(int ac, char **av)
 		else
 			sort_stack(&stack_a, &stack_b);
 	}
-	ft_printf("a_%d:\t", ft_lstsize(stack_a));
+	/*ft_printf("a_%d:\t", ft_lstsize(stack_a));
 	while (stack_a)
 	{
 		ft_printf("%d\t", stack_a->content);
@@ -123,5 +141,5 @@ int	main(int ac, char **av)
 			stack_b = stack_b->next;
 		}
 		ft_printf("\n");
-	}
+	}*/
 }

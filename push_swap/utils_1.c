@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/24 22:23:05 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/26 17:03:29 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	order_check(t_list **stack)
 	return (1);
 }
 
-void	stacking(t_list **stack_a, int ac, char **av)
+t_list	*stacking(t_list *stack_a, int ac, char **av)
 {
 	t_list	*new;
 	int		i;
@@ -39,10 +39,11 @@ void	stacking(t_list **stack_a, int ac, char **av)
 		while (av[i])
 		{
 			new = ft_lstnew(ft_atoi(av[i]));
-			ft_lstadd_back(stack_a, new);
+			ft_lstadd_back(&stack_a, new);
 			i++;
 		}
 	}
+	return (stack_a);
 }
 
 void	push(t_list **stack, t_list **node)
