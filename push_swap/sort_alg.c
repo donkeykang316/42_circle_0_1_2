@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_alg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 17:42:11 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/25 22:06:35 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/26 14:50:15 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,6 @@ void	index_init(t_list *stack)
 			stack = stack->next;
 		}
 	}
-}
-
-static t_list	*node_diff(t_list *min, t_list *max, t_list *stack_b)
-{
-	int	mi_i;
-	int	ma_i;
-
-	mi_i = min->content - stack_b->content;
-	ma_i = max->content - stack_b->content;
-
-	ft_printf("mi_i: %d\t", mi_i);
-	ft_printf("ma_i: %d\n", ma_i);
-	if (mi_i == (ma_i * -1))
-	{
-		if (mi_i > 0)
-			return (min);
-		else
-			return (max);
-	}
-	else
-	{
-		if (mi_i < ma_i)
-			return (min);
-		else
-			return (max);	
-	}
-	return (NULL);
 }
 
 t_list	*target_node(t_list *stack_a, t_list *stack_b)
