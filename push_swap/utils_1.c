@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/27 17:30:47 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/27 17:51:27 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ t_list	*string_process(char **av, t_list *stack_a)
 		if (error_check(temp[i]))
 			free_errors(stack_a);
 		if (error_dup_check(stack_a, ft_atoi(temp[i])))
+		{
+			temp_free(temp);
 			free_errors(stack_a);
+		}
 		new = ft_lstnew(ft_atoi(temp[i]));
 		ft_lstadd_back(&stack_a, new);
 		i++;
