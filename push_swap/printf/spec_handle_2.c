@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   spec_handle_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 16:07:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/27 15:04:00 by kaan             ###   ########.fr       */
+/*   Created: 2023/11/23 14:55:14 by kaan              #+#    #+#             */
+/*   Updated: 2023/11/30 19:24:54 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstnew(int content)
+int	handle_lx(char c, va_list args)
 {
-	t_list	*new;
+	unsigned int	var;
+	int				count;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		exit(1);
-	new->content = content;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
+	count = 0;
+	(void)c;
+	var = va_arg(args, long);
+	ft_puthex(var, &count);
+	return (count);
+}
+
+int	handle_ux(char c, va_list args)
+{
+	unsigned int	var;
+	int				count;
+
+	count = 0;
+	(void)c;
+	var = va_arg(args, long);
+	ft_puthex_up(var, &count);
+	return (count);
 }

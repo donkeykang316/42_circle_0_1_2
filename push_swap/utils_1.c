@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:41:32 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/26 17:03:29 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/27 17:30:47 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	order_check(t_list **stack)
+int	order_check(t_list *stack)
 {
 	t_list	*count;
 
-	count = *stack;
-	while ((count)->next)
+	if (stack == NULL)
+		return (0);
+	count = stack;
+	while (count->next)
 	{
 		if (count->content <= count->next->content)
 			count = count->next;
@@ -25,6 +27,13 @@ int	order_check(t_list **stack)
 			return (0);
 	}
 	return (1);
+}
+
+void	free_errors(t_list *stack)
+{
+	ft_free(&stack);
+	ft_printf("Error\n");
+	exit(1);
 }
 
 t_list	*stacking(t_list *stack_a, int ac, char **av)
@@ -38,6 +47,10 @@ t_list	*stacking(t_list *stack_a, int ac, char **av)
 		new = NULL;
 		while (av[i])
 		{
+			if (error_check(av[i]))
+				free_errors(stack_a);
+			if (error_dup_check(stack_a, ft_atoi(av[i])))
+				free_errors(stack_a);
 			new = ft_lstnew(ft_atoi(av[i]));
 			ft_lstadd_back(&stack_a, new);
 			i++;
@@ -46,47 +59,38 @@ t_list	*stacking(t_list *stack_a, int ac, char **av)
 	return (stack_a);
 }
 
-void	push(t_list **stack, t_list **node)
+void	temp_free(char **temp)
 {
-	t_list	*push_node;
+	int	i;
 
-	push_node = ft_lstnew((*node)->content);
-	ft_lstadd_front(stack, push_node);
-	if (ft_lstsize(*node) == 1)
-		*node = NULL;
-	else
+	i = 0;
+	while (temp[i])
 	{
-		*node = (*node)->next;
-		(*node)->prev = NULL;
+		free(temp[i]);
+		i++;
 	}
+	free(temp);
 }
 
-void	swap(t_list **stack)
+t_list	*string_process(char **av, t_list *stack_a)
 {
-	*stack = (*stack)->next;
-	(*stack)->prev->prev = *stack;
-	(*stack)->prev->next = (*stack)->next;
-	if ((*stack)->next)
-		(*stack)->next->prev = (*stack)->prev;
-	(*stack)->next = (*stack)->prev;
-	(*stack)->prev = NULL;
-}
+	t_list	*new;
+	char	**temp;
+	int		i;
 
-void	rotat(t_list **stack)
-{
-	t_list	*first;
-	t_list	*second;
-	t_list	*last;
-
-	first = *stack;
-	second = (*stack)->next;
-	last = ft_lstlast(*stack);
-	ft_lstadd_back(&second, first);
-	if (second && second->next)
+	i = 0;
+	temp = av;
+	temp = ft_split(av[1], ' ');
+	while (temp[i])
 	{
-		second->prev = NULL;
-		first->prev = last;
-		first->next = NULL;
-		*stack = second;
+		if (error_check(temp[i]))
+			free_errors(stack_a);
+		if (error_dup_check(stack_a, ft_atoi(temp[i])))
+			free_errors(stack_a);
+		new = ft_lstnew(ft_atoi(temp[i]));
+		ft_lstadd_back(&stack_a, new);
+		i++;
 	}
+	temp_free(temp);
+	return (stack_a);
 }

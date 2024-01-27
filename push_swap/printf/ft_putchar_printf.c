@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 16:07:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/27 15:04:00 by kaan             ###   ########.fr       */
+/*   Created: 2023/11/21 12:26:19 by kaan              #+#    #+#             */
+/*   Updated: 2023/12/24 14:14:10 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstnew(int content)
+int	ft_putchar_printf(char c)
 {
-	t_list	*new;
-
-	new = malloc(sizeof(t_list));
-	if (!new)
-		exit(1);
-	new->content = content;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
+	return (write(1, &c, 1));
 }

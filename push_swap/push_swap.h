@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:30:58 by someng            #+#    #+#             */
-/*   Updated: 2024/01/26 17:04:37 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/27 17:36:41 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ typedef struct s_list
 	struct s_list	*prev;
 }	t_list;
 
-void	rev_print_one_stack(t_list *stack);
-void	print_one_stack(t_list *stack);
-void	print_stack(t_list *stack_a, t_list *stack_b);
-int		main(int ac, char **av);
 int		ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -40,10 +36,16 @@ t_list	*ft_lstnew(int content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
-int		order_check(t_list **stack);
+int		error_check(char *nbr);
+int		error_dup_check(t_list *stack, int n);
+void	free_errors(t_list *stack);
+t_list	*stacking(t_list *stack_a, int ac, char **av);
+void	temp_free(char **temp);
+t_list	*string_process(char **av, t_list *stack_a);
+int		order_check(t_list *stack);
+void	ft_free(t_list **lst);
 t_list	*get_max(t_list *stack);
 t_list	*get_min(t_list *stack);
-t_list	*stacking(t_list *stack_a, int ac, char **av);
 void	push(t_list **stack, t_list **node);
 void	swap(t_list **stack);
 void	rotat(t_list **stack);
@@ -60,7 +62,10 @@ void	rrb(t_list **stack_b);
 void	ss(t_list **stack_a, t_list **stack_b);
 void	rr(t_list **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
+void	apply_index_1(t_list *stack, int i, int median, int temp);
+void	apply_index_2(t_list *stack, int i, int median);
 void	index_init(t_list *stack);
+t_list	*target_node_else(t_list *stack_b, t_list *temp, t_list *first);
 t_list	*target_node(t_list *stack_a, t_list *stack_b);
 void	push_cost(t_list *stack_a, t_list *stack_b);
 t_list	*get_min_cost(t_list *stack);
@@ -73,5 +78,13 @@ void	apply_rra(t_list **stack_a, int i);
 void	apply_rrb(t_list **stack_b, int i);
 void	apply_rr(t_list **stack_a, t_list **stack_b, int i);
 void	apply_rrr(t_list **stack_a, t_list **stack_b, int i);
+void	do_rarb(t_list **stack_a, t_list **stack_b, int ra_i, int rb_i);
+void	do_rrarb(t_list **stack_a, t_list **stack_b, int ra_i, int rb_i);
+void	do_rarrb(t_list **stack_a, t_list **stack_b, int ra_i, int rb_i);
+void	do_rrarrb(t_list **stack_a, t_list **stack_b, int ra_i, int rb_i);
+void	stack_check(t_list **stack_a, t_list **stack_b);
+void	push_b_thr_a(t_list **stack_a, t_list **stack_b);
+void	sort_stack(t_list **stack_a, t_list **stack_b);
+void	ft_free(t_list **lst);
 
 #endif

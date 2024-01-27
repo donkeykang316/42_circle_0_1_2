@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 17:03:42 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/24 20:57:57 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/27 13:27:20 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	{
 		last->next = new;
 		new->prev = last;
+		new->next = NULL;
 	}
 }

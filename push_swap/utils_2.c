@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:30:21 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/24 21:45:07 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/27 12:41:03 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	rotat(t_list **stack)
+{
+	t_list	*first;
+	t_list	*second;
+	t_list	*last;
+
+	first = *stack;
+	second = (*stack)->next;
+	last = ft_lstlast(*stack);
+	ft_lstadd_back(&second, first);
+	if (second && second->next)
+	{
+		second->prev = NULL;
+		first->prev = last;
+		first->next = NULL;
+		*stack = second;
+	}
+}
 
 void	rev_rotat(t_list **stack)
 {
