@@ -6,7 +6,7 @@
 #    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/01/28 12:46:33 by kaan             ###   ########.fr        #
+#    Updated: 2024/01/28 13:14:24 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 INC	= inc/
 
-SRC_DIR = srcs/
+SRC_DIR = src/
 
 OBJ_DIR	= obj/
 
@@ -27,15 +27,15 @@ RM = rm -f
 AR	= ar rcs
 
 SRC = $(SRC_DIR)ft_printf.c\
-				ft_putchar_printf.c\
-				ft_strlen_printf.c\
-				ft_putstr_printf.c\
-				ft_putnbr_printf.c\
-				spec_handle_1.c\
-				spec_handle_2.c\
-				ft_puthex.c
+		$(SRC_DIR)ft_putchar_printf.c\
+		$(SRC_DIR)ft_strlen_printf.c\
+		$(SRC_DIR)ft_putstr_printf.c\
+		$(SRC_DIR)ft_putnbr_printf.c\
+		$(SRC_DIR)spec_handle_1.c\
+		$(SRC_DIR)spec_handle_2.c\
+		$(SRC_DIR)ft_puthex.c
 
-OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
 all: $(NAME)
 

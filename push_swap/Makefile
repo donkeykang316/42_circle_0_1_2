@@ -6,7 +6,7 @@
 #    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/01/28 12:24:25 by kaan             ###   ########.fr        #
+#    Updated: 2024/01/28 13:13:36 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ PRINTF = ./printf/libftprintf.a
 
 INC	= inc/
 
-SRC_DIR = srcs/
+SRC_DIR = src/
 
 OBJ_DIR	= obj/
 
@@ -27,29 +27,28 @@ FLAGS = -Wall -Wextra -Werror -I
 RM = rm -f
 
 SRC = $(SRC_DIR)command_1.c\
-				command_2.c\
-				command_3.c\
-				ft_atoi.c\
-				ft_calloc.c\
-				ft_lstadd_back.c\
-				ft_lstadd_front.c\
-				ft_lstlast.c\
-				ft_lstnew.c\
-				ft_lstsize.c\
-				ft_split.c\
-				ft_strlen.c\
-				push_swap.c\
-				sort_alg_1.c\
-				sort_alg_2.c\
-				sort_alg_3.c\
-				sort_alg_4.c\
-				sort_alg_5.c\
-				utils_1.csss\
-				utils_2.c\
-				utils_3.c\
-		
+		$(SRC_DIR)command_2.c\
+		$(SRC_DIR)command_3.c\
+		$(SRC_DIR)ft_atoi.c\
+		$(SRC_DIR)ft_calloc.c\
+		$(SRC_DIR)ft_lstadd_back.c\
+		$(SRC_DIR)ft_lstadd_front.c\
+		$(SRC_DIR)ft_lstlast.c\
+		$(SRC_DIR)ft_lstnew.c\
+		$(SRC_DIR)ft_lstsize.c\
+		$(SRC_DIR)ft_split.c\
+		$(SRC_DIR)ft_strlen.c\
+		$(SRC_DIR)push_swap.c\
+		$(SRC_DIR)sort_alg_1.c\
+		$(SRC_DIR)sort_alg_2.c\
+		$(SRC_DIR)sort_alg_3.c\
+		$(SRC_DIR)sort_alg_4.c\
+		$(SRC_DIR)sort_alg_5.c\
+		$(SRC_DIR)utils_1.c\
+		$(SRC_DIR)utils_2.c\
+		$(SRC_DIR)utils_3.c\
 
-OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
 start:
 	@make all
