@@ -1,1 +1,0 @@
-cc -Wall -Wextra -Werror *.c *.a  -o push_swap && ./push_swap -11 -113 -12 45 66 88 -123 44 89
