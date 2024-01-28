@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strlen_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2023/12/19 16:09:04 by kaan             ###   ########.fr       */
+/*   Created: 2023/11/21 12:35:29 by kaan              #+#    #+#             */
+/*   Updated: 2024/01/28 12:27:56 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
+#include "../inc/ft_printf.h"
 
-int	main(void)
+int	ft_strlen_printf(const char *s)
 {
-    //compile: cc so_long.c libmlx.a
-	void	*mlx_connection;
+	int	i;
 
-       	mlx_connection = mlx_init();
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
