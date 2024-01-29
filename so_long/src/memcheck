@@ -1,4 +1,4 @@
-cc *.c *.a -I -g3 -L /usr/X11/lib -Lincludes -L./mlx -lmlx -Imlx -lXext -lX11 -lz -lm
+cc *.c *.a -L ./minilibx-linux -lmlx -lXext -lX11
 valgrind --leak-check=full \
          --show-leak-kinds=all \
          --log-file=valgrind-out.txt \

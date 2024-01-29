@@ -1,0 +1,435 @@
+==35100== Memcheck, a memory error detector
+==35100== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==35100== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==35100== Command: ./a.out
+==35100== Parent PID: 35096
+==35100== 
+==35100== 
+==35100== Process terminating with default action of signal 2 (SIGINT)
+==35100==    at 0x4BF17FB: __recvmsg_syscall (recvmsg.c:27)
+==35100==    by 0x4BF17FB: recvmsg (recvmsg.c:41)
+==35100==    by 0x4CFEEE7: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D00007: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x48C69CD: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C6B67: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9C71: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48A487D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401B0F: mlx_pixel_put (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x4013E3: display_bg (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401496: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== HEAP SUMMARY:
+==35100==     in use at exit: 103,072 bytes in 83 blocks
+==35100==   total heap usage: 464 allocs, 381 frees, 117,056 bytes allocated
+==35100== 
+==35100== 3 bytes in 1 blocks are still reachable in loss record 1 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4B7258E: strdup (strdup.c:42)
+==35100==    by 0x48B4B45: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 8 bytes in 1 blocks are still reachable in loss record 2 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4B7258E: strdup (strdup.c:42)
+==35100==    by 0x48B19AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4876820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 8 bytes in 1 blocks are still reachable in loss record 3 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4874B34: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48769DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 10 bytes in 1 blocks are still reachable in loss record 4 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4B7258E: strdup (strdup.c:42)
+==35100==    by 0x48B19AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x491B213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B56A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 16 bytes in 1 blocks are still reachable in loss record 5 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x401558: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 16 bytes in 1 blocks are still reachable in loss record 6 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4D022EE: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D02E6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x48C4EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 21 bytes in 1 blocks are still reachable in loss record 7 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B503E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 24 bytes in 1 blocks are still reachable in loss record 8 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4876041: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48764CC: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48769C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 24 bytes in 1 blocks are still reachable in loss record 9 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4B7258E: strdup (strdup.c:42)
+==35100==    by 0x48B19AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4876820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487650A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48769C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 24 bytes in 1 blocks are still reachable in loss record 10 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48769F5: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 29 bytes in 1 blocks are still reachable in loss record 11 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48AE0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B0929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401872: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 32 bytes in 1 blocks are still reachable in loss record 12 of 45
+==35100==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4D0615E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D06237: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D062EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D06364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x48B552B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 32 bytes in 1 blocks are still reachable in loss record 13 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4CFF1B7: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4CFFA08: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4CFFEB0: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D00E44: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D06292: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D062EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D06364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x48B552B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 32 bytes in 1 blocks are still reachable in loss record 14 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48767FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 32 bytes in 1 blocks are still reachable in loss record 15 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48767FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487650A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48769C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 33 bytes in 1 blocks are still reachable in loss record 16 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48AE0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B0929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x40185B: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 40 bytes in 1 blocks are still reachable in loss record 17 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C51F1: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4E71: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 48 bytes in 1 blocks are still reachable in loss record 18 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C4E71: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 48 bytes in 1 blocks are still reachable in loss record 19 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C4E87: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 72 bytes in 1 blocks are still reachable in loss record 20 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B4F20: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 112 bytes in 1 blocks are still reachable in loss record 21 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C4D72: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 112 bytes in 1 blocks are still reachable in loss record 22 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B5200: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 128 bytes in 1 blocks are still reachable in loss record 23 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B512E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 128 bytes in 1 blocks are still reachable in loss record 24 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B199E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x491B213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B56A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 128 bytes in 1 blocks are still reachable in loss record 25 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B199E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4876820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 128 bytes in 1 blocks are still reachable in loss record 26 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B199E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4876820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487650A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48769C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 136 bytes in 1 blocks are still reachable in loss record 27 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4017AF: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 148 bytes in 1 blocks are still reachable in loss record 28 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B5710: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 152 bytes in 1 blocks are still reachable in loss record 29 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x491B40E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B56A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 160 bytes in 1 blocks are still reachable in loss record 30 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48A39EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B55A4: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 160 bytes in 1 blocks are still reachable in loss record 31 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48A39EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4019FE: mlx_new_window (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401469: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 168 bytes in 1 blocks are still reachable in loss record 32 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B50B2: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 208 bytes in 1 blocks are still reachable in loss record 33 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4874AE9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x48769DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x487B9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==35100==    by 0x401603: mlx_int_deal_shm (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401881: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 208 bytes in 1 blocks are still reachable in loss record 34 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C6FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CAEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CB205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401DC5: mlx_int_wait_first_expose (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401A3D: mlx_new_window (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401469: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 512 bytes in 1 blocks are still reachable in loss record 35 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B046A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B084E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x40185B: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 936 bytes in 1 blocks are still reachable in loss record 36 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x401960: mlx_new_window (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401469: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 1,040 bytes in 5 blocks are still reachable in loss record 37 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C6FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CAEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CB1D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401DC5: mlx_int_wait_first_expose (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401A3D: mlx_new_window (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401469: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 1,248 bytes in 6 blocks are still reachable in loss record 38 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C6FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CAF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CB205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401DC5: mlx_int_wait_first_expose (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401A3D: mlx_new_window (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401469: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 2,080 bytes in 10 blocks are still reachable in loss record 39 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C6FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CAF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48CB1D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401DC5: mlx_int_wait_first_expose (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401A3D: mlx_new_window (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401469: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 4,160 bytes in 20 blocks are still reachable in loss record 40 of 45
+==35100==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48C6FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48C9C69: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48A487D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x401B0F: mlx_pixel_put (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x4013E3: display_bg (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401496: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 4,704 bytes in 1 blocks are still reachable in loss record 41 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B4B31: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 14,612 bytes in 1 blocks are still reachable in loss record 42 of 45
+==35100==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4D024FB: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D02E6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x48C4EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 16,384 bytes in 1 blocks are still reachable in loss record 43 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B4EBE: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 21,168 bytes in 1 blocks are still reachable in loss record 44 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x4D02204: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x4D02E6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==35100==    by 0x48C4EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x48B4B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== 33,600 bytes in 2 blocks are still reachable in loss record 45 of 45
+==35100==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==35100==    by 0x48B5290: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==35100==    by 0x4017C7: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x401422: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100==    by 0x40157C: main (in /home/kaan/Documents/42/so_long/src/a.out)
+==35100== 
+==35100== LEAK SUMMARY:
+==35100==    definitely lost: 0 bytes in 0 blocks
+==35100==    indirectly lost: 0 bytes in 0 blocks
+==35100==      possibly lost: 0 bytes in 0 blocks
+==35100==    still reachable: 103,072 bytes in 83 blocks
+==35100==         suppressed: 0 bytes in 0 blocks
+==35100== 
+==35100== For lists of detected and suppressed errors, rerun with: -s
+==35100== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

@@ -1,1 +1,1 @@
-cc *.c *.a -I -g3 -L /usr/X11/lib -Lincludes -L./mlx -lmlx -Imlx -lXext -lX11 -lz -lm && ./a.out
+cc *.c *.a -L ./minilibx-linux -lmlx -lXext -lX11 && ./a.out
