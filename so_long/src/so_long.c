@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/29 17:30:04 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/29 20:46:03 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,25 @@ void	display_bg(t_data *game, t_map *water)
 	x = 0;
 	y = 0;
 	game->f_name = ft_strdup("./water.xpm");
-	game->height = 100;
-	game->width = 100;
-	water->height = 250;
-	water->width = 350;
+	game->width = 10;
+	game->height = 10;
+	water->width = 10;
+	water->height = 10;
 	water->img = mlx_xpm_file_to_image(game->mlx_ptr,
 			game->f_name,
 			&game->width,
 			&game->height);
-	while (x != 499)
+	mlx_put_image_to_window(game->mlx_ptr,
+			game->win_ptr,
+			water->img,
+			water->width + 10,
+			water->height + 10);
+	mlx_put_image_to_window(game->mlx_ptr,
+			game->win_ptr,
+			water->img,
+			water->width + 50,
+			water->height + 50);
+	/*while (x != 499)
 	{
 		mlx_put_image_to_window(game->mlx_ptr,
 			game->win_ptr,
@@ -73,11 +83,12 @@ void	display_bg(t_data *game, t_map *water)
 				water->height + y);
 		}
 		x++;
-	}
+	}*/
 }
 
 int	input_manager(int keypress, t_data *game)
 {
+	ft_printf("key:%d\n", keypress);
 	if (keypress == 65307)
 	{
 		close_display(game);
