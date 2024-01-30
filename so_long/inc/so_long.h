@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/30 17:07:11 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/30 23:23:18 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ typedef struct s_tile
 	int		width;
 }	t_tile;
 
+typedef struct s_map
+{
+	char		*map;
+}	t_map;
+
 typedef struct s_data
 {
 	void		*win_ptr;
 	void		*mlx_ptr;
 	const char	*filename;
-	t_tile		*map;
 }	t_data;
 
 #endif

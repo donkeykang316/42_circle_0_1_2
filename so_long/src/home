@@ -1,1 +1,1 @@
-cc *.c *.a -L ./minilibx-linux -lXext -lX11 && ./a.out
+gcc *.c *.a -L ./minilibx-linux -lXext -lX11 && ./a.out

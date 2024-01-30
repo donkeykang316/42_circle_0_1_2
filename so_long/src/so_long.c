@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/30 20:07:02 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/30 23:22:59 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	open_display(t_data *game);
 int		close_display(t_data *game);
 void	display_bg(t_data *game);
 int		input_manager(int keypress, t_data *game);
+t_tile	*water_tile(t_data *game);
+t_tile	*dirt_tile(t_data *game);
+t_tile	*cha_tile(t_data *game);
+t_tile	*egg_tile(t_data *game);
+t_tile	*goal_tile(t_data *game);
 
 void	ft_free(t_data *game)
 {
@@ -149,7 +154,7 @@ void	display_bg(t_data *game)
 	water = water_tile(game);
 	dirt = dirt_tile(game);
 	goal = goal_tile(game);
-	cha = goal_tile(game);
+	cha = cha_tile(game);
 	egg = egg_tile(game);
 	egg->width = 0;
 	egg->height = 0;
