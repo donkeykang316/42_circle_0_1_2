@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/30 23:22:59 by kaan             ###   ########.fr       */
+/*   Updated: 2024/01/31 16:28:29 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-
-void	ft_free(t_data *game);
-void	open_display(t_data *game);
-int		close_display(t_data *game);
-void	display_bg(t_data *game);
-int		input_manager(int keypress, t_data *game);
-t_tile	*water_tile(t_data *game);
-t_tile	*dirt_tile(t_data *game);
-t_tile	*cha_tile(t_data *game);
-t_tile	*egg_tile(t_data *game);
-t_tile	*goal_tile(t_data *game);
 
 void	ft_free(t_data *game)
 {
@@ -102,11 +91,11 @@ t_tile	*goal_tile(t_data *game)
 	return (goal);
 }
 
-t_tile	*cha_tile(t_data *game)
+t_cha	*cha_tile(t_data *game)
 {
-	t_tile	*cha;
+	t_cha	*cha;
 
-	cha = malloc(sizeof(t_tile));
+	cha = malloc(sizeof(t_cha));
 	if (!cha)
 	{
 		free(cha);
@@ -115,8 +104,8 @@ t_tile	*cha_tile(t_data *game)
 	cha->f_name = ft_strdup("./tile/cow.xpm");
 	cha->img = mlx_xpm_file_to_image(game->mlx_ptr,
 			cha->f_name,
-			&cha->width,
-			&cha->height);
+			&cha->x,
+			&cha->y);
 	return (cha);
 }
 
@@ -138,28 +127,29 @@ t_tile	*egg_tile(t_data *game)
 	return (egg);
 }
 
-void	display_bg(t_data *game)
+t_map	*display_bg(t_data *game)
 {
+	static char	*map_1 = NULL;
+	int			m_l;
+	int			i;
+	int			x;
+	int			y;
+	t_map		*card;
 	t_tile		*water;
 	t_tile		*dirt;
 	t_tile		*goal;
-	t_tile		*cha;
 	t_tile		*egg;
-	char		*map;
-	int			fd;
-	int			i;
-	int			j;
 
-	j = 0;
+	m_l = 10;
+	i = 0;
+	x = 0;
+	y = 0;
 	water = water_tile(game);
 	dirt = dirt_tile(game);
 	goal = goal_tile(game);
-	cha = cha_tile(game);
 	egg = egg_tile(game);
 	egg->width = 0;
 	egg->height = 0;
-	cha->width = 0;
-	cha->height = 0;
 	water->width = 0;
 	water->height = 0;
 	dirt->width = 0;
@@ -167,68 +157,108 @@ void	display_bg(t_data *game)
 	goal->width = 0;
 	goal->height = 0;
 	game->filename = ft_strdup("./map/map_1.ber");
-	fd = open(game->filename, O_RDONLY);
-	while (j != 10)
+	game->fd = open(game->filename, O_RDONLY);
+	ft_printf("fd:%d\n", game->fd);
+	//go for new loop function, use link list
+	while (game->fd == 4)
 	{
-		map = get_next_line(fd);
-		i = 0;
-		while (map[i] != 10)
-		{
-			if (map[i] == '1')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					water->img,
-					water->width = i * 64,
-					water->height = j * 64);
-			}
-			else if (map[i] == 'P')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					cha->img,
-					cha->width = i * 64,
-					cha->height = j * 64);
-			}
-			else if (map[i] == 'C')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					egg->img,
-					egg->width = i * 64,
-					egg->height = j * 64);
-			}
-			else if (map[i] == '0')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					dirt->img,
-					dirt->width = i * 64,
-					dirt->height = j * 64);
-			}
-			else if (map[i] == 'E')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					goal->img,
-					goal->width = i * 63,
-					goal->height = j * 63);
-			}
-			i++;
-		}
-		free(map);
-		j++;
+		ft_printf("loop_fd:%d\n", game->fd);
+		if (!map_1)
+			map_1 = get_next_line(game->fd);
+		else
+			map_1 = ft_strjoin(map_1, get_next_line(game->fd));
 	}
-	close(fd);
+	card = NULL;
+	card = malloc(sizeof(t_map));
+	card->map = malloc(ft_strlen(map_1) + 1);
+	ft_strlcpy(card->map, map_1, ft_strlen(map_1));
+	close (game->fd);
+	while (card->map[i] && y != 11)
+	{
+		if (card->map[i] == '1')
+		{
+			mlx_put_image_to_window(game->mlx_ptr,
+				game->win_ptr,
+				water->img,
+				water->width = x * 64,
+				water->height = y * 64);
+		}
+		else if (card->map[i] == 'C')
+		{
+			mlx_put_image_to_window(game->mlx_ptr,
+				game->win_ptr,
+				egg->img,
+				egg->width = x * 64,
+				egg->height = y * 64);
+		}
+		else if (card->map[i] == '0' || card->map[i] == 'P')
+		{
+			mlx_put_image_to_window(game->mlx_ptr,
+				game->win_ptr,
+				dirt->img,
+				dirt->width = x * 64,
+				dirt->height = y * 64);
+		}
+		else if (card->map[i] == 'E')
+		{
+			mlx_put_image_to_window(game->mlx_ptr,
+				game->win_ptr,
+				goal->img,
+				goal->width = x * 63,
+				goal->height = y * 63);
+		}
+		else if (card->map[i] == '\n')
+		{
+			x = -1;
+			y++;
+		}
+		i++;
+		x++;
+	}
+	return (card);
 }
 
-int	input_manager(int keypress, t_data *game)
+void	move_cow(t_data *game, int keypress)
+{
+	//WIP
+	t_map	*card;
+	t_cha	*cow;
+	int		i;
+
+	i = 0;
+	cow = cha_tile(game);
+	cow->x = 0;
+	cow->y = 0;
+	mlx_put_image_to_window(game->mlx_ptr,
+		game->win_ptr,
+		cow->img,
+		cow->x,
+		cow->y);
+	card = display_bg(game);
+	while (card)
+	{
+		if (keypress == 100)
+		{
+			card->map[i] = '0';
+			i += 1;
+			card->map[i] = 'P'; 
+		}
+		//display_bg(game);
+	}
+}
+
+int	input_manager(int keypress, t_data *game, t_map *card)
 {
 	ft_printf("key:%d\n", keypress);
+	ft_printf("map:%s\n", card->map);
 	if (keypress == 65307)
 	{
 		close_display(game);
 		exit(0);
+	}
+	else if (/*keypress == 97 || */keypress == 100)
+	{
+		move_cow(game, keypress);
 	}
 	return (0);
 }
