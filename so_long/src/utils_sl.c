@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 17:46:20 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/01 22:34:40 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_free(t_data *game)
 void	open_display(t_data *game)
 {
 	game->mlx_ptr = mlx_init();
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 960, 640, "Try to WIN");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, 2176, 640, "Try to WIN");
 	display_enter(game);
 }
 

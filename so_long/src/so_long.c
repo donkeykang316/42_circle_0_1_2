@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 17:53:49 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/01 22:39:58 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_map	*map_list(t_data *game, t_map *m_line)
 	new = NULL;
 	temp = NULL;
 	new = malloc(sizeof(t_map));
-	game->filename = ft_strdup("./map/map_1.ber");
 	game->fd = open(game->filename, O_RDONLY);
 	temp = get_next_line(game->fd);
 	if (!temp)
@@ -82,81 +81,6 @@ void	display_won(t_data *game)
 }
 
 void	display_bg(t_data *game, t_map	*m_line)
-{
-	t_tile		*water;
-	t_tile		*dirt;
-	t_tile		*goal;
-	t_tile		*egg;
-	t_tile		*cow;
-	int			x;
-
-	water = water_tile(game);
-	dirt = dirt_tile(game);
-	goal = goal_tile(game);
-	egg = egg_tile(game);
-	cow = cha_tile(game);
-	cow->width = 0;
-	cow->height = 0;
-	egg->width = 0;
-	egg->height = 0;
-	water->width = 0;
-	water->height = 0;
-	dirt->width = 0;
-	dirt->height = 0;
-	goal->width = 0;
-	goal->height = 0;
-	while (m_line)
-	{
-		x = 0;
-		while (m_line->line[x] != 10)
-		{
-			if (m_line->line[x] == '1')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					water->img,
-					water->width = x * 64,
-					water->height = m_line->index * 64);
-			}
-			else if (m_line->line[x] == 'P')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					cow->img,
-					cow->width = x * 64,
-					cow->height = m_line->index * 64);
-			}
-			else if (m_line->line[x] == 'C')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					egg->img,
-					egg->width = x * 64,
-					egg->height = m_line->index * 64);
-			}
-			else if (m_line->line[x] == '0')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					dirt->img,
-					dirt->width = x * 64,
-					dirt->height = m_line->index * 64);
-			}
-			else if (m_line->line[x] == 'E')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					goal->img,
-					goal->width = x * 63,
-					goal->height = m_line->index * 63);
-			}
-			x++;
-		}
-		m_line = m_line->next;
-	}
-}
-
-void	game_start(t_data *game, t_map *m_line)
 {
 	t_tile		*water;
 	t_tile		*dirt;
@@ -334,7 +258,6 @@ void	move_cow_w(t_data *game, t_map **cow)
 		(*cow)->line[(*cow)->x] = 'P';
 		display_bg(game, *cow);
 	}
-
 }
 
 void	move_cow_s(t_data *game, t_map **cow)
@@ -383,36 +306,35 @@ int	input_manager(int keypress, t_data *game, t_map **m_line)
 		exit (0);
 	}
 	if (keypress == 65293)
-		game_start(game, *m_line);
-	if (m_line)
+		display_bg(game, *m_line);
+	else if (m_line)
 	{
+		display_bg(game, *m_line);
 		if (keypress == 97 || keypress == 65361)
-		{
 			move_cow_a(game, m_line);
-		}
 		if (keypress == 100 || keypress == 65363)
-		{
 			move_cow_d(game, m_line);
-		}
 		if (keypress == 119 || keypress == 65362)
-		{
 			move_cow_w(game, m_line);
-		}
 		if (keypress == 115 || keypress == 65364)
-		{
 			move_cow_s(game, m_line);
-		}
 	}
 	return (0);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_data	*game;
 
-	game = malloc(sizeof(t_data));
-	open_display(game);
-	mlx_hook(game->win_ptr, 2, 1L << 0, &input_manager, game);
-	mlx_hook(game->win_ptr, 17, 0, close_display, game);
-	mlx_loop(game->mlx_ptr);
+	if (ac == 2)
+	{
+		game = malloc(sizeof(t_data));
+		game->filename = ft_strdup(av[1]);
+		open_display(game);
+		mlx_hook(game->win_ptr, 2, 1L << 0, &input_manager, game);
+		mlx_hook(game->win_ptr, 17, 0, close_display, game);
+		mlx_loop(game->mlx_ptr);
+	}
+	else
+		ft_printf("Wrong entry, insert the MAP FILE\n");
 }
