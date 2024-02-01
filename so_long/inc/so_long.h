@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/31 16:09:29 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/01 16:21:54 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../minilibx-linux/mlx.h"
+# include "mlx.h"
 # include "../supp/printf/inc/ft_printf.h"
 # include "../supp/get_next_line/inc/get_next_line.h"
 # include "../supp/libft/inc/libft.h"
@@ -33,17 +33,13 @@ typedef struct s_tile
 
 typedef struct s_map
 {
-	char			*map;
+	char			*line;
+	int				index;
+	int				x;
+	int				y;
+	struct s_map	*prev;
+	struct s_map	*next;
 }	t_map;
-
-typedef struct s_cha
-{
-	char	*ch;
-	char	*f_name;
-	void	*img;
-	int		x;
-	int		y;
-}	t_cha;
 
 typedef struct s_data
 {
@@ -53,16 +49,27 @@ typedef struct s_data
 	int			fd;
 }	t_data;
 
+t_map	*ft_lstlast_doub(t_map *lst);
+t_map	*ft_lstnew_doub(char *content);
+void	ft_lstadd_back_doub(t_map **lst, t_map *new);
+int		ft_lstsize_doub(t_map *lst);
 void	ft_free(t_data *game);
 void	open_display(t_data *game);
 int		close_display(t_data *game);
-t_map	*display_bg(t_data *game);
-int		input_manager(int keypress, t_data *game, t_map *card);
-void	move_cow(t_data *game, int keypress);
+void	display_bg(t_data *game, t_map *m_line);
+t_map	*map_init(t_data *game);
+int		input_manager(int keypress, t_data *game, t_map **m_line);
+void	move_cow_a(t_data *game, t_map **m_line);
+void	move_cow_d(t_data *game, t_map **m_line);
+void	move_cow_w(t_data *game, t_map **cow);
+void	move_cow_s(t_data *game, t_map **cow);
 t_tile	*water_tile(t_data *game);
 t_tile	*dirt_tile(t_data *game);
-t_cha	*cha_tile(t_data *game);
+t_tile	*cha_tile(t_data *game);
 t_tile	*egg_tile(t_data *game);
 t_tile	*goal_tile(t_data *game);
+t_tile	*enter_tile(t_data *game);
+void	display_enter(t_data *game);
+void	game_start(t_data *game, t_map *m_line);
 
 #endif
