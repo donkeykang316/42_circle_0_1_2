@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 17:08:49 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/01 17:53:49 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_map	*map_list(t_data *game, t_map *m_line)
 	close (game->fd);
 	return (m_line);
 }
+
 void	display_enter(t_data *game)
 {
 	t_tile		*enter;
@@ -64,6 +65,20 @@ void	display_enter(t_data *game)
 		enter->img,
 		enter->width,
 		enter->height);
+}
+
+void	display_won(t_data *game)
+{
+	t_tile		*won;
+
+	won = won_tile(game);
+	won->width = 0;
+	won->height = 0;
+	mlx_put_image_to_window(game->mlx_ptr,
+		game->win_ptr,
+		won->img,
+		won->width,
+		won->height);
 }
 
 void	display_bg(t_data *game, t_map	*m_line)
@@ -231,11 +246,39 @@ t_map	*find_cow(t_map **cow)
 	}
 	return (*cow);
 }
-void	move_cow_a(t_data *game, t_map **cow)
+
+int	win_check(t_map *card)
+{
+	int	i;
+
+	while (card->prev)
+		card = card->prev;
+	while (card->next)
+	{
+		i = 0;
+		while (card->line[i] != 10)
+		{
+			if (card->line[i] == 'C')
+				return (0);
+			i++;
+		}
+		card = card->next;
+	}
+	return (1);
+}
+
+void	move_cow_d(t_data *game, t_map **cow)
 {
 	if ((*cow)->x == -1)
 		*cow = find_cow(cow);
-	if ((*cow)->line[(*cow)->x + 1] == '0'
+	if ((*cow)->line[(*cow)->x + 1] == 'E' && win_check(*cow) == 1)
+	{
+		(*cow)->line[(*cow)->x] = '0';
+		(*cow)->x += 1;
+		(*cow)->line[(*cow)->x] = 'P';
+		display_won(game);
+	}
+	else if ((*cow)->line[(*cow)->x + 1] == '0'
 		|| (*cow)->line[(*cow)->x + 1] == 'C')
 	{
 		(*cow)->line[(*cow)->x] = '0';
@@ -245,11 +288,18 @@ void	move_cow_a(t_data *game, t_map **cow)
 	}
 }
 
-void	move_cow_d(t_data *game, t_map **cow)
+void	move_cow_a(t_data *game, t_map **cow)
 {
 	if ((*cow)->x == -1)
 		*cow = find_cow(cow);
-	if ((*cow)->line[(*cow)->x - 1] == '0'
+	if ((*cow)->line[(*cow)->x - 1] == 'E' && win_check(*cow) == 1)
+	{
+		(*cow)->line[(*cow)->x] = '0';
+		(*cow)->x -= 1;
+		(*cow)->line[(*cow)->x] = 'P';
+		display_won(game);
+	}
+	else if ((*cow)->line[(*cow)->x - 1] == '0'
 		|| (*cow)->line[(*cow)->x - 1] == 'C')
 	{
 		(*cow)->line[(*cow)->x] = '0';
@@ -265,7 +315,16 @@ void	move_cow_w(t_data *game, t_map **cow)
 
 	if ((*cow)->x == -1)
 		*cow = find_cow(cow);
-	if ((*cow)->prev->line[(*cow)->x] == '0'
+	if ((*cow)->prev->line[(*cow)->x] == 'E' && win_check(*cow) == 1)
+	{
+		(*cow)->line[(*cow)->x] = '0';
+		x = (*cow)->x;
+		(*cow) = (*cow)->prev;
+		(*cow)->x = x;
+		(*cow)->line[(*cow)->x] = 'P';
+		display_won(game);
+	}
+	else if ((*cow)->prev->line[(*cow)->x] == '0'
 		|| (*cow)->prev->line[(*cow)->x] == 'C')
 	{
 		(*cow)->line[(*cow)->x] = '0';
@@ -275,6 +334,7 @@ void	move_cow_w(t_data *game, t_map **cow)
 		(*cow)->line[(*cow)->x] = 'P';
 		display_bg(game, *cow);
 	}
+
 }
 
 void	move_cow_s(t_data *game, t_map **cow)
@@ -283,7 +343,16 @@ void	move_cow_s(t_data *game, t_map **cow)
 
 	if ((*cow)->x == -1)
 		*cow = find_cow(cow);
-	if ((*cow)->next->line[(*cow)->x] == '0'
+	if ((*cow)->next->line[(*cow)->x] == 'E' && win_check(*cow) == 1)
+	{
+		(*cow)->line[(*cow)->x] = '0';
+		x = (*cow)->x;
+		(*cow) = (*cow)->next;
+		(*cow)->x = x;
+		(*cow)->line[(*cow)->x] = 'P';
+		display_won(game);
+	}
+	else if ((*cow)->next->line[(*cow)->x] == '0'
 		|| (*cow)->next->line[(*cow)->x] == 'C')
 	{
 		(*cow)->line[(*cow)->x] = '0';
@@ -311,19 +380,19 @@ int	input_manager(int keypress, t_data *game, t_map **m_line)
 	if (keypress == 65307)
 	{
 		close_display(game);
-		exit(0);
+		exit (0);
 	}
 	if (keypress == 65293)
 		game_start(game, *m_line);
 	if (m_line)
 	{
-		if (keypress == 100 || keypress == 65361)
-		{
-			move_cow_d(game, m_line);
-		}
-		if (keypress == 97 || keypress == 65363)
+		if (keypress == 97 || keypress == 65361)
 		{
 			move_cow_a(game, m_line);
+		}
+		if (keypress == 100 || keypress == 65363)
+		{
+			move_cow_d(game, m_line);
 		}
 		if (keypress == 119 || keypress == 65362)
 		{

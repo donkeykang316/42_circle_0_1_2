@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 16:21:54 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/01 17:50:00 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		close_display(t_data *game);
 void	display_bg(t_data *game, t_map *m_line);
 t_map	*map_init(t_data *game);
 int		input_manager(int keypress, t_data *game, t_map **m_line);
+int		win_check(t_map *card);
 void	move_cow_a(t_data *game, t_map **m_line);
 void	move_cow_d(t_data *game, t_map **m_line);
 void	move_cow_w(t_data *game, t_map **cow);
@@ -69,7 +70,9 @@ t_tile	*cha_tile(t_data *game);
 t_tile	*egg_tile(t_data *game);
 t_tile	*goal_tile(t_data *game);
 t_tile	*enter_tile(t_data *game);
+t_tile	*won_tile(t_data *game);
 void	display_enter(t_data *game);
+void	display_won(t_data *game);
 void	game_start(t_data *game, t_map *m_line);
 
 #endif
