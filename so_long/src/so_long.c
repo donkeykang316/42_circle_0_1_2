@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 16:51:49 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/01 17:08:49 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,7 @@ void	move_cow_s(t_data *game, t_map **cow)
 		(*cow) = (*cow)->next;
 		(*cow)->x = x;
 		(*cow)->line[(*cow)->x] = 'P';
-		display_bg(game, *cow);
+		display_bg(game, (*cow)->prev);
 	}
 }
 
@@ -317,19 +317,19 @@ int	input_manager(int keypress, t_data *game, t_map **m_line)
 		game_start(game, *m_line);
 	if (m_line)
 	{
-		if (keypress == 100)
-		{
-			move_cow_a(game, m_line);
-		}
-		if (keypress == 97)
+		if (keypress == 100 || keypress == 65361)
 		{
 			move_cow_d(game, m_line);
 		}
-		if (keypress == 119)
+		if (keypress == 97 || keypress == 65363)
+		{
+			move_cow_a(game, m_line);
+		}
+		if (keypress == 119 || keypress == 65362)
 		{
 			move_cow_w(game, m_line);
 		}
-		if (keypress == 115)
+		if (keypress == 115 || keypress == 65364)
 		{
 			move_cow_s(game, m_line);
 		}
