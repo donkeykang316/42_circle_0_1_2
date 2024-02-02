@@ -1,1 +1,1 @@
-cc *.c *.a -lXext -lX11 && ./a.out "./map/map_1.ber"
+cc *.c *.a -lXext -lX11 && ./a.out "./map/map_0.ber"

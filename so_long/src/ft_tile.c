@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:23:04 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 00:30:58 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/02 09:35:27 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_tile	*water_tile(t_data *game)
 			water->f_name,
 			&water->width,
 			&water->height);
+	game->water = water;
 	return (water);
 }
 
@@ -47,6 +48,7 @@ t_tile	*dirt_tile(t_data *game)
 			dirt->f_name,
 			&dirt->width,
 			&dirt->height);
+	game->dirt = dirt;
 	return (dirt);
 }
 
@@ -66,6 +68,7 @@ t_tile	*goal_tile(t_data *game)
 			goal->f_name,
 			&goal->width,
 			&goal->height);
+	game->goal = goal;
 	return (goal);
 }
 
@@ -85,6 +88,7 @@ t_tile	*cha_tile(t_data *game)
 			cha->f_name,
 			&cha->width,
 			&cha->height);
+	game->cha = cha;
 	return (cha);
 }
 
@@ -104,5 +108,6 @@ t_tile	*egg_tile(t_data *game)
 			egg->f_name,
 			&egg->width,
 			&egg->height);
+	game->egg = egg;
 	return (egg);
 }

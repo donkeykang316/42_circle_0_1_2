@@ -3,74 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   utils_sl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/01 22:34:40 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/02 12:59:12 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-t_tile	*enter_tile(t_data *game)
+void	ft_free_map(t_map *map)
 {
-	t_tile	*enter;
-
-	enter = NULL;
-	enter = malloc(sizeof(t_tile));
-	if (!enter)
-	{
-		free(enter);
-		exit (0);
-	}
-	enter->f_name = ft_strdup("./tile/enter.xpm");
-	enter->img = mlx_xpm_file_to_image(game->mlx_ptr,
-			enter->f_name,
-			&enter->width,
-			&enter->height);
-	return (enter);
-}
-
-t_tile	*won_tile(t_data *game)
-{
-	t_tile	*won;
-
-	won = NULL;
-	won = malloc(sizeof(t_tile));
-	if (!won)
-	{
-		free(won);
-		exit (0);
-	}
-	won->f_name = ft_strdup("./tile/won.xpm");
-	won->img = mlx_xpm_file_to_image(game->mlx_ptr,
-			won->f_name,
-			&won->width,
-			&won->height);
-	return (won);
-}
-
-void	ft_free(t_data *game)
-{
-	free(game->mlx_ptr);
-	free(game->win_ptr);
-	free(game);
+	free(map->line);
+	free(map);
 }
 
 void	open_display(t_data *game)
 {
 	game->mlx_ptr = mlx_init();
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 2176, 640, "Try to WIN");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, 960, 640, "EGG COLLOCTOR");
 	display_enter(game);
 }
 
-int	close_display(t_data *game)
+int	close_display(t_data *game, t_map **map)
 {
 	if (game->win_ptr != NULL)
+	{
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		//free(game->win_ptr);
+	}
 	if (game->mlx_ptr != NULL)
+	{
 		mlx_destroy_display(game->mlx_ptr);
-	exit (0);
-	free(game);
-	return (0);
+		//free(game->mlx_ptr);
+	}
+	if (!(*map))
+	{
+		while ((*map)->prev)
+			*map = (*map)->prev;
+		while ((*map)->next)
+		{
+			ft_free_map(*map);
+			*map = (*map)->next;
+		}
+	}
+	free(game->filename);
+	//free(game);
+	exit (1);
 }

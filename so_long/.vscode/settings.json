@@ -5,6 +5,7 @@
         "ft_printf.h": "c",
         "unistd.h": "c",
         "stdlib.h": "c",
-        "so_long.h": "c"
+        "so_long.h": "c",
+        "libft.h": "c"
     }
 }
