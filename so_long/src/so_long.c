@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 11:07:41 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/02 17:40:47 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_map	*map_list(t_data *game, t_map *m_line)
 	new->index = i++;
 	new->x = -1;
 	ft_lstadd_back_doub(&m_line, new);
+	free (temp);
 	while (temp)
 	{
 		temp = get_next_line(game->fd);
@@ -45,7 +46,7 @@ t_map	*map_list(t_data *game, t_map *m_line)
 			ft_lstadd_back_doub(&m_line, new);
 			i++;
 		}
-		free(temp);
+		free (temp);
 	}
 	close (game->fd);
 	return (m_line);
@@ -201,8 +202,6 @@ t_map	*map_init(t_data *game)
 
 int	input_manager(int keypress, t_data *game, t_map **m_line)
 {
-	if (!(*m_line))
-		*m_line = map_init(game);
 	ft_printf("key:%d\n", keypress);
 	if (keypress == 65307)
 	{
@@ -210,9 +209,15 @@ int	input_manager(int keypress, t_data *game, t_map **m_line)
 		exit (0);
 	}
 	if (keypress == 65293)
+	{
+		if (!(*m_line))
+			*m_line = map_init(game);
 		display_bg(game, *m_line);
+	}
 	else if (m_line)
 	{
+		if (!(*m_line))
+			*m_line = map_init(game);
 		display_bg(game, *m_line);
 		if (keypress == 97 || keypress == 65361)
 			move_cow_a(game, m_line);

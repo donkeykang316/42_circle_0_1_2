@@ -1,152 +1,1381 @@
-==18038== Memcheck, a memory error detector
-==18038== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==18038== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==18038== Command: ./a.out ./map/map_0.ber
-==18038== Parent PID: 18029
-==18038== 
-==18038== Invalid read of size 8
-==18038==    at 0x403AA2: close_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403811: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==  Address 0x4cbb990 is 0 bytes inside a block of size 4,096 free'd
-==18038==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x4925136: XkbFreeClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x49276BB: XkbFreeKeyboard (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x491B090: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x48B481A: _XFreeDisplayStructure (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x48A68C0: XCloseDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x403A9D: close_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403811: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==  Block was alloc'd at
-==18038==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x491313E: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x491341E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x49134F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x4913542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x49138AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==18038==    by 0x4065A7: mlx_int_param_KeyPress (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 
-==18038== HEAP SUMMARY:
-==18038==     in use at exit: 1,260 bytes in 28 blocks
-==18038==   total heap usage: 722 allocs, 694 frees, 512,887 bytes allocated
-==18038== 
-==18038== 17 bytes in 1 blocks are still reachable in loss record 1 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x403BD4: ft_strdup (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4026EB: enter_tile (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403284: display_enter (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403A41: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40394E: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 17 bytes in 1 blocks are indirectly lost in loss record 2 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x403BD4: ft_strdup (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x402597: ft_lstnew_doub (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4031BC: map_list (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037A0: map_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037D9: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 24 bytes in 1 blocks are still reachable in loss record 3 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x4026BD: enter_tile (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403284: display_enter (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403A41: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40394E: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 40 bytes in 1 blocks are definitely lost in loss record 4 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x403160: map_list (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037A0: map_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037D9: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 88 bytes in 1 blocks are still reachable in loss record 5 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x403929: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 88 bytes in 1 blocks are still reachable in loss record 6 of 12
-==18038==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x4067AB: mlx_int_new_xshm_image (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x406AD2: mlx_new_image (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405C97: mlx_int_parse_xpm (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4060D1: mlx_xpm_file_to_image (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x402719: enter_tile (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403284: display_enter (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403A41: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40394E: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 136 bytes in 1 blocks are still reachable in loss record 7 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x404E2F: mlx_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403A02: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40394E: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 136 bytes in 1 blocks are still reachable in loss record 8 of 12
-==18038==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x48750C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==18038==    by 0x4067D6: mlx_int_new_xshm_image (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x406AD2: mlx_new_image (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405C97: mlx_int_parse_xpm (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4060D1: mlx_xpm_file_to_image (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x402719: enter_tile (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403284: display_enter (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403A41: open_display (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40394E: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 153 bytes in 9 blocks are indirectly lost in loss record 9 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x403BD4: ft_strdup (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x402597: ft_lstnew_doub (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403219: map_list (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037A0: map_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037D9: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 161 bytes in 1 blocks are definitely lost in loss record 10 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x403DBF: ft_strjoin (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403EF0: stack_line (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40408A: get_next_line (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40318A: map_list (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037A0: map_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037D9: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 360 bytes in 9 blocks are indirectly lost in loss record 11 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x402575: ft_lstnew_doub (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x403219: map_list (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037A0: map_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037D9: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== 570 (40 direct, 530 indirect) bytes in 1 blocks are definitely lost in loss record 12 of 12
-==18038==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==18038==    by 0x402575: ft_lstnew_doub (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4031BC: map_list (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037A0: map_init (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x4037D9: input_manager (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x405245: mlx_loop (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038==    by 0x40397F: main (in /home/kaan/Documents/42/so_long/src/a.out)
-==18038== 
-==18038== LEAK SUMMARY:
-==18038==    definitely lost: 241 bytes in 3 blocks
-==18038==    indirectly lost: 530 bytes in 19 blocks
-==18038==      possibly lost: 0 bytes in 0 blocks
-==18038==    still reachable: 489 bytes in 6 blocks
-==18038==         suppressed: 0 bytes in 0 blocks
-==18038== 
-==18038== For lists of detected and suppressed errors, rerun with: -s
-==18038== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 1 from 1)
+==62770== Memcheck, a memory error detector
+==62770== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==62770== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==62770== Command: ./a.out ./map/map_0.ber
+==62770== Parent PID: 62754
+==62770== 
+==62770== 
+==62770== HEAP SUMMARY:
+==62770==     in use at exit: 71,258 bytes in 1,081 blocks
+==62770==   total heap usage: 222,103 allocs, 221,022 frees, 78,025,913 bytes allocated
+==62770== 
+==62770== 15 bytes in 1 blocks are indirectly lost in loss record 1 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F690: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 15 bytes in 1 blocks are indirectly lost in loss record 2 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5A2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 16 bytes in 1 blocks are indirectly lost in loss record 3 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F3C6: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 16 bytes in 1 blocks are indirectly lost in loss record 4 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F4B4: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 17 bytes in 1 blocks are indirectly lost in loss record 5 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F2D8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 30 bytes in 2 blocks are indirectly lost in loss record 6 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F690: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 30 bytes in 2 blocks are indirectly lost in loss record 7 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5A2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 32 bytes in 2 blocks are indirectly lost in loss record 8 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F3C6: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 32 bytes in 2 blocks are indirectly lost in loss record 9 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F4B4: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 32 bytes in 1 blocks are definitely lost in loss record 10 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F761: map_list (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FDEC: map_init (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE6D: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 34 bytes in 2 blocks are indirectly lost in loss record 11 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F2D8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 60 bytes in 4 blocks are indirectly lost in loss record 12 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F690: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 60 bytes in 4 blocks are indirectly lost in loss record 13 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5A2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 64 bytes in 4 blocks are indirectly lost in loss record 14 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F3C6: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 64 bytes in 4 blocks are indirectly lost in loss record 15 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F4B4: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 68 bytes in 4 blocks are indirectly lost in loss record 16 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F2D8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 75 bytes in 5 blocks are indirectly lost in loss record 17 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F690: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 75 bytes in 5 blocks are indirectly lost in loss record 18 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5A2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 80 bytes in 5 blocks are indirectly lost in loss record 19 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F3C6: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 80 bytes in 5 blocks are indirectly lost in loss record 20 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F4B4: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 85 bytes in 5 blocks are indirectly lost in loss record 21 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F2D8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 88 bytes in 1 blocks are indirectly lost in loss record 22 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 88 bytes in 1 blocks are indirectly lost in loss record 23 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 88 bytes in 1 blocks are indirectly lost in loss record 24 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 88 bytes in 1 blocks are indirectly lost in loss record 25 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 88 bytes in 1 blocks are indirectly lost in loss record 26 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 120 bytes in 8 blocks are indirectly lost in loss record 27 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F690: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 120 bytes in 8 blocks are indirectly lost in loss record 28 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5A2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 128 bytes in 8 blocks are indirectly lost in loss record 29 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F3C6: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 128 bytes in 8 blocks are indirectly lost in loss record 30 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F4B4: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 136 bytes in 1 blocks are indirectly lost in loss record 31 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 136 bytes in 1 blocks are indirectly lost in loss record 32 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 136 bytes in 1 blocks are indirectly lost in loss record 33 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 136 bytes in 1 blocks are indirectly lost in loss record 34 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 136 bytes in 1 blocks are indirectly lost in loss record 35 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 136 bytes in 8 blocks are indirectly lost in loss record 36 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F2D8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 176 bytes in 2 blocks are indirectly lost in loss record 37 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 176 bytes in 2 blocks are indirectly lost in loss record 38 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 176 bytes in 2 blocks are indirectly lost in loss record 39 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 176 bytes in 2 blocks are indirectly lost in loss record 40 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 176 bytes in 2 blocks are indirectly lost in loss record 41 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 263 (24 direct, 239 indirect) bytes in 1 blocks are definitely lost in loss record 42 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F660: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 263 (24 direct, 239 indirect) bytes in 1 blocks are definitely lost in loss record 43 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F572: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 264 (24 direct, 240 indirect) bytes in 1 blocks are definitely lost in loss record 44 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F396: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 264 (24 direct, 240 indirect) bytes in 1 blocks are definitely lost in loss record 45 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F484: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 265 (24 direct, 241 indirect) bytes in 1 blocks are definitely lost in loss record 46 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F2A8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FE8A: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 272 bytes in 2 blocks are indirectly lost in loss record 47 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 272 bytes in 2 blocks are indirectly lost in loss record 48 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 272 bytes in 2 blocks are indirectly lost in loss record 49 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 272 bytes in 2 blocks are indirectly lost in loss record 50 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 272 bytes in 2 blocks are indirectly lost in loss record 51 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 352 bytes in 4 blocks are indirectly lost in loss record 52 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 352 bytes in 4 blocks are indirectly lost in loss record 53 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 352 bytes in 4 blocks are indirectly lost in loss record 54 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 352 bytes in 4 blocks are indirectly lost in loss record 55 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 352 bytes in 4 blocks are indirectly lost in loss record 56 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 440 bytes in 5 blocks are indirectly lost in loss record 57 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 440 bytes in 5 blocks are indirectly lost in loss record 58 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 440 bytes in 5 blocks are indirectly lost in loss record 59 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 440 bytes in 5 blocks are indirectly lost in loss record 60 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 440 bytes in 5 blocks are indirectly lost in loss record 61 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 448 (272 direct, 176 indirect) bytes in 2 blocks are definitely lost in loss record 62 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 510 bytes in 34 blocks are indirectly lost in loss record 63 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F690: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 510 bytes in 34 blocks are indirectly lost in loss record 64 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5A2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 526 (48 direct, 478 indirect) bytes in 2 blocks are definitely lost in loss record 65 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F660: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 526 (48 direct, 478 indirect) bytes in 2 blocks are definitely lost in loss record 66 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F572: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 528 (48 direct, 480 indirect) bytes in 2 blocks are definitely lost in loss record 67 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F396: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 528 (48 direct, 480 indirect) bytes in 2 blocks are definitely lost in loss record 68 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F484: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 530 (48 direct, 482 indirect) bytes in 2 blocks are definitely lost in loss record 69 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F2A8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F0D3: move_cow_w (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF35: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 4 blocks are indirectly lost in loss record 70 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 4 blocks are indirectly lost in loss record 71 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 4 blocks are indirectly lost in loss record 72 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 4 blocks are indirectly lost in loss record 73 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 4 blocks are indirectly lost in loss record 74 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 34 blocks are indirectly lost in loss record 75 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F3C6: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 544 bytes in 34 blocks are indirectly lost in loss record 76 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F4B4: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 578 bytes in 34 blocks are indirectly lost in loss record 77 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x110531: ft_strdup (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F2D8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 680 bytes in 5 blocks are indirectly lost in loss record 78 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 680 bytes in 5 blocks are indirectly lost in loss record 79 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 680 bytes in 5 blocks are indirectly lost in loss record 80 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 680 bytes in 5 blocks are indirectly lost in loss record 81 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 680 bytes in 5 blocks are indirectly lost in loss record 82 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 704 bytes in 8 blocks are indirectly lost in loss record 83 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 704 bytes in 8 blocks are indirectly lost in loss record 84 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 704 bytes in 8 blocks are indirectly lost in loss record 85 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 704 bytes in 8 blocks are indirectly lost in loss record 86 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 704 bytes in 8 blocks are indirectly lost in loss record 87 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,052 (96 direct, 956 indirect) bytes in 4 blocks are definitely lost in loss record 88 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F660: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,052 (96 direct, 956 indirect) bytes in 4 blocks are definitely lost in loss record 89 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F572: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,056 (96 direct, 960 indirect) bytes in 4 blocks are definitely lost in loss record 90 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F396: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,056 (96 direct, 960 indirect) bytes in 4 blocks are definitely lost in loss record 91 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F484: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,060 (96 direct, 964 indirect) bytes in 4 blocks are definitely lost in loss record 92 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F2A8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F283: move_cow_s (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF57: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,088 bytes in 8 blocks are indirectly lost in loss record 93 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,088 bytes in 8 blocks are indirectly lost in loss record 94 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,088 bytes in 8 blocks are indirectly lost in loss record 95 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,088 bytes in 8 blocks are indirectly lost in loss record 96 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,088 bytes in 8 blocks are indirectly lost in loss record 97 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,315 (120 direct, 1,195 indirect) bytes in 5 blocks are definitely lost in loss record 98 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F660: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,315 (120 direct, 1,195 indirect) bytes in 5 blocks are definitely lost in loss record 99 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F572: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,320 (120 direct, 1,200 indirect) bytes in 5 blocks are definitely lost in loss record 100 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F396: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,320 (120 direct, 1,200 indirect) bytes in 5 blocks are definitely lost in loss record 101 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F484: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 1,325 (120 direct, 1,205 indirect) bytes in 5 blocks are definitely lost in loss record 102 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F2A8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EF27: move_cow_a (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FEF1: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,104 (192 direct, 1,912 indirect) bytes in 8 blocks are definitely lost in loss record 103 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F660: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,104 (192 direct, 1,912 indirect) bytes in 8 blocks are definitely lost in loss record 104 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F572: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,112 (192 direct, 1,920 indirect) bytes in 8 blocks are definitely lost in loss record 105 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F396: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,112 (192 direct, 1,920 indirect) bytes in 8 blocks are definitely lost in loss record 106 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F484: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,120 (192 direct, 1,928 indirect) bytes in 8 blocks are definitely lost in loss record 107 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F2A8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10EDA9: move_cow_d (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FF13: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,992 bytes in 34 blocks are indirectly lost in loss record 108 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,992 bytes in 34 blocks are indirectly lost in loss record 109 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,992 bytes in 34 blocks are indirectly lost in loss record 110 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,992 bytes in 34 blocks are indirectly lost in loss record 111 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 2,992 bytes in 34 blocks are indirectly lost in loss record 112 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x11318B: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 4,352 bytes in 32 blocks are indirectly lost in loss record 113 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F5F2: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 4,624 bytes in 34 blocks are indirectly lost in loss record 114 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F328: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 4,624 bytes in 34 blocks are indirectly lost in loss record 115 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F416: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 4,624 bytes in 34 blocks are indirectly lost in loss record 116 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F504: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 4,624 bytes in 34 blocks are indirectly lost in loss record 117 of 122
+==62770==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x48690C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==62770==    by 0x1131B6: mlx_int_new_xshm_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1134B2: mlx_new_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x1125E7: mlx_int_parse_xpm (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x112A21: mlx_xpm_file_to_image (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F6E0: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 8,494 (816 direct, 7,678 indirect) bytes in 34 blocks are definitely lost in loss record 118 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F572: cha_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9B9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 8,942 (816 direct, 8,126 indirect) bytes in 34 blocks are definitely lost in loss record 119 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F660: egg_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F9A9: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 8,976 (816 direct, 8,160 indirect) bytes in 34 blocks are definitely lost in loss record 120 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F396: dirt_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F989: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 8,976 (816 direct, 8,160 indirect) bytes in 34 blocks are definitely lost in loss record 121 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F484: goal_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F999: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== 9,010 (816 direct, 8,194 indirect) bytes in 34 blocks are definitely lost in loss record 122 of 122
+==62770==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==62770==    by 0x10F2A8: water_tile (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10F979: display_bg (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FECF: input_manager (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x111B95: mlx_loop (in /home/someng/42/so_long/src/a.out)
+==62770==    by 0x10FFEA: main (in /home/someng/42/so_long/src/a.out)
+==62770== 
+==62770== LEAK SUMMARY:
+==62770==    definitely lost: 6,784 bytes in 273 blocks
+==62770==    indirectly lost: 64,474 bytes in 808 blocks
+==62770==      possibly lost: 0 bytes in 0 blocks
+==62770==    still reachable: 0 bytes in 0 blocks
+==62770==         suppressed: 0 bytes in 0 blocks
+==62770== 
+==62770== For lists of detected and suppressed errors, rerun with: -s
+==62770== ERROR SUMMARY: 32 errors from 32 contexts (suppressed: 2 from 1)

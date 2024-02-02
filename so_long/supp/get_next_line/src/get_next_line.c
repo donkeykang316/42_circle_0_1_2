@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 05:56:54 by kaan              #+#    #+#             */
-/*   Updated: 2024/01/30 13:13:57 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/02 17:22:52 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*handle_nline(char *line, char *temp)
 		i++;
 	if (line[i] == 0)
 		return (NULL);
-	temp = ft_substr_gnl(line, i + 1, ft_strlen(line));
+	temp = ft_substr_gnl(line, i + 1, ft_strlen_gnl(line));
 	line[i + 1] = '\0';
 	if (temp)
 	{

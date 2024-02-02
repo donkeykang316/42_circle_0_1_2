@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 11:53:43 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/02 16:53:13 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_map
 	char			*line;
 	int				index;
 	int				x;
-	int				y;
 	struct s_map	*prev;
 	struct s_map	*next;
 }	t_map;
@@ -60,7 +59,7 @@ t_map	*ft_lstlast_doub(t_map *lst);
 t_map	*ft_lstnew_doub(char *content);
 void	ft_lstadd_back_doub(t_map **lst, t_map *new);
 int		ft_lstsize_doub(t_map *lst);
-void	ft_free_map(t_map *map);
+void	ft_free_map(t_map **map);
 void	open_display(t_data *game);
 int		close_display(t_data *game, t_map **map);
 void	display_bg(t_data *game, t_map *m_line);
