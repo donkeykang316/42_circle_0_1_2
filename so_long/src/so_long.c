@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 18:06:30 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 20:35:53 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,70 +85,75 @@ void	display_won(t_data *game)
 		game->won->height);
 }
 
+void	tile_value_init(t_tile *tile)
+{
+	tile->width = 0;
+	tile->height = 0;
+}
+
+void	tile_put_img(t_data *game, t_map *m_line, t_tile *tile, int x, int coor)
+{
+
+	mlx_put_image_to_window(game->mlx_ptr,
+		game->win_ptr,
+		tile->img,
+		tile->width = x * coor,
+		tile->height = m_line->index * coor);
+}
+
+void	gametile_init(t_data *game)
+{
+	game->cow = NULL;
+	game->egg = NULL;
+	game->water = NULL;
+	game->dirt = NULL;
+	game->goal = NULL;
+	if (!game->cow)
+	{
+		game->cow = cow_tile(game);
+		tile_value_init(game->cow);
+	}
+	if (!game->egg)
+	{
+		game->egg = egg_tile(game);
+		tile_value_init(game->egg);
+	}
+	if (!game->water)
+	{
+		game->water = water_tile(game);
+		tile_value_init(game->water);
+	}
+	if (!game->dirt)
+	{
+		game->dirt = dirt_tile(game);
+		tile_value_init(game->dirt);
+	}
+	if (!game->goal)
+	{
+		game->goal = goal_tile(game);
+		tile_value_init(game->goal);
+	}
+}
+
 void	display_bg(t_data *game, t_map	*m_line)
 {
 	int			x;
 
-	game->cow = cow_tile(game);
-	game->egg = egg_tile(game);
-	game->water = water_tile(game);
-	game->dirt = dirt_tile(game);
-	game->goal = goal_tile(game);
-	game->cow->width = 0;
-	game->cow->height = 0;
-	game->egg->width = 0;
-	game->egg->height = 0;
-	game->water->width = 0;
-	game->water->height = 0;
-	game->dirt->width = 0;
-	game->dirt->height = 0;
-	game->goal->width = 0;
-	game->goal->height = 0;
 	while (m_line)
 	{
 		x = 0;
 		while (m_line->line[x] != 10)
 		{
 			if (m_line->line[x] == '1')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					game->water->img,
-					game->water->width = x * 64,
-					game->water->height = m_line->index * 64);
-			}
+				tile_put_img(game, m_line, game->water, x, 64);
 			else if (m_line->line[x] == 'P')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					game->cow->img,
-					game->cow->width = x * 64,
-					game->cow->height = m_line->index * 64);
-			}
+				tile_put_img(game, m_line, game->cow, x, 64);
 			else if (m_line->line[x] == 'C')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					game->egg->img,
-					game->egg->width = x * 64,
-					game->egg->height = m_line->index * 64);
-			}
+				tile_put_img(game, m_line, game->egg, x, 64);
 			else if (m_line->line[x] == '0')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					game->dirt->img,
-					game->dirt->width = x * 64,
-					game->dirt->height = m_line->index * 64);
-			}
+				tile_put_img(game, m_line, game->dirt, x, 64);
 			else if (m_line->line[x] == 'E')
-			{
-				mlx_put_image_to_window(game->mlx_ptr,
-					game->win_ptr,
-					game->goal->img,
-					game->goal->width = x * 63,
-					game->goal->height = m_line->index * 63);
-			}
+				tile_put_img(game, m_line, game->goal, x, 63);
 			x++;
 		}
 		m_line = m_line->next;
@@ -238,11 +243,14 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		game = malloc(sizeof(t_data));
+		if (!game)
+			free(game);
 		game->filename = ft_strdup(av[1]);
 		open_display(game);
+		gametile_init(game);
 		mlx_hook(game->win_ptr, 2, 1L << 0, &input_manager, game);
+		mlx_hook(game->win_ptr, 17, 0, &close_display, game);
 		mlx_loop(game->mlx_ptr);
-		mlx_hook(game->win_ptr, 17, 0, close_display, game);
 	}
 	else
 		ft_printf("Wrong entry, insert the MAP FILE\n");

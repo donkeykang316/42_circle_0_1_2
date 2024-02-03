@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:23:04 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 11:23:51 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 20:48:16 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ t_tile	*water_tile(t_data *game)
 {
 	game->water = malloc(sizeof(t_tile));
 	if (!game->water)
-	{
-		free(game->water);
 		exit (0);
-	}
 	game->water->f_name = ft_strdup("./tile/water.xpm");
 	if (!game->water->f_name)
 	{
@@ -36,6 +33,7 @@ t_tile	*water_tile(t_data *game)
 		free(game->water);
 		exit (0);
 	}
+	free(game->water->f_name);
 	return (game->water);
 }
 
@@ -43,10 +41,7 @@ t_tile	*dirt_tile(t_data *game)
 {
 	game->dirt = malloc(sizeof(t_tile));
 	if (!game->dirt)
-	{
-		free(game->dirt);
 		exit (0);
-	}
 	game->dirt->f_name = ft_strdup("./tile/dirt.xpm");
 	if (!game->dirt->f_name)
 	{
@@ -63,6 +58,7 @@ t_tile	*dirt_tile(t_data *game)
 		free(game->dirt);
 		exit (0);
 	}
+	free(game->dirt->f_name);
 	return (game->dirt);
 }
 
@@ -70,10 +66,7 @@ t_tile	*goal_tile(t_data *game)
 {
 	game->goal = malloc(sizeof(t_tile));
 	if (!game->goal)
-	{
-		free(game->goal);
 		exit (0);
-	}
 	game->goal->f_name = ft_strdup("./tile/goal.xpm");
 	if (!game->goal->f_name)
 	{
@@ -90,6 +83,7 @@ t_tile	*goal_tile(t_data *game)
 		free(game->goal);
 		exit (0);
 	}
+	free(game->goal->f_name);
 	return (game->goal);
 }
 
@@ -97,16 +91,10 @@ t_tile	*cow_tile(t_data *game)
 {
 	game->cow = malloc(sizeof(t_tile));
 	if (!game->cow)
-	{
-		free(game->cow);
 		exit (0);
-	}
 	game->cow->f_name = ft_strdup("./tile/cow.xpm");
 	if (!game->cow->f_name)
-	{
-		free(game->cow);
 		exit (0);
-	}
 	game->cow->img = mlx_xpm_file_to_image(game->mlx_ptr,
 			game->cow->f_name,
 			&game->cow->width,
@@ -117,6 +105,7 @@ t_tile	*cow_tile(t_data *game)
 		free(game->cow);
 		exit (0);
 	}
+	free(game->cow->f_name);
 	return (game->cow);
 }
 
@@ -124,10 +113,7 @@ t_tile	*egg_tile(t_data *game)
 {
 	game->egg = malloc(sizeof(t_tile));
 	if (!game->egg)
-	{
-		free(game->egg);
 		exit (0);
-	}
 	game->egg->f_name = ft_strdup("./tile/egg.xpm");
 	if (!game->egg->f_name)
 	{
@@ -144,5 +130,6 @@ t_tile	*egg_tile(t_data *game)
 		free(game->egg);
 		exit (0);
 	}
+	free(game->egg->f_name);
 	return (game->egg);
 }

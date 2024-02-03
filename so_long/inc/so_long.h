@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 17:29:43 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 20:58:49 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,15 @@ t_tile	*won_tile(t_data *game);
 void	display_enter(t_data *game);
 void	display_won(t_data *game);
 void	game_start(t_data *game, t_map *m_line);
+void	free_tmp(t_temp *tmp);
+t_temp	*tmp_init(t_data *game, t_map *m_line);
+void	tile_value_init(t_tile *tile);
+void	tile_put_img(t_data *game, t_map *m_line, t_tile *tile, int x, int coor);
+void	gametile_init(t_data *game);
+
+void free_tile(t_data *game, t_tile *tile);
+void cleanup_resources(t_data *game);
+int close_display(t_data *game, t_map **map);
+
 
 #endif

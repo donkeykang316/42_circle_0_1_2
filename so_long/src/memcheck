@@ -1,4 +1,4 @@
-cc *.c *.a -lXext -lX11
+cc *.c *.a -g -lXext -lX11
 valgrind --leak-check=full \
          --show-leak-kinds=all \
          --log-file=valgrind-out.txt \
