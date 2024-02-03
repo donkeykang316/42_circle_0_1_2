@@ -6,49 +6,58 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 11:38:35 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 18:06:30 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-t_map	*map_list(t_data *game, t_map *m_line)
+void	free_tmp(t_temp *tmp)
 {
-	t_map		*new;
-	char		*temp;
-	int			i;
+	free(tmp->temp);
+	free(tmp);
+}
 
-	i = 0;
-	new = NULL;
-	temp = NULL;
-	new = malloc(sizeof(t_map));
-	game->fd = open(game->filename, O_RDONLY);
-	temp = get_next_line(game->fd);
-	if (!temp)
+t_temp	*tmp_init(t_data *game, t_map *m_line)
+{
+	t_temp	*tmp;
+
+	tmp = malloc(sizeof(t_temp));
+	if (!tmp)
+		free(tmp);
+	tmp->i = 0;
+	tmp->temp = NULL;
+	tmp->fd = open(game->filename, O_RDONLY);
+	tmp->temp = get_next_line(tmp->fd);
+	if (!tmp->temp)
 	{
-		ft_printf("NO FILE\n");
-		free(temp);
+		free(tmp->temp);
+		free(tmp);
 		close_display(game, &m_line);
 	}
-	new = ft_lstnew_doub(temp);
-	new->index = i++;
-	new->x = -1;
-	ft_lstadd_back_doub(&m_line, new);
-	free (temp);
-	while (temp)
+	return (tmp);
+}
+
+t_map	*map_list(t_data *game, t_map *m_line)
+{
+	t_temp	*tmp;
+
+	tmp = tmp_init(game, m_line);
+	while (tmp->temp)
 	{
-		temp = get_next_line(game->fd);
-		if (temp)
+		if (tmp->temp)
 		{
-			new = ft_lstnew_doub(temp);
-			new->index = i;
-			new->x = -1;
-			ft_lstadd_back_doub(&m_line, new);
-			i++;
+			tmp->new = ft_lstnew_doub(tmp->temp);
+			tmp->new->index = tmp->i;
+			tmp->new->x = -1;
+			ft_lstadd_back_doub(&m_line, tmp->new);
+			tmp->i++;
 		}
-		free (temp);
+		free (tmp->temp);
+		tmp->temp = get_next_line(tmp->fd);
 	}
-	close (game->fd);
+	close (tmp->fd);
+	free_tmp(tmp);
 	return (m_line);
 }
 

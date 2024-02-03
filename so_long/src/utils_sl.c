@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 11:25:07 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 17:50:55 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	close_display(t_data *game, t_map **map)
 			mlx_destroy_image(game->mlx_ptr, game->enter->img);
 			free(game->enter->f_name);
 			free(game->enter);
-			free(game->filename);
 		}
 		if (game->win_ptr)
 			mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -52,6 +51,7 @@ int	close_display(t_data *game, t_map **map)
 			mlx_destroy_display(game->mlx_ptr);
 			free(game->mlx_ptr);
 		}
+		free(game->filename);
 		free(game);
 		exit (0);
 	}
@@ -96,7 +96,6 @@ int	close_display(t_data *game, t_map **map)
 			free(game->goal->f_name);
 			free(game->goal);
 		}
-		free(game->filename);
 		if (game->win_ptr)
 			mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		if (game->mlx_ptr)
@@ -104,6 +103,7 @@ int	close_display(t_data *game, t_map **map)
 			mlx_destroy_display(game->mlx_ptr);
 			free(game->mlx_ptr);
 		}
+		free(game->filename);
 		free(game);
 		exit (0);
 	}

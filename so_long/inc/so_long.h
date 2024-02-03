@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 11:36:27 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 17:29:43 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,19 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
+typedef struct s_temp
+{
+	char			*temp;
+	int				fd;
+	int				i;
+	struct s_map	*new;
+}	t_temp;
+
 typedef struct s_data
 {
 	void			*win_ptr;
 	void			*mlx_ptr;
 	char			*filename;
-	int				fd;
 	struct s_tile	*enter;
 	struct s_tile	*won;
 	struct s_tile	*water;
@@ -53,7 +60,6 @@ typedef struct s_data
 	struct s_tile	*goal;
 	struct s_tile	*cow;
 	struct s_tile	*egg;
-	struct s_map	**map;
 }	t_data;
 
 t_map	*ft_lstlast_doub(t_map *lst);
@@ -64,6 +70,7 @@ void	ft_free_map(t_map **map);
 void	open_display(t_data *game);
 int		close_display(t_data *game, t_map **map);
 void	display_bg(t_data *game, t_map *m_line);
+t_temp	*tmp_init(t_data *game, t_map *m_line);
 t_map	*map_init(t_data *game);
 int		input_manager(int keypress, t_data *game, t_map **m_l);
 int		win_check(t_map *card);
