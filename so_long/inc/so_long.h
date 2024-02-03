@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 16:53:13 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 11:36:27 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ typedef struct s_data
 	struct s_tile	*water;
 	struct s_tile	*dirt;
 	struct s_tile	*goal;
-	struct s_tile	*cha;
+	struct s_tile	*cow;
 	struct s_tile	*egg;
+	struct s_map	**map;
 }	t_data;
 
 t_map	*ft_lstlast_doub(t_map *lst);
@@ -73,7 +74,7 @@ void	move_cow_w(t_data *game, t_map **cow);
 void	move_cow_s(t_data *game, t_map **cow);
 t_tile	*water_tile(t_data *game);
 t_tile	*dirt_tile(t_data *game);
-t_tile	*cha_tile(t_data *game);
+t_tile	*cow_tile(t_data *game);
 t_tile	*egg_tile(t_data *game);
 t_tile	*goal_tile(t_data *game);
 t_tile	*enter_tile(t_data *game);

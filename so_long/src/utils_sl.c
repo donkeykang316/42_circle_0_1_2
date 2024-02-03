@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 17:09:48 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 11:25:07 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ int	close_display(t_data *game, t_map **map)
 			free(game->egg->f_name);
 			free(game->egg);
 		}
-		if (game->cha->img)
+		if (game->cow->img)
 		{
-			mlx_destroy_image(game->mlx_ptr, game->cha->img);
-			free(game->cha->f_name);
-			free(game->cha);
+			mlx_destroy_image(game->mlx_ptr, game->cow->img);
+			free(game->cow->f_name);
+			free(game->cow);
 		}
 		if (game->goal->img)
 		{

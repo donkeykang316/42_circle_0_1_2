@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 08:00:27 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 14:54:43 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 11:29:32 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,62 +14,55 @@
 
 t_tile	*enter_tile(t_data *game)
 {
-	t_tile	*enter;
-
-	enter = NULL;
-	enter = malloc(sizeof(t_tile));
-	if (!enter)
+	game->enter = NULL;
+	game->enter = malloc(sizeof(t_tile));
+	if (!game->enter)
 	{
-		free(enter);
+		free(game->enter);
 		exit (0);
 	}
-	enter->f_name = ft_strdup("./tile/enter.xpm");
-	if (!enter->f_name)
+	game->enter->f_name = ft_strdup("./tile/enter.xpm");
+	if (!game->enter->f_name)
 	{
-		free(enter);
+		free(game->enter);
 		exit (0);
 	}
-	enter->img = mlx_xpm_file_to_image(game->mlx_ptr,
-			enter->f_name,
-			&enter->width,
-			&enter->height);
-	if (!enter->img)
+	game->enter->img = mlx_xpm_file_to_image(game->mlx_ptr,
+			game->enter->f_name,
+			&game->enter->width,
+			&game->enter->height);
+	if (!game->enter->img)
 	{
-		free(enter->f_name);
-		free(enter);
+		free(game->enter->f_name);
+		free(game->enter);
 		exit (0);
 	}
-	game->enter = enter;
-	return (enter);
+	return (game->enter);
 }
 
 t_tile	*won_tile(t_data *game)
 {
-	t_tile	*won;
-
-	won = NULL;
-	won = malloc(sizeof(t_tile));
-	if (!won)
+	game->won = malloc(sizeof(t_tile));
+	if (!game->won)
 	{
-		free(won);
+		free(game->won);
 		exit (0);
 	}
-	won->f_name = ft_strdup("./tile/won.xpm");
-	if (!won->f_name)
+	game->won->f_name = ft_strdup("./tile/won.xpm");
+	if (!game->won->f_name)
 	{
-		free(won);
+		free(game->won);
 		exit (0);
 	}
-	won->img = mlx_xpm_file_to_image(game->mlx_ptr,
-			won->f_name,
-			&won->width,
-			&won->height);
-	if (!won->img)
+	game->won->img = mlx_xpm_file_to_image(game->mlx_ptr,
+			game->won->f_name,
+			&game->won->width,
+			&game->won->height);
+	if (!game->won->img)
 	{
-		free(won->f_name);
-		free(won);
+		free(game->won->f_name);
+		free(game->won);
 		exit (0);
 	}
-	game->won = won;
-	return (won);
+	return (game->won);
 }

@@ -6,12 +6,11 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 17:40:47 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 11:38:35 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-
 
 t_map	*map_list(t_data *game, t_map *m_line)
 {
@@ -29,6 +28,7 @@ t_map	*map_list(t_data *game, t_map *m_line)
 	{
 		ft_printf("NO FILE\n");
 		free(temp);
+		close_display(game, &m_line);
 	}
 	new = ft_lstnew_doub(temp);
 	new->index = i++;
@@ -54,56 +54,47 @@ t_map	*map_list(t_data *game, t_map *m_line)
 
 void	display_enter(t_data *game)
 {
-	t_tile		*enter;
-
-	enter = enter_tile(game);
-	enter->width = 350;
-	enter->height = 192;
+	game->enter = enter_tile(game);
+	game->enter->width = 350;
+	game->enter->height = 192;
 	mlx_put_image_to_window(game->mlx_ptr,
 		game->win_ptr,
-		enter->img,
-		enter->width,
-		enter->height);
+		game->enter->img,
+		game->enter->width,
+		game->enter->height);
 }
 
 void	display_won(t_data *game)
 {
-	t_tile		*won;
-
-	won = won_tile(game);
-	won->width = 0;
-	won->height = 0;
+	game->won = won_tile(game);
+	game->won->width = 0;
+	game->won->height = 0;
 	mlx_put_image_to_window(game->mlx_ptr,
 		game->win_ptr,
-		won->img,
-		won->width,
-		won->height);
+		game->won->img,
+		game->won->width,
+		game->won->height);
 }
 
 void	display_bg(t_data *game, t_map	*m_line)
 {
-	t_tile		*water;
-	t_tile		*dirt;
-	t_tile		*goal;
-	t_tile		*egg;
-	t_tile		*cow;
 	int			x;
 
-	water = water_tile(game);
-	dirt = dirt_tile(game);
-	goal = goal_tile(game);
-	egg = egg_tile(game);
-	cow = cha_tile(game);
-	cow->width = 0;
-	cow->height = 0;
-	egg->width = 0;
-	egg->height = 0;
-	water->width = 0;
-	water->height = 0;
-	dirt->width = 0;
-	dirt->height = 0;
-	goal->width = 0;
-	goal->height = 0;
+	game->cow = cow_tile(game);
+	game->egg = egg_tile(game);
+	game->water = water_tile(game);
+	game->dirt = dirt_tile(game);
+	game->goal = goal_tile(game);
+	game->cow->width = 0;
+	game->cow->height = 0;
+	game->egg->width = 0;
+	game->egg->height = 0;
+	game->water->width = 0;
+	game->water->height = 0;
+	game->dirt->width = 0;
+	game->dirt->height = 0;
+	game->goal->width = 0;
+	game->goal->height = 0;
 	while (m_line)
 	{
 		x = 0;
@@ -113,41 +104,41 @@ void	display_bg(t_data *game, t_map	*m_line)
 			{
 				mlx_put_image_to_window(game->mlx_ptr,
 					game->win_ptr,
-					water->img,
-					water->width = x * 64,
-					water->height = m_line->index * 64);
+					game->water->img,
+					game->water->width = x * 64,
+					game->water->height = m_line->index * 64);
 			}
 			else if (m_line->line[x] == 'P')
 			{
 				mlx_put_image_to_window(game->mlx_ptr,
 					game->win_ptr,
-					cow->img,
-					cow->width = x * 64,
-					cow->height = m_line->index * 64);
+					game->cow->img,
+					game->cow->width = x * 64,
+					game->cow->height = m_line->index * 64);
 			}
 			else if (m_line->line[x] == 'C')
 			{
 				mlx_put_image_to_window(game->mlx_ptr,
 					game->win_ptr,
-					egg->img,
-					egg->width = x * 64,
-					egg->height = m_line->index * 64);
+					game->egg->img,
+					game->egg->width = x * 64,
+					game->egg->height = m_line->index * 64);
 			}
 			else if (m_line->line[x] == '0')
 			{
 				mlx_put_image_to_window(game->mlx_ptr,
 					game->win_ptr,
-					dirt->img,
-					dirt->width = x * 64,
-					dirt->height = m_line->index * 64);
+					game->dirt->img,
+					game->dirt->width = x * 64,
+					game->dirt->height = m_line->index * 64);
 			}
 			else if (m_line->line[x] == 'E')
 			{
 				mlx_put_image_to_window(game->mlx_ptr,
 					game->win_ptr,
-					goal->img,
-					goal->width = x * 63,
-					goal->height = m_line->index * 63);
+					game->goal->img,
+					game->goal->width = x * 63,
+					game->goal->height = m_line->index * 63);
 			}
 			x++;
 		}
