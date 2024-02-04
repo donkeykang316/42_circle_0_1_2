@@ -2,4 +2,4 @@ cc *.c *.a -g -lXext -lX11
 valgrind --leak-check=full \
          --show-leak-kinds=all \
          --log-file=valgrind-out.txt \
-        ./a.out "./map/map_0.ber"
+        ./a.out "./map/map_5.ber"

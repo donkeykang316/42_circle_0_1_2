@@ -1,20 +1,15 @@
-==41974== Memcheck, a memory error detector
-==41974== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==41974== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==41974== Command: ./a.out ./map/map_0.ber
-==41974== Parent PID: 41952
-==41974== 
-==41974== Conditional jump or move depends on uninitialised value(s)
-==41974==    at 0x10F861: map_check (so_long.c:36)
-==41974==    by 0x10F9BA: main (so_long.c:71)
-==41974== 
-==41974== 
-==41974== HEAP SUMMARY:
-==41974==     in use at exit: 0 bytes in 0 blocks
-==41974==   total heap usage: 7,222 allocs, 7,222 frees, 2,112,241 bytes allocated
-==41974== 
-==41974== All heap blocks were freed -- no leaks are possible
-==41974== 
-==41974== Use --track-origins=yes to see where uninitialised values come from
-==41974== For lists of detected and suppressed errors, rerun with: -s
-==41974== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 2 from 1)
+==107262== Memcheck, a memory error detector
+==107262== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==107262== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==107262== Command: ./a.out ./map/map_5.ber
+==107262== Parent PID: 107230
+==107262== 
+==107262== 
+==107262== HEAP SUMMARY:
+==107262==     in use at exit: 0 bytes in 0 blocks
+==107262==   total heap usage: 4,599 allocs, 4,599 frees, 2,010,737 bytes allocated
+==107262== 
+==107262== All heap blocks were freed -- no leaks are possible
+==107262== 
+==107262== For lists of detected and suppressed errors, rerun with: -s
+==107262== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 1)

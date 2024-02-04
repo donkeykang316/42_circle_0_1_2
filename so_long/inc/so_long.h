@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 00:44:08 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 17:51:55 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,15 @@ void	gametile_init(t_data *game);
 void	free_tile(t_data *game, t_tile *tile);
 void	cleanup_resources(t_data *game);
 int		close_display(t_data *game, t_map **map);
-int		map_check(t_data *game);
+void	map_check(t_data *game);
+void	free_mapcheck(t_data *game, t_temp *tmp, char *check);
+void	mwidth_check(t_data *game, t_temp *tmp, char *check);
+void	mheight_check(t_data *game, t_temp *tmp, char *check);
+void	rectangle_check(t_data *game, t_temp *tmp, char *check);
+void	wall_check(t_data *game, t_temp *tmp, char *check);
+int	start_po_check(t_data *game, t_temp *tmp, char *check);
+int	exit_check(t_data *game, t_temp *tmp, char *check);
+int	collect_check(t_data *game, t_temp *tmp, char *check);
+void	item_check(t_data *game, t_temp *tmp, char *check);
 
 #endif
