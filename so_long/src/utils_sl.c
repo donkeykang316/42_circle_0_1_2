@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 23:10:02 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 00:21:27 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ void	cleanup_resources(t_data *game)
 	free(game);
 }
 
-int	close_display(t_data *game, t_map **map)
+int	close_display(t_data *game)
 {
-	if (game->enter && !(*map))
+	if (game->enter && !game->map)
 		cleanup_resources(game);
 	else
 	{
-		while ((*map)->prev)
-			*map = (*map)->prev;
-		ft_free_map(map);
+		while ((*game->map)->prev)
+			*game->map = (*game->map)->prev;
+		ft_free_map(game->map);
 		cleanup_resources(game);
 	}
 	exit(0);

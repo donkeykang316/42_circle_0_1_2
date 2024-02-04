@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 23:23:48 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 00:09:23 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_data
 	struct s_tile	*goal;
 	struct s_tile	*cow;
 	struct s_tile	*egg;
+	struct s_map	**map;
 }	t_data;
 
 t_map	*ft_lstlast_doub(t_map *lst);
@@ -71,7 +72,6 @@ void	ft_lstadd_back_doub(t_map **lst, t_map *new);
 int		ft_lstsize_doub(t_map *lst);
 void	ft_free_map(t_map **map);
 void	open_display(t_data *game);
-int		close_display(t_data *game, t_map **map);
 void	display_bg(t_data *game, t_map *m_line);
 t_temp	*tmp_init(t_data *game);
 t_map	*map_init(t_data *game);
@@ -97,7 +97,7 @@ void	tile_put_img(t_data *game, t_map *m_line, t_tile *tile, int coor);
 void	gametile_init(t_data *game);
 void	free_tile(t_data *game, t_tile *tile);
 void	cleanup_resources(t_data *game);
-int		close_display(t_data *game, t_map **map);
+int		close_display(t_data *game);
 void	map_check(t_data *game);
 void	free_mapcheck(t_data *game, t_temp *tmp, char *check);
 void	mwidth_check(t_data *game, t_temp *tmp, char *check);
