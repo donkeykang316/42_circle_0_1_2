@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 17:51:55 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 23:23:48 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,14 @@ void	mwidth_check(t_data *game, t_temp *tmp, char *check);
 void	mheight_check(t_data *game, t_temp *tmp, char *check);
 void	rectangle_check(t_data *game, t_temp *tmp, char *check);
 void	wall_check(t_data *game, t_temp *tmp, char *check);
-int	start_po_check(t_data *game, t_temp *tmp, char *check);
-int	exit_check(t_data *game, t_temp *tmp, char *check);
-int	collect_check(t_data *game, t_temp *tmp, char *check);
+int		start_po_check(t_data *game, t_temp *tmp, char *check);
+int		exit_check(t_data *game, t_temp *tmp, char *check);
+int		collect_check(t_data *game, t_temp *tmp, char *check);
 void	item_check(t_data *game, t_temp *tmp, char *check);
+void	find_p(t_temp *tmp, char *check);
+int		flood_fill_c(char *check, int p_po);
+int		flood_fill_e(char *check, int p_po);
+void	path_validation(t_data *game, t_temp *tmp, char *check);
+void	map_filename_check(t_data *game);
 
 #endif

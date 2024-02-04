@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 00:39:25 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 00:40:01 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 23:34:01 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ t_temp	*tmp_init(t_data *game)
 	tmp->i = 0;
 	tmp->temp = NULL;
 	tmp->fd = open(game->filename, O_RDONLY);
+	if (tmp->fd < 0 || read(tmp->fd, 0, 0) < 0)
+	{
+		ft_printf("ERROR\nfile dons't exist\n");
+		close (tmp->fd);
+		free(game->filename);
+		free(game);
+		free(tmp);
+		exit(0);
+	}
 	tmp->temp = get_next_line(tmp->fd);
 	if (!tmp->temp)
 	{

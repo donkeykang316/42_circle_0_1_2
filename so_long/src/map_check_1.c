@@ -6,11 +6,36 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:48:03 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 17:48:52 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 23:35:42 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+void	map_check(t_data *game)
+{
+	t_temp		*tmp;
+	char		*check;
+
+	check = NULL;
+	tmp = tmp_init(game);
+	while (tmp->temp)
+	{
+		if (tmp->temp)
+			check = ft_strjoin(check, tmp->temp);
+		free (tmp->temp);
+		tmp->temp = get_next_line(tmp->fd);
+	}
+	mwidth_check(game, tmp, check);
+	rectangle_check(game, tmp, check);
+	wall_check(game, tmp, check);
+	item_check(game, tmp, check);
+	path_validation(game, tmp, check);
+	free(check);
+	close (tmp->fd);
+	free_tmp(tmp);
+	ft_printf("ALL PASS! Have FUN!\n");
+}
 
 void	free_mapcheck(t_data *game, t_temp *tmp, char *check)
 {
@@ -66,29 +91,4 @@ void	rectangle_check(t_data *game, t_temp *tmp, char *check)
 		tmp->i++;
 	}
 	mheight_check(game, tmp, check);
-}
-
-void	wall_check(t_data *game, t_temp *tmp, char *check)
-{
-	tmp->i = 0;
-	tmp->count = 0;
-	while (check[tmp->i])
-	{
-		tmp->x = 0;
-		while (check[tmp->i] != 10)
-		{
-			if (((tmp->x == 0 || tmp->x == 14)
-					|| (tmp->count == 0 || tmp->count == 9))
-				&& check[tmp->i] != '1')
-			{
-				ft_printf("ERROR\nMap not sealed\n");
-				free_mapcheck(game, tmp, check);
-				exit(0);
-			}
-			tmp->i++;
-			tmp->x++;
-		}
-		tmp->count++;
-		tmp->i++;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:50:28 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 17:51:04 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 23:04:14 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,29 @@ void	item_check(t_data *game, t_temp *tmp, char *check)
 	}
 	else
 		return ;
+}
+
+void	wall_check(t_data *game, t_temp *tmp, char *check)
+{
+	tmp->i = 0;
+	tmp->count = 0;
+	while (check[tmp->i])
+	{
+		tmp->x = 0;
+		while (check[tmp->i] != 10)
+		{
+			if (((tmp->x == 0 || tmp->x == 14)
+					|| (tmp->count == 0 || tmp->count == 9))
+				&& check[tmp->i] != '1')
+			{
+				ft_printf("ERROR\nMap not sealed\n");
+				free_mapcheck(game, tmp, check);
+				exit(0);
+			}
+			tmp->i++;
+			tmp->x++;
+		}
+		tmp->count++;
+		tmp->i++;
+	}
 }
