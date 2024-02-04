@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 07:55:54 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 20:41:16 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 00:00:09 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void	move_cow_d(t_data *game, t_map **cow)
 		*cow = find_cow(cow);
 	if ((*cow)->line[(*cow)->x + 1] == 'E' && win_check(*cow) == 1)
 	{
-		(*cow)->line[(*cow)->x] = '0';
-		(*cow)->x += 1;
-		(*cow)->line[(*cow)->x] = 'P';
-		display_won(game);
+		game->step++;
+		ft_printf("step:%d\n", game->step);
+		close_display(game, cow);
 	}
 	else if ((*cow)->line[(*cow)->x + 1] == '0'
 		|| (*cow)->line[(*cow)->x + 1] == 'C')
@@ -29,6 +28,8 @@ void	move_cow_d(t_data *game, t_map **cow)
 		(*cow)->line[(*cow)->x] = '0';
 		(*cow)->x += 1;
 		(*cow)->line[(*cow)->x] = 'P';
+		game->step++;
+		ft_printf("step:%d\n", game->step);
 		display_bg(game, *cow);
 	}
 }
@@ -39,10 +40,9 @@ void	move_cow_a(t_data *game, t_map **cow)
 		*cow = find_cow(cow);
 	if ((*cow)->line[(*cow)->x - 1] == 'E' && win_check(*cow) == 1)
 	{
-		(*cow)->line[(*cow)->x] = '0';
-		(*cow)->x -= 1;
-		(*cow)->line[(*cow)->x] = 'P';
-		display_won(game);
+		game->step++;
+		ft_printf("step:%d\n", game->step);
+		close_display(game, cow);
 	}
 	else if ((*cow)->line[(*cow)->x - 1] == '0'
 		|| (*cow)->line[(*cow)->x - 1] == 'C')
@@ -50,6 +50,8 @@ void	move_cow_a(t_data *game, t_map **cow)
 		(*cow)->line[(*cow)->x] = '0';
 		(*cow)->x -= 1;
 		(*cow)->line[(*cow)->x] = 'P';
+		game->step++;
+		ft_printf("step:%d\n", game->step);
 		display_bg(game, *cow);
 	}
 }
@@ -62,12 +64,9 @@ void	move_cow_w(t_data *game, t_map **cow)
 		*cow = find_cow(cow);
 	if ((*cow)->prev->line[(*cow)->x] == 'E' && win_check(*cow) == 1)
 	{
-		(*cow)->line[(*cow)->x] = '0';
-		x = (*cow)->x;
-		(*cow) = (*cow)->prev;
-		(*cow)->x = x;
-		(*cow)->line[(*cow)->x] = 'P';
-		display_won(game);
+		game->step++;
+		ft_printf("step:%d\n", game->step);
+		close_display(game, cow);
 	}
 	else if ((*cow)->prev->line[(*cow)->x] == '0'
 		|| (*cow)->prev->line[(*cow)->x] == 'C')
@@ -77,6 +76,8 @@ void	move_cow_w(t_data *game, t_map **cow)
 		(*cow) = (*cow)->prev;
 		(*cow)->x = x;
 		(*cow)->line[(*cow)->x] = 'P';
+		game->step++;
+		ft_printf("step:%d\n", game->step);
 		display_bg(game, *cow);
 	}
 }
@@ -89,12 +90,9 @@ void	move_cow_s(t_data *game, t_map **cow)
 		*cow = find_cow(cow);
 	if ((*cow)->next->line[(*cow)->x] == 'E' && win_check(*cow) == 1)
 	{
-		(*cow)->line[(*cow)->x] = '0';
-		x = (*cow)->x;
-		(*cow) = (*cow)->next;
-		(*cow)->x = x;
-		(*cow)->line[(*cow)->x] = 'P';
-		display_won(game);
+		game->step++;
+		ft_printf("step:%d\n", game->step);
+		close_display(game, cow);
 	}
 	else if ((*cow)->next->line[(*cow)->x] == '0'
 		|| (*cow)->next->line[(*cow)->x] == 'C')
@@ -104,6 +102,8 @@ void	move_cow_s(t_data *game, t_map **cow)
 		(*cow) = (*cow)->next;
 		(*cow)->x = x;
 		(*cow)->line[(*cow)->x] = 'P';
+		game->step++;
+		ft_printf("step:%d\n", game->step);
 		display_bg(game, (*cow)->prev);
 	}
 }

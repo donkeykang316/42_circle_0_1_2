@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 20:58:49 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/04 00:44:08 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_temp
 	char			*temp;
 	int				fd;
 	int				i;
+	int				x;
+	int				count;
 	struct s_map	*new;
 }	t_temp;
 
@@ -53,8 +55,9 @@ typedef struct s_data
 	void			*win_ptr;
 	void			*mlx_ptr;
 	char			*filename;
+	int				x;
+	int				step;
 	struct s_tile	*enter;
-	struct s_tile	*won;
 	struct s_tile	*water;
 	struct s_tile	*dirt;
 	struct s_tile	*goal;
@@ -70,8 +73,9 @@ void	ft_free_map(t_map **map);
 void	open_display(t_data *game);
 int		close_display(t_data *game, t_map **map);
 void	display_bg(t_data *game, t_map *m_line);
-t_temp	*tmp_init(t_data *game, t_map *m_line);
+t_temp	*tmp_init(t_data *game);
 t_map	*map_init(t_data *game);
+t_map	*map_list(t_data *game, t_map *m_line);
 int		input_manager(int keypress, t_data *game, t_map **m_l);
 int		win_check(t_map *card);
 t_map	*find_cow(t_map **cow);
@@ -85,19 +89,15 @@ t_tile	*cow_tile(t_data *game);
 t_tile	*egg_tile(t_data *game);
 t_tile	*goal_tile(t_data *game);
 t_tile	*enter_tile(t_data *game);
-t_tile	*won_tile(t_data *game);
 void	display_enter(t_data *game);
-void	display_won(t_data *game);
 void	game_start(t_data *game, t_map *m_line);
 void	free_tmp(t_temp *tmp);
-t_temp	*tmp_init(t_data *game, t_map *m_line);
 void	tile_value_init(t_tile *tile);
-void	tile_put_img(t_data *game, t_map *m_line, t_tile *tile, int x, int coor);
+void	tile_put_img(t_data *game, t_map *m_line, t_tile *tile, int coor);
 void	gametile_init(t_data *game);
-
-void free_tile(t_data *game, t_tile *tile);
-void cleanup_resources(t_data *game);
-int close_display(t_data *game, t_map **map);
-
+void	free_tile(t_data *game, t_tile *tile);
+void	cleanup_resources(t_data *game);
+int		close_display(t_data *game, t_map **map);
+int		map_check(t_data *game);
 
 #endif

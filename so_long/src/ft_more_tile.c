@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 08:00:27 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 20:48:55 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/03 23:53:21 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,4 @@ t_tile	*enter_tile(t_data *game)
 	}
 	free(game->enter->f_name);
 	return (game->enter);
-}
-
-t_tile	*won_tile(t_data *game)
-{
-	game->won = malloc(sizeof(t_tile));
-	if (!game->won)
-		exit (0);
-	game->won->f_name = ft_strdup("./tile/won.xpm");
-	if (!game->won->f_name)
-	{
-		free(game->won);
-		exit (0);
-	}
-	game->won->img = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->won->f_name,
-			&game->won->width,
-			&game->won->height);
-	if (!game->won->img)
-	{
-		free(game->won->f_name);
-		free(game->won);
-		exit (0);
-	}
-	free(game->won->f_name);
-	return (game->won);
 }
