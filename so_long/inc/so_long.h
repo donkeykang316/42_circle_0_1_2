@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 00:09:23 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 17:05:09 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ typedef struct s_temp
 	char			*temp;
 	int				fd;
 	int				i;
+	int				j;
+	int				c;
 	int				x;
+	int				y;
 	int				count;
 	struct s_map	*new;
 }	t_temp;
@@ -57,6 +60,8 @@ typedef struct s_data
 	char			*filename;
 	int				x;
 	int				step;
+	int				map_width;
+	int				map_height;
 	struct s_tile	*enter;
 	struct s_tile	*water;
 	struct s_tile	*dirt;
@@ -101,16 +106,19 @@ int		close_display(t_data *game);
 void	map_check(t_data *game);
 void	free_mapcheck(t_data *game, t_temp *tmp, char *check);
 void	mwidth_check(t_data *game, t_temp *tmp, char *check);
-void	mheight_check(t_data *game, t_temp *tmp, char *check);
 void	rectangle_check(t_data *game, t_temp *tmp, char *check);
 void	wall_check(t_data *game, t_temp *tmp, char *check);
 int		start_po_check(t_data *game, t_temp *tmp, char *check);
 int		exit_check(t_data *game, t_temp *tmp, char *check);
 int		collect_check(t_data *game, t_temp *tmp, char *check);
 void	item_check(t_data *game, t_temp *tmp, char *check);
+int		false_item_check(t_data *game, t_temp *tmp, char *check);
 void	find_p(t_temp *tmp, char *check);
-int		flood_fill_c(char *check, int p_po);
-int		flood_fill_e(char *check, int p_po);
+int		flood_fill_c(t_data	*game, char *check, int p_po);
+int		flood_fill_e(t_data	*game, char *check, int p_po);
+int		find_c(t_temp *tmp, char *check);
+int		c_count(char *check);
+int		flood_multiple_c(t_data *game, t_temp *tmp, char *check);
 void	path_validation(t_data *game, t_temp *tmp, char *check);
 void	map_filename_check(t_data *game);
 

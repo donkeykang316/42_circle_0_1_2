@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:35:12 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 00:01:07 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 16:44:11 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 		open_display(game);
 		game->step = 0;
 		gametile_init(game);
+		game->map = NULL;
 		mlx_hook(game->win_ptr, 2, 1L << 0, &input_manager, game);
 		mlx_hook(game->win_ptr, 17, 0, &close_display, game);
 		mlx_loop(game->mlx_ptr);

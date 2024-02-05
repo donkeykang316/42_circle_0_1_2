@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_sl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 00:21:27 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 10:37:45 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	ft_free_map(t_map **lst)
 void	open_display(t_data *game)
 {
 	game->mlx_ptr = mlx_init();
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 960, 640, "EGG COLLOCTOR");
+	game->win_ptr = mlx_new_window(game->mlx_ptr,
+			game->map_width * 64,
+			game->map_height * 64,
+			"EGG COLLOCTOR");
 	display_enter(game);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:22:20 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 23:24:27 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 17:04:03 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,70 +27,61 @@ void	find_p(t_temp *tmp, char *check)
 	}
 }
 
-int	flood_fill_c(char *check, int p_po)
-{
-	if (p_po < 0 || check[p_po] == '1' || check[p_po] == 'E')
-		return (0);
-	if (check[p_po] == 'C')
-		return (1);
-	check[p_po] = '1';
-	if (flood_fill_c(check, p_po - 16)
-		|| flood_fill_c(check, p_po + 16)
-		|| flood_fill_c(check, p_po - 1)
-		|| flood_fill_c(check, p_po + 1))
-		return (1);
-	return (0);
-}
-
-int	flood_fill_e(char *check, int p_po)
+int	flood_fill_e(t_data	*game, char *check, int p_po)
 {
 	if (p_po < 0 || check[p_po] == '1')
 		return (0);
 	if (check[p_po] == 'E')
 		return (1);
 	check[p_po] = '1';
-	if (flood_fill_e(check, p_po - 16)
-		|| flood_fill_e(check, p_po + 16)
-		|| flood_fill_e(check, p_po - 1)
-		|| flood_fill_e(check, p_po + 1))
+	if (flood_fill_e(game, check, p_po - (game->map_width + 1))
+		|| flood_fill_e(game, check, p_po + game->map_width + 1)
+		|| flood_fill_e(game, check, p_po - 1)
+		|| flood_fill_e(game, check, p_po + 1))
 		return (1);
 	return (0);
 }
 
-void	path_validation(t_data *game, t_temp *tmp, char *check)
+int	flood_fill_c(t_data	*game, char *check, int p_po)
 {
-	find_p(tmp, check);
-	if (flood_fill_c(tmp->temp, tmp->i) == 1)
-	{
-		find_p(tmp, check);
-		if (flood_fill_e(tmp->temp, tmp->i) == 1)
-			return ;
-		else
-		{
-			ft_printf("ERROR\nNO valid e-path\n");
-			free_mapcheck(game, tmp, check);
-			exit(0);
-		}
-	}
-	else
-	{
-		ft_printf("ERROR\nNO valid c-path\n");
-		free_mapcheck(game, tmp, check);
-		exit(0);
-	}
+	if (p_po < 0 || check[p_po] == '1' || check[p_po] == 'E')
+		return (0);
+	if (check[p_po] == 'P')
+		return (1);
+	check[p_po] = '1';
+	if (flood_fill_c(game, check, p_po - (game->map_width + 1))
+		|| flood_fill_c(game, check, p_po + game->map_width + 1)
+		|| flood_fill_c(game, check, p_po - 1)
+		|| flood_fill_c(game, check, p_po + 1))
+		return (1);
+	return (0);
 }
 
-void	map_filename_check(t_data *game)
+int	c_count(char *check)
 {
-	char	*temp;
+	int	i;
+	int	x;
 
-	temp = ft_strnstr(game->filename, ".ber", ft_strlen(game->filename));
-	if (!temp)
+	i = 0;
+	x = 0;
+	while (check[i])
 	{
-		ft_printf("ERROR\nWrong Map format\n");
-		free(game->filename);
-		free(game);
-		free(temp);
-		exit (0);
+		if (check[i] == 'C')
+			x++;
+		i++;
 	}
+	return (x);
+}
+
+int	find_c(t_temp *tmp, char *check)
+{
+	if (tmp->j)
+		tmp->j++;
+	while (check[tmp->j])
+	{
+		if (check[tmp->j] == 'C')
+			return (tmp->j);
+		tmp->j++;
+	}
+	return (0);
 }

@@ -1,22 +1,15 @@
-==81498== Memcheck, a memory error detector
-==81498== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==81498== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==81498== Command: ./a.out ./map/map_1.ber
-==81498== Parent PID: 81464
-==81498== 
-==81498== Conditional jump or move depends on uninitialised value(s)
-==81498==    at 0x110260: close_display (utils_sl.c:63)
-==81498==    by 0x110A8D: input_manager (utils_sl_3.c:28)
-==81498==    by 0x1124A5: mlx_loop (in /home/someng/42/so_long/src/a.out)
-==81498==    by 0x110002: main (so_long.c:37)
-==81498== 
-==81498== 
-==81498== HEAP SUMMARY:
-==81498==     in use at exit: 0 bytes in 0 blocks
-==81498==   total heap usage: 4,193 allocs, 4,193 frees, 1,878,166 bytes allocated
-==81498== 
-==81498== All heap blocks were freed -- no leaks are possible
-==81498== 
-==81498== Use --track-origins=yes to see where uninitialised values come from
-==81498== For lists of detected and suppressed errors, rerun with: -s
-==81498== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 2 from 1)
+==118362== Memcheck, a memory error detector
+==118362== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==118362== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==118362== Command: ./a.out ./map/map_0.ber
+==118362== Parent PID: 118346
+==118362== 
+==118362== 
+==118362== HEAP SUMMARY:
+==118362==     in use at exit: 0 bytes in 0 blocks
+==118362==   total heap usage: 4,519 allocs, 4,519 frees, 1,916,955 bytes allocated
+==118362== 
+==118362== All heap blocks were freed -- no leaks are possible
+==118362== 
+==118362== For lists of detected and suppressed errors, rerun with: -s
+==118362== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

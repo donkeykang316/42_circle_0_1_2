@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:50:28 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 23:04:14 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 12:07:06 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,29 @@ int	collect_check(t_data *game, t_temp *tmp, char *check)
 	return (0);
 }
 
+int	false_item_check(t_data *game, t_temp *tmp, char *check)
+{
+	tmp->i = 0;
+	while (check[tmp->i])
+	{
+		if (check[tmp->i] == 9
+			|| (check[tmp->i] >= 32 && check[tmp->i] <= 47)
+			|| (check[tmp->i] >= 50 && check[tmp->i] <= 66)
+			|| check[tmp->i] == 68
+			|| (check[tmp->i] >= 70 && check[tmp->i] <= 79)
+			|| (check[tmp->i] >= 81 && check[tmp->i] <= 126))
+			return (0);
+		tmp->i++;
+	}
+	return (1);
+}
+
 void	item_check(t_data *game, t_temp *tmp, char *check)
 {
 	if (start_po_check(game, tmp, check) == 0
 		|| collect_check (game, tmp, check) == 0
-		|| exit_check(game, tmp, check) == 0)
+		|| exit_check(game, tmp, check) == 0
+		|| false_item_check(game, tmp, check) == 0)
 	{
 		ft_printf("ERROR\nMap wrong items\n");
 		free_mapcheck(game, tmp, check);
@@ -78,29 +96,4 @@ void	item_check(t_data *game, t_temp *tmp, char *check)
 	}
 	else
 		return ;
-}
-
-void	wall_check(t_data *game, t_temp *tmp, char *check)
-{
-	tmp->i = 0;
-	tmp->count = 0;
-	while (check[tmp->i])
-	{
-		tmp->x = 0;
-		while (check[tmp->i] != 10)
-		{
-			if (((tmp->x == 0 || tmp->x == 14)
-					|| (tmp->count == 0 || tmp->count == 9))
-				&& check[tmp->i] != '1')
-			{
-				ft_printf("ERROR\nMap not sealed\n");
-				free_mapcheck(game, tmp, check);
-				exit(0);
-			}
-			tmp->i++;
-			tmp->x++;
-		}
-		tmp->count++;
-		tmp->i++;
-	}
 }
