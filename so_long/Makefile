@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
+#    By: kaan <kaan@student.42.de>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/02/05 17:59:34 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/05 22:54:54 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ $(MINILIBX):
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(PRINTF) $(MINILIBX) $(LIBFT) $(GNL)
 	@$(CC) $(FLAGS) $(MLB_FLAGS) $(INC) $(OBJ) $(PRINTF) $(MINILIBX) $(LIBFT) $(GNL) -o $(NAME)
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
