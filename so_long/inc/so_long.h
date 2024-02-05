@@ -6,14 +6,14 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 17:05:09 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 18:04:34 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "mlx.h"
+# include "../supp/minilibx-linux/mlx.h"
 # include "../supp/printf/inc/ft_printf.h"
 # include "../supp/get_next_line/inc/get_next_line.h"
 # include "../supp/libft/inc/libft.h"
@@ -108,11 +108,11 @@ void	free_mapcheck(t_data *game, t_temp *tmp, char *check);
 void	mwidth_check(t_data *game, t_temp *tmp, char *check);
 void	rectangle_check(t_data *game, t_temp *tmp, char *check);
 void	wall_check(t_data *game, t_temp *tmp, char *check);
-int		start_po_check(t_data *game, t_temp *tmp, char *check);
-int		exit_check(t_data *game, t_temp *tmp, char *check);
-int		collect_check(t_data *game, t_temp *tmp, char *check);
+int		start_po_check(t_temp *tmp, char *check);
+int		exit_check(t_temp *tmp, char *check);
+int		collect_check(t_temp *tmp, char *check);
 void	item_check(t_data *game, t_temp *tmp, char *check);
-int		false_item_check(t_data *game, t_temp *tmp, char *check);
+int		false_item_check(t_temp *tmp, char *check);
 void	find_p(t_temp *tmp, char *check);
 int		flood_fill_c(t_data	*game, char *check, int p_po);
 int		flood_fill_e(t_data	*game, char *check, int p_po);

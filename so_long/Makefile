@@ -6,13 +6,17 @@
 #    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/01/29 14:08:13 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/05 17:59:34 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = a.out
+NAME = so_long
+
+LIBFT = ./supp/libft/libft.a
 
 PRINTF = ./supp/printf/libftprintf.a
+
+GNL = ./supp/get_next_line/gnl.a
 
 MINILIBX = ./supp/minilibx-linux/libmlx.a
 
@@ -22,31 +26,49 @@ SRC_DIR = src/
 
 OBJ_DIR	= obj/
 
-CC = gcc
+CC = cc
 
-FLAGS = -Wall -Wextra -Werror -I
+FLAGS = -Wall -Werror -Wextra -I
 
-MLB_FLAGS = -L ./minilibx-linux -lmlx -lXext -lX11
+MLB_FLAGS = -L ./supp/minilibx-linux -lmlx -lXext -lX11
 
 RM = rm -f
 
 SRC = $(SRC_DIR)so_long.c\
+		$(SRC_DIR)ft_list.c\
+		$(SRC_DIR)ft_more_tile.c\
+		$(SRC_DIR)ft_move.c\
+		$(SRC_DIR)ft_tile.c\
+		$(SRC_DIR)map_check_1.c\
+		$(SRC_DIR)map_check_2.c\
+		$(SRC_DIR)map_check_3.c\
+		$(SRC_DIR)map_check_4.c\
+		$(SRC_DIR)utils_sl.c\
+		$(SRC_DIR)utils_sl_1.c\
+		$(SRC_DIR)utils_sl_2.c\
+		$(SRC_DIR)utils_sl_3.c\
 
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
 start:
 	@make all
 
+$(LIBFT):
+	@make -C ./supp/libft
+
 $(PRINTF):
-	@make -C ./printf
+	@make -C ./supp/printf
+
+$(GNL):
+	@make -C ./supp/get_next_line
 
 $(MINILIBX):
-	@make -C ./minilibx-linux
+	@make -C ./supp/minilibx-linux
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PRINTF) $(MINILIBX)
-	@$(CC) $(FLAGS) $(MLB_FLAGS) $(INC) $(OBJ) $(PRINTF) -o $(NAME)
+$(NAME): $(OBJ)
+	@$(CC) $(FLAGS) $(MLB_FLAGS) $(INC) $(OBJ) $(PRINTF) $(MINILIBX) $(LIBFT) $(GNL) -o $(NAME)
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 	@mkdir -p $(@D)
@@ -54,12 +76,16 @@ $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
-	@make clean -C ./printf
-	@make clean -C ./minilibx-linux
+	@make clean -C ./supp/libft
+	@make clean -C ./supp/minilibx-linux
+	@make clean -C ./supp/get_next_line
+	@make clean -C ./supp/printf
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(LIBFT)
 	@$(RM) $(PRINTF)
+	@$(RM) $(GNL)
 	@$(RM) $(MINILIBX)
 
 re: fclean all

@@ -6,13 +6,13 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:50:28 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 12:07:06 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/05 18:04:29 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	start_po_check(t_data *game, t_temp *tmp, char *check)
+int	start_po_check(t_temp *tmp, char *check)
 {
 	tmp->i = 0;
 	while (check[tmp->i])
@@ -33,7 +33,7 @@ int	start_po_check(t_data *game, t_temp *tmp, char *check)
 	return (1);
 }
 
-int	exit_check(t_data *game, t_temp *tmp, char *check)
+int	exit_check(t_temp *tmp, char *check)
 {
 	tmp->i = 0;
 	while (check[tmp->i])
@@ -54,7 +54,7 @@ int	exit_check(t_data *game, t_temp *tmp, char *check)
 	return (1);
 }
 
-int	collect_check(t_data *game, t_temp *tmp, char *check)
+int	collect_check(t_temp *tmp, char *check)
 {
 	tmp->i = 0;
 	while (check[tmp->i])
@@ -66,7 +66,7 @@ int	collect_check(t_data *game, t_temp *tmp, char *check)
 	return (0);
 }
 
-int	false_item_check(t_data *game, t_temp *tmp, char *check)
+int	false_item_check(t_temp *tmp, char *check)
 {
 	tmp->i = 0;
 	while (check[tmp->i])
@@ -85,10 +85,10 @@ int	false_item_check(t_data *game, t_temp *tmp, char *check)
 
 void	item_check(t_data *game, t_temp *tmp, char *check)
 {
-	if (start_po_check(game, tmp, check) == 0
-		|| collect_check (game, tmp, check) == 0
-		|| exit_check(game, tmp, check) == 0
-		|| false_item_check(game, tmp, check) == 0)
+	if (start_po_check(tmp, check) == 0
+		|| collect_check (tmp, check) == 0
+		|| exit_check(tmp, check) == 0
+		|| false_item_check(tmp, check) == 0)
 	{
 		ft_printf("ERROR\nMap wrong items\n");
 		free_mapcheck(game, tmp, check);

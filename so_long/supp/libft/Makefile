@@ -3,86 +3,90 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.de>                  +#+  +:+       +#+         #
+#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2023/12/24 18:17:12 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/05 17:57:04 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-HEADER = libft.h
+INC	= inc/
 
-FLAGS = -Wall -Wextra -Werror
+SRC_DIR = src/
 
-SRC = ft_atoi.c\
-		ft_bzero.c\
-		ft_calloc.c\
-		ft_isalnum.c\
-		ft_isalpha.c\
-		ft_isascii.c\
-		ft_isdigit.c\
-		ft_isprint.c\
-		ft_itoa.c\
-		ft_memchr.c\
-		ft_memcmp.c\
-		ft_memcpy.c\
-		ft_memmove.c\
-		ft_memset.c\
-		ft_putchar_fd.c\
-		ft_putendl_fd.c\
-		ft_putnbr_fd.c\
-		ft_putstr_fd.c\
-		ft_split.c\
-		ft_strchr.c\
-		ft_strdup.c\
-		ft_striteri.c\
-		ft_strjoin.c\
-		ft_strlcat.c\
-		ft_strlcpy.c\
-		ft_strlen.c\
-		ft_strmapi.c\
-		ft_strncmp.c\
-		ft_strnstr.c\
-		ft_strrchr.c\
-		ft_strtrim.c\
-		ft_substr.c\
-		ft_tolower.c\
-		ft_toupper.c
+OBJ_DIR	= obj/
 
-B_SRC =	ft_lstadd_back.c \
-		ft_lstadd_front.c \
-		ft_lstclear.c \
-		ft_lstdelone.c \
-		ft_lstiter.c \
-		ft_lstlast.c \
-		ft_lstmap.c \
-		ft_lstnew.c \
-		ft_lstsize.c \
+CC = gcc
 
-OBJ = $(SRC:.c=.o)
-B_OBJ = $(B_SRC:.c=_bonus.o)
+FLAGS = -Wall -Wextra -Werror -I
+
+RM = rm -f
+
+AR	= ar rcs
+
+SRC = $(SRC_DIR)ft_atoi.c\
+		$(SRC_DIR)ft_bzero.c\
+		$(SRC_DIR)ft_calloc.c\
+		$(SRC_DIR)ft_isalnum.c\
+		$(SRC_DIR)ft_isalpha.c\
+		$(SRC_DIR)ft_isascii.c\
+		$(SRC_DIR)ft_isdigit.c\
+		$(SRC_DIR)ft_isprint.c\
+		$(SRC_DIR)ft_itoa.c\
+		$(SRC_DIR)ft_memchr.c\
+		$(SRC_DIR)ft_memcmp.c\
+		$(SRC_DIR)ft_memcpy.c\
+		$(SRC_DIR)ft_memmove.c\
+		$(SRC_DIR)ft_memset.c\
+		$(SRC_DIR)ft_putchar_fd.c\
+		$(SRC_DIR)ft_putendl_fd.c\
+		$(SRC_DIR)ft_putnbr_fd.c\
+		$(SRC_DIR)ft_putstr_fd.c\
+		$(SRC_DIR)ft_split.c\
+		$(SRC_DIR)ft_strchr.c\
+		$(SRC_DIR)ft_strdup.c\
+		$(SRC_DIR)ft_striteri.c\
+		$(SRC_DIR)ft_strjoin.c\
+		$(SRC_DIR)ft_strlcat.c\
+		$(SRC_DIR)ft_strlcpy.c\
+		$(SRC_DIR)ft_strlen.c\
+		$(SRC_DIR)ft_strmapi.c\
+		$(SRC_DIR)ft_strncmp.c\
+		$(SRC_DIR)ft_strnstr.c\
+		$(SRC_DIR)ft_strrchr.c\
+		$(SRC_DIR)ft_strtrim.c\
+		$(SRC_DIR)ft_substr.c\
+		$(SRC_DIR)ft_tolower.c\
+		$(SRC_DIR)ft_toupper.c\
+		$(SRC_DIR)ft_lstadd_back.c\
+		$(SRC_DIR)ft_lstadd_front.c\
+		$(SRC_DIR)ft_lstclear.c\
+		$(SRC_DIR)ft_lstdelone.c\
+		$(SRC_DIR)ft_lstiter.c\
+		$(SRC_DIR)ft_lstlast.c\
+		$(SRC_DIR)ft_lstmap.c\
+		$(SRC_DIR)ft_lstnew.c\
+		$(SRC_DIR)ft_lstsize.c
+
+OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
-%.o: %.c
-	cc $(FLAGS) -I . -c $< -o $@
-
-bonus: $(B_OBJ)
-	ar rc $(NAME) $(B_OBJ)
-
-%_bonus.o: %.c
-	cc $(FLAGS) -I . -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(@D)
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(B_OBJ)
+	@$(RM) -r $(OBJ_DIR)
+	@$(RM) .cache_exists
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
