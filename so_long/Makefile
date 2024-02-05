@@ -6,7 +6,7 @@
 #    By: kaan <kaan@student.42.de>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/02/05 22:54:54 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/05 23:35:31 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ GNL = ./supp/get_next_line/gnl.a
 
 MINILIBX = ./supp/minilibx-linux/libmlx.a
 
-INC	= inc/
+INC	= inc/ supp/libft/ supp/printf/ supp/get_next_line/ supp/minilibx-linux/
 
 SRC_DIR = src/
 
@@ -28,9 +28,9 @@ OBJ_DIR	= obj/
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra -I
+CFLAGS = -Wall -Werror -Wextra
 
-MLB_FLAGS = -L ./supp/minilibx-linux -lmlx -lXext -lX11
+LIBS = -lXext -lX11 -lmx
 
 RM = rm -f
 
@@ -50,8 +50,10 @@ SRC = $(SRC_DIR)so_long.c\
 
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
-start:
-	@make all
+all: 					$(MINILIBX) $(LIBFT) $(PRINTF) $(GNL) $(NAME)
+
+$(NAME): 				$(OBJ) $(MINILIBX) $(LIBFT) $(PRINTF) $(GNL)
+						@$(CC) $(CFLAGS) $(OBJ) $(MINILIBX) $(LIBFT) $(PRINTF) $(GNL) -o $(NAME)
 
 $(LIBFT):
 	@make -C ./supp/libft
@@ -65,14 +67,9 @@ $(GNL):
 $(MINILIBX):
 	@make -C ./supp/minilibx-linux
 
-all: $(NAME)
-
-$(NAME): $(OBJ) $(PRINTF) $(MINILIBX) $(LIBFT) $(GNL)
-	@$(CC) $(FLAGS) $(MLB_FLAGS) $(INC) $(OBJ) $(PRINTF) $(MINILIBX) $(LIBFT) $(GNL) -o $(NAME)
-
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
@@ -90,4 +87,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: start all clean fclean re
+.PHONY: all clean fclean re
