@@ -6,11 +6,11 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:49:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/02 09:22:56 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:37:43 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 t_map	*ft_lstlast_doub(t_map *lst)
 {

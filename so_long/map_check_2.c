@@ -6,11 +6,11 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:50:28 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 18:04:29 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:38:13 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 int	start_po_check(t_temp *tmp, char *check)
 {

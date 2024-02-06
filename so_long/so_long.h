@@ -6,17 +6,17 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 13:42:16 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 18:04:34 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:37:13 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../libs/minilibx-linux/mlx.h"
-# include "../libs/printf/inc/ft_printf.h"
-# include "../libs/get_next_line/inc/get_next_line.h"
-# include "../libs/libft/inc/libft.h"
+# include "libraries/mlx/mlx.h"
+# include "libraries/printf/inc/ft_printf.h"
+# include "libraries/get_next_line/inc/get_next_line.h"
+# include "libraries/libft/inc/libft.h"
 # include <stdlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>

@@ -6,11 +6,11 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:49:39 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 17:04:31 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:38:26 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 void	path_validation(t_data *game, t_temp *tmp, char *check)
 {

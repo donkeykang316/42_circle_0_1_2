@@ -6,11 +6,11 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:24:40 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 10:37:45 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:38:55 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 void	ft_free_map(t_map **lst)
 {

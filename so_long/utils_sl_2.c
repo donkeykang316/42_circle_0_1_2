@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_sl_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 00:45:49 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/04 00:47:04 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:38:44 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 void	tile_put_img(t_data *game, t_map *m_line, t_tile *tile, int coor)
 {

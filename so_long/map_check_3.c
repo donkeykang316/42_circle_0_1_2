@@ -6,11 +6,11 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 22:22:20 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 17:04:03 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:38:19 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 void	find_p(t_temp *tmp, char *check)
 {

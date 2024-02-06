@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 07:55:54 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/05 00:07:46 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:37:55 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 void	move_cow_d(t_data *game, t_map **cow)
 {

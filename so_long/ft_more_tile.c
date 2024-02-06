@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_more_tile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 08:00:27 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 23:53:21 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:37:50 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 t_tile	*enter_tile(t_data *game)
 {

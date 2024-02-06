@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:23:04 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/03 20:48:16 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/06 16:38:05 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "so_long.h"
 
 t_tile	*water_tile(t_data *game)
 {
