@@ -1,0 +1,5 @@
+cc server.c *.a
+valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --log-file=valgrind-out.txt \
+        ./a.out
