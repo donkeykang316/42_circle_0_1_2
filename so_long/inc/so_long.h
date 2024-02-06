@@ -13,15 +13,14 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../minilibx-linux/mlx.h"
-# include "../supp/printf/inc/ft_printf.h"
-# include "../supp/get_next_line/inc/get_next_line.h"
-# include "../supp/libft/inc/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
+# include "../libs/printf/inc/ft_printf.h"
+# include "../libs/get_next_line/inc/get_next_line.h"
+# include "../libs/libft/inc/libft.h"
 # include <stdlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <unistd.h>
-# include <string.h>
 
 typedef struct s_tile
 {

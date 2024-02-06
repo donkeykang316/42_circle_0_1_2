@@ -3,42 +3,43 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
+#    By: kmooney <kmooney@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/02/06 13:04:36 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/06 14:54:24 by kmooney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Program name
 NAME = so_long
 
-LIBFT = ./supp/libft/libft.a
+# Compilation flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g3
 
-PRINTF = ./supp/printf/libftprintf.a
+# lib directory
+LIBS_DIR = ./libs/
 
-GNL = ./supp/get_next_line/gnl.a
+# Linked libraries
+LFLAGS = -lft -lmlx -lftprintf -l:gnl.a -lXext -lX11
 
-MINILIBX = ./minilibx-linux/libmlx.a
+# Library Directories
+LIBFT_DIR = $(LIBS_DIR)libft/
+MLX_DIR = $(LIBS_DIR)minilibx-linux/
+PRINTF_DIR = $(LIBS_DIR)printf/
+GNL_DIR = $(LIBS_DIR)get_next_line/
 
-INC	= inc/ supp/libft/ supp/printf/ supp/get_next_line/ minilibx-linux
+# Compiler flags to link to libraries
+LIBS = -L$(LIBFT_DIR) -L$(MLX_DIR) -L$(PRINTF_DIR) -L$(GNL_DIR)
+
+# MLX := "minilibx-linux"
+# MLX_URL = "https://cdn.intra.42.fr/document/document/21656/minilibx-linux.tgz"
+
+# RM = rm -f
+# MLX_URL = ""
 
 SRC_DIR = src/
-
 OBJ_DIR	= obj/
-
-CC = cc
-
-CFLAGS = -Wall -Werror -Wextra
-
-MLX := "minilibx-linux"
-
-MLX_URL = "https://cdn.intra.42.fr/document/document/21656/minilibx-linux.tgz"
-
-LIBS = -L ./libraries/mlx -lmlx -lXext -lX11
-
-RM = rm -f
-
-MLX_URL = ""
 
 SRC = $(SRC_DIR)so_long.c\
 		$(SRC_DIR)ft_list.c\
@@ -55,42 +56,42 @@ SRC = $(SRC_DIR)so_long.c\
 		$(SRC_DIR)utils_sl_3.c\
 
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
+DEPENDS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.d, $(SRCS))
 
-all: $(MLX) $(NAME)
+# $(MLX):
+# 	@if [ ! -d $(MLX) ]; then \
+# 		echo "GETTING MLX LIBRARY"; \
+# 		git clone https://github.com/42Paris/minilibx-linux.git; \
+# 		echo "MLX LIBRARY cloned"; \
+# 	fi
 
-$(MLX):
-	@if [ ! -d $(MLX) ]; then \
-		echo "GETTING MLX LIBRARY"; \
-		git clone https://github.com/42Paris/minilibx-linux.git; \
-		echo "MLX LIBRARY cloned"; \
-	fi
-	@make -C $(MLX)
-	@make -C ./supp/libft
-	@make -C ./supp/printf
-	@make -C ./supp/get_next_line
+all: $(NAME)
 
-#all: 				$(MINILIBX) $(LIBFT) $(PRINTF) $(GNL) $(NAME)
+$(NAME): $(OBJ)
+	@make -C $(MLX_DIR)
+	@make -C $(PRINTF_DIR)
+	@make -C $(GNL_DIR)
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) $(OBJ) $(INCLUDE) -o $(NAME) $(LIBS) $(LFLAGS) 
 
-$(NAME): 				$(OBJ) $(MINILIBX) $(LIBFT) $(PRINTF) $(GNL)
-						@$(CC) $(CFLAGS) $(OBJ) $(MINILIBX) $(LIBFT) $(PRINTF) $(GNL) -o $(NAME)
-
-$(OBJ_DIR)%.o:		$(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c -MMD -MP $< -o $@
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+	
+-include $(DEPENDS)
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
-	@make clean -C ./supp/libft
-	@make clean -C ./minilibx-linux
-	@make clean -C ./supp/get_next_line
-	@make clean -C ./supp/printf
+	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(PRINTF_DIR)
+	@make clean -C $(GNL_DIR)
+	@make clean -C $(MLX_DIR)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) $(LIBFT)
-	@$(RM) $(PRINTF)
-	@$(RM) $(GNL)
-	@$(RM) $(MINILIBX)
 
 re: fclean all
 

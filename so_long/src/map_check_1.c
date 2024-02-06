@@ -22,7 +22,7 @@ void	map_check(t_data *game)
 	while (tmp->temp)
 	{
 		if (tmp->temp)
-			check = ft_strjoin(check, tmp->temp);
+			check = ft_strjoin_gnl(check, tmp->temp);
 		free (tmp->temp);
 		tmp->temp = get_next_line(tmp->fd);
 	}
