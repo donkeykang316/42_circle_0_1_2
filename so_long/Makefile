@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kaan <kaan@student.42.de>                  +#+  +:+       +#+         #
+#    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 14:44:47 by kaan              #+#    #+#              #
-#    Updated: 2024/02/05 23:35:31 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/06 12:22:56 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ PRINTF = ./supp/printf/libftprintf.a
 
 GNL = ./supp/get_next_line/gnl.a
 
-MINILIBX = ./supp/minilibx-linux/libmlx.a
+MINILIBX = ./minilibx-linux/libmlx.a
 
-INC	= inc/ supp/libft/ supp/printf/ supp/get_next_line/ supp/minilibx-linux/
+INC	= inc/ supp/libft/ supp/printf/ supp/get_next_line/ minilibx-linux
 
 SRC_DIR = src/
 
@@ -30,9 +30,15 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-LIBS = -lXext -lX11 -lmx
+MLX := "minilibx-linux"
+
+MLX_URL = "https://cdn.intra.42.fr/document/document/21656/minilibx-linux.tgz"
+
+LIBS = -Lminilibx-linux -lmlx -L./minilibx-linux -Iminilibx-linux -lXext -lX11 -lm -lz
 
 RM = rm -f
+
+MLX_URL = ""
 
 SRC = $(SRC_DIR)so_long.c\
 		$(SRC_DIR)ft_list.c\
@@ -50,6 +56,14 @@ SRC = $(SRC_DIR)so_long.c\
 
 OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 
+getmlxlib:
+	@if [ ! -d $(MLX) ]; then \
+		echo "GETTING MLX LIBRARY"; \
+		git clone https://github.com/42Paris/minilibx-linux.git; \
+		echo "MLX LIBRARY cloned"; \
+	fi
+	@make -C $(MLX)
+
 all: 					$(MINILIBX) $(LIBFT) $(PRINTF) $(GNL) $(NAME)
 
 $(NAME): 				$(OBJ) $(MINILIBX) $(LIBFT) $(PRINTF) $(GNL)
@@ -65,7 +79,7 @@ $(GNL):
 	@make -C ./supp/get_next_line
 
 $(MINILIBX):
-	@make -C ./supp/minilibx-linux
+	@make -C ./minilibx-linux
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 	@mkdir -p $(@D)
@@ -74,7 +88,7 @@ $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 clean:
 	@$(RM) -r $(OBJ_DIR)
 	@make clean -C ./supp/libft
-	@make clean -C ./supp/minilibx-linux
+	@make clean -C ./minilibx-linux
 	@make clean -C ./supp/get_next_line
 	@make clean -C ./supp/printf
 
