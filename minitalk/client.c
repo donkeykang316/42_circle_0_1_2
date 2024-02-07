@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:31:24 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/07 11:30:55 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/07 17:32:12 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@
 #include <signal.h>
 #include <unistd.h>
 
+static void	sig_handler(int signbr)
+{
+}
+
 int	main(int ac, char **av)
 {
-	struct sigaction	sa;
-
-	if (ac == 2)
-	{
-		sa.sa_handler = signal_handler;
-		sa.sa_flags = 0;
-		sigemptyset(&sa.sa_mask);
-		sigaction(SIGUSR2, &sa, NULL);
-		while (1)
-			pause(1);
-	}
+	signal(SIGUSR2, sig_handler);
+	ft_printf("Client PID [%d]\n", getpid());
+	ft_printf("Sending PID to server...\n");
 }

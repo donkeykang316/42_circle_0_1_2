@@ -1,0 +1,1 @@
+cc server.c *.a -o server && ./server
