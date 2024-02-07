@@ -1,1 +1,1 @@
-cc client.c *.a -o client && ./client 47203
+cc client.c *.a -o client && ./client "Hello World good day"

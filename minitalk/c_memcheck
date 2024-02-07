@@ -1,5 +1,5 @@
-cc client.c *.a
+cc client.c *.a -o client
 valgrind --leak-check=full \
          --show-leak-kinds=all \
          --log-file=valgrind-out.txt \
-        ./a.out "Hello WORLD"
+        ./client 40748 Hello
