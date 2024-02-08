@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.de>                  +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:31:24 by kaan              #+#    #+#             */
-/*   Updated: 2024/02/07 22:46:22 by kaan             ###   ########.fr       */
+/*   Updated: 2024/02/08 12:51:24 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,26 @@ void	send_bit(int pid, char **av)
 int	main(int ac, char **av)
 {
 	int	pid;
+	int	i;
 
+	i = 0;
 	if (ac == 3)
 	{
+		while (av[1][i])
+		{
+			if (av[1][i] < '0' || av[1][i] > '9')
+			{
+				ft_printf("Wrong PID!\n");
+				return (0);
+			}
+			i++;
+		}
 		pid = ft_atoi(av[1]);
+		if (pid < 0)
+		{
+			ft_printf("Wrong PID!\n");
+			return (0);
+		}
 		ft_printf("Client PID [%d]\n", getpid());
 		ft_printf("Sending PID to server...\n");
 		send_bit(pid, av);

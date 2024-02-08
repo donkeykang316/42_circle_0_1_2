@@ -6,53 +6,43 @@
 #    By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:56:54 by kaan              #+#    #+#              #
-#    Updated: 2024/02/06 18:16:38 by kaan             ###   ########.fr        #
+#    Updated: 2024/02/08 12:57:20 by kaan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minitalk
+CLIENT = client
+
+SERVER = server
 
 PRINTF = ./libraries/printf/libftprintf.a
 
 LIBFT = ./libraries/libft/libft.a
 
-INC	= inc/
+CC = cc
 
-SRC_DIR = src/
-
-OBJ_DIR	= obj/
-
-CC = gcc
-
-FLAGS = -I
-
-# FLAGS = -Wall -Wextra -Werror -I
+FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRC = $(SRC_DIR)minitalk.c\
+SSRC = server.c\
 
-OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
+CSRC = client.c\
 
-start:
-	@make all
-
-all: $(NAME)
-
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(FLAGS) $(INC) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
-
-$(OBJ_DIR)%.o:		$(SRC_DIR)%.c
-	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+all:
+	@make -C ./libraries/libft
+	@make -C ./libraries/printf
+	@$(CC) $(FLAGS) $(SSRC) $(LIBFT) $(PRINTF) -o $(SERVER)
+	@$(CC) $(FLAGS) $(CSRC) $(LIBFT) $(PRINTF) -o $(CLIENT)
 
 clean:
-	@$(RM) -r $(OBJ_DIR)
+	@$(RM) -r $(SERVER)
+	@$(RM) -r $(CLIENT)
 	@make clean -C ./libraries/printf
 	@make clean -C ./libraries/libft
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(SERVER)
+	@$(RM) $(CLIENT)
 	@$(RM) $(PRINTF)
 	@$(RM) $(LIBFT)
 

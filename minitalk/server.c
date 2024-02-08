@@ -43,7 +43,7 @@ static void	sig_handler(int signbr)
 	i++;
 	if (i == 8)
 	{
-		buffer[9] = '\0';
+		buffer[8] = '\0';
 		ft_printf("%c", bits_to_char(buffer));
 		i = 0;
 	}
