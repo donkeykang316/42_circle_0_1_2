@@ -22,7 +22,7 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror
 
-RM = rm -f
+RM = rm -rf
 
 SSRC = server.c\
 
@@ -41,8 +41,8 @@ clean:
 	@make clean -C ./libraries/libft
 
 fclean: clean
-	@$(RM) $(SERVER)
-	@$(RM) $(CLIENT)
+	@$(RM) -r $(SERVER)
+	@$(RM) -r $(CLIENT)
 	@$(RM) $(PRINTF)
 	@$(RM) $(LIBFT)
 
