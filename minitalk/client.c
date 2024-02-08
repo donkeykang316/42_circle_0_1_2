@@ -51,20 +51,13 @@ int	main(int ac, char **av)
 		while (av[1][i])
 		{
 			if (av[1][i] < '0' || av[1][i] > '9')
-			{
-				ft_printf("Wrong PID!\n");
 				return (0);
-			}
 			i++;
 		}
 		pid = ft_atoi(av[1]);
 		if (pid < 0)
-		{
-			ft_printf("Wrong PID!\n");
 			return (0);
-		}
 		ft_printf("Client PID [%d]\n", getpid());
-		ft_printf("Sending PID to server...\n");
 		send_bit(pid, av);
 	}
 	else
